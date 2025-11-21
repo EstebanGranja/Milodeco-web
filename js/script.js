@@ -27,15 +27,16 @@ let seleccion = {
   cantidad: 1
 };
 let carrito = [];
+let carruselIntervalos = {}; // Para guardar los intervalos de cada carrusel
 
 // Número de WhatsApp
 const telefonoWhats = "5493547656901";
 
-// Cargar datos del stock.json
+// Cargar datos del stock.json desde GitHub
 async function cargarStock() {
   categoriasContainer.innerHTML = '<div class="cargando">Cargando productos...</div>';
   try {
-    const resp = await fetch("stock.json");
+    const resp = await fetch("https://raw.githubusercontent.com/EstebanGranja/milodeco-stock/refs/heads/master/stock.json");
     if (!resp.ok) throw new Error("No se pudo cargar stock.json");
     data = await resp.json();
     console.log("Datos cargados:", data);
@@ -86,6 +87,10 @@ function mostrarProductosCategoria(categoriaId) {
   const cat = data.categorias.find(c => c.id === categoriaId);
   if (!cat) return;
 
+  // Limpiar intervalos anteriores
+  Object.values(carruselIntervalos).forEach(intervalo => clearInterval(intervalo));
+  carruselIntervalos = {};
+
   categoriasContainer.classList.add("oculto");
   productosContainer.classList.remove("oculto");
   productosContainer.innerHTML = "";
@@ -95,6 +100,9 @@ function mostrarProductosCategoria(categoriaId) {
   volver.className = "producto volver-btn";
   volver.innerHTML = `<h3>← Volver a categorías</h3>`;
   volver.addEventListener("click", () => {
+    // Limpiar intervalos al volver
+    Object.values(carruselIntervalos).forEach(intervalo => clearInterval(intervalo));
+    carruselIntervalos = {};
     productosContainer.classList.add("oculto");
     categoriasContainer.classList.remove("oculto");
     mostrarCategorias();
@@ -106,13 +114,25 @@ function mostrarProductosCategoria(categoriaId) {
   productos.forEach(prod => {
     const div = document.createElement("div");
     div.className = "producto";
-    const imgUrl = prod.imagen || "img/placeholder.jpg";
-
+    
     const precioTexto = calcularPrecioBase(prod);
+    
+    // Determinar si hay múltiples imágenes
+    const imagenes = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes : [prod.imagen];
+    const tieneMultiplesImagenes = imagenes.length > 1;
 
+    // Crear estructura HTML para el carrusel
     div.innerHTML = `
       <div class="imagen-container" data-producto-id="${prod.id}">
-        <img src="${imgUrl}" alt="${prod.nombre}" onerror="this.onerror=null;this.src='img/placeholder.jpg'">
+        <div class="carrusel-wrapper">
+          ${imagenes.map((img, index) => 
+            `<img src="${img || 'img/placeholder.jpg'}" 
+                  alt="${prod.nombre}" 
+                  class="producto-img ${index === 0 ? 'active' : ''}"
+                  onerror="this.onerror=null;this.src='img/placeholder.jpg'">`
+          ).join('')}
+        </div>
+        ${tieneMultiplesImagenes ? '<div class="carrusel-dots"></div>' : ''}
       </div>
       <h3>${prod.nombre}</h3>
       <p>${prod.descripcion}</p>
@@ -121,6 +141,65 @@ function mostrarProductosCategoria(categoriaId) {
     `;
 
     div.querySelector(".btn-ver").addEventListener("click", () => abrirModalProducto(cat.id, prod.id));
+    
+    // Si tiene múltiples imágenes, iniciar carrusel automático
+    if (tieneMultiplesImagenes) {
+      const carruselWrapper = div.querySelector(".carrusel-wrapper");
+      const imagenesElements = div.querySelectorAll(".producto-img");
+      const dotsContainer = div.querySelector(".carrusel-dots");
+      let indiceActual = 0;
+      
+      // Crear indicadores de puntos
+      imagenes.forEach((_, index) => {
+        const dot = document.createElement("span");
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        dot.addEventListener("click", () => {
+          clearTimeout(carruselIntervalos[prod.id]);
+          mostrarImagen(index);
+          iniciarCarrusel(); // Reiniciar el intervalo
+        });
+        dotsContainer.appendChild(dot);
+      });
+      
+      // Función para mostrar una imagen específica
+      const mostrarImagen = (nuevoIndice) => {
+        // Remover clase active de todas las imágenes y puntos
+        imagenesElements.forEach(img => img.classList.remove("active"));
+        dotsContainer.querySelectorAll(".dot").forEach(dot => dot.classList.remove("active"));
+        
+        // Aplicar clase active a la imagen y punto actual
+        imagenesElements[nuevoIndice].classList.add("active");
+        dotsContainer.querySelectorAll(".dot")[nuevoIndice].classList.add("active");
+        
+        indiceActual = nuevoIndice;
+      };
+      
+      // Función para cambiar a la siguiente imagen
+      const siguienteImagen = () => {
+        const nuevoIndice = (indiceActual + 1) % imagenes.length;
+        mostrarImagen(nuevoIndice);
+      };
+      
+      // Iniciar el carrusel automático
+      const iniciarCarrusel = () => {
+        carruselIntervalos[prod.id] = setTimeout(() => {
+          siguienteImagen();
+          iniciarCarrusel(); // Programar siguiente cambio
+        }, 3000); // Cambiar cada 3 segundos
+      };
+      
+      // Iniciar el carrusel
+      iniciarCarrusel();
+      
+      // Pausar carrusel al hacer hover
+      const imagenContainer = div.querySelector(".imagen-container");
+      imagenContainer.addEventListener("mouseenter", () => {
+        clearTimeout(carruselIntervalos[prod.id]);
+      });
+      
+      imagenContainer.addEventListener("mouseleave", iniciarCarrusel);
+    }
+    
     productosContainer.appendChild(div);
   });
 }

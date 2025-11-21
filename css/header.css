@@ -1,0 +1,146 @@
+/* ===========================
+   ====== HEADER ======
+   =========================== */
+
+header {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.socials {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.social-link {
+  color: var(--color-secondary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: var(--transition);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.social-link:hover {
+  background-color: var(--color-hover);
+  transform: scale(1.05);
+}
+
+.social-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+.whatsapp-btn {
+  background-color: #25D366;
+}
+
+.whatsapp-btn:hover {
+  background-color: #20BA5A;
+}
+
+/* Carrito en header */
+.carrito-container {
+  position: relative;
+}
+
+.carrito-btn {
+  background-color: var(--color-accent);
+  color: var(--color-secondary);
+  border: none;
+  padding: 0.65rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.carrito-btn:hover {
+  background-color: var(--color-hover);
+  transform: scale(1.05);
+}
+
+.carrito-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #dc3545;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 1rem;
+  }
+
+  .logo-img {
+    height: 45px;
+  }
+
+  .header-right {
+    gap: 1rem;
+  }
+
+  .socials {
+    gap: 0.5rem;
+  }
+
+  .social-link {
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 40px;
+  }
+}
+

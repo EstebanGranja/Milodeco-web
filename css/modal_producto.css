@@ -1,0 +1,311 @@
+/* ===========================
+   ====== MODAL PRODUCTO ======
+   =========================== */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(45, 31, 23, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.modal-contenido {
+  background-color: var(--color-secondary);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  animation: modalAppear 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 3px solid var(--color-accent);
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: var(--color-text);
+  cursor: pointer;
+  background-color: var(--color-light);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition);
+  z-index: 10;
+}
+
+.cerrar-modal:hover {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  transform: rotate(90deg);
+}
+
+/* Detalle del producto en modal */
+.producto-detalle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.detalle-imagen {
+  width: 100%;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--color-light);
+  border: 2px solid var(--color-border);
+}
+
+.detalle-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detalle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detalle-info h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.detalle-info p {
+  color: var(--color-text-light);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Opciones del producto (medidas, demora, cantidad) */
+#opciones-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.opcion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.opcion label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.info-demora {
+  color: var(--color-accent);
+  font-weight: 500;
+  font-size: 0.95rem;
+  background-color: rgba(139, 111, 71, 0.1);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border-left: 3px solid var(--color-accent);
+}
+
+/* Chips de selección (medidas) */
+#opciones-medidas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.625rem 1.25rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.chip:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-light);
+}
+
+.chip.selected {
+  background-color: var(--color-accent);
+  color: var(--color-secondary);
+  border-color: var(--color-accent);
+}
+
+/* Selector de cantidad */
+.cantidad-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-cantidad {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-cantidad:hover {
+  background-color: var(--color-accent);
+  color: var(--color-secondary);
+  border-color: var(--color-accent);
+}
+
+#input-cantidad {
+  width: 70px;
+  height: 40px;
+  text-align: center;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--color-text);
+  background-color: var(--color-secondary);
+}
+
+#input-cantidad:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* Footer del modal (precio y botones) */
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--color-border);
+}
+
+.precio-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.precio-total strong {
+  font-size: 1.85rem;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.modal-actions button {
+  flex: 1;
+}
+
+/* Responsive Modal Producto */
+@media (max-width: 768px) {
+  .modal-contenido {
+    max-width: 100%;
+    margin: 1rem;
+    max-height: 95vh;
+  }
+
+  .producto-detalle {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    padding-top: 3rem;
+  }
+
+  .detalle-imagen {
+    height: 300px;
+  }
+
+  .detalle-info h2 {
+    font-size: 1.6rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .precio-total strong {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    padding: 0.5rem;
+  }
+
+  .producto-detalle {
+    padding: 1rem;
+    padding-top: 2.5rem;
+    gap: 1rem;
+  }
+
+  .detalle-imagen {
+    height: 250px;
+  }
+
+  .detalle-info h2 {
+    font-size: 1.4rem;
+  }
+
+  .chip {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .cerrar-modal {
+    width: 35px;
+    height: 35px;
+    font-size: 1.75rem;
+  }
+}

@@ -1,0 +1,226 @@
+/* ===========================
+   ====== PRODUCTOS ======
+   =========================== */
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.producto {
+  background-color: var(--color-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color-border);
+}
+
+.producto:not(.volver-btn):hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent);
+}
+
+/* Botón Volver a categorías */
+.volver-btn {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  grid-column: 1 / -1;
+  border: 2px solid var(--color-primary);
+}
+
+.volver-btn:hover {
+  background-color: var(--color-hover);
+  transform: none;
+}
+
+.volver-btn h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Imagen del producto con carrusel */
+.imagen-container {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  background-color: var(--color-light);
+  position: relative;
+}
+
+/* Estilos para el nuevo carrusel */
+.carrusel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.imagen-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease-in-out;
+  will-change: opacity;
+}
+
+/* Estado inicial de las imágenes del carrusel */
+.producto-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  will-change: opacity;
+}
+
+.producto-img.active {
+  opacity: 1;
+}
+
+/* Indicadores del carrusel */
+.carrusel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  z-index: 10;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  padding: 0;
+}
+
+.dot.active {
+  background-color: white;
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Efecto hover en la imagen */
+.producto:hover .imagen-container img {
+  transform: scale(1.08);
+  transition: opacity 0.5s ease-in-out, transform 0.3s ease;
+}
+
+/* Contenido del producto */
+.producto h3 {
+  padding: 1rem 1rem 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.producto p {
+  padding: 0 1rem;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  flex: 1;
+  margin: 0;
+}
+
+.producto-info {
+  padding: 0.75rem 1rem;
+  font-size: 1.15rem;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* Botón Ver producto */
+.btn-ver {
+  width: calc(100% - 2rem);
+  margin: 0 1rem 1rem;
+  padding: 0.875rem;
+  background-color: var(--color-accent);
+  color: var(--color-secondary);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-ver:hover:not(:disabled) {
+  background-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Responsive Productos */
+@media (max-width: 768px) {
+  .productos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .imagen-container {
+    height: 240px;
+  }
+
+  .producto h3 {
+    font-size: 1.15rem;
+  }
+
+  .producto p {
+    font-size: 0.85rem;
+  }
+
+  .carrusel-dots {
+    bottom: 8px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .productos-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .imagen-container {
+    height: 260px;
+  }
+
+  .carrusel-dots {
+    bottom: 6px;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+  }
+}
