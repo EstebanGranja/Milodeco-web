@@ -67,12 +67,17 @@
     <div class="modal-contenido">
       <span class="cerrar-modal" id="cerrar-producto">&times;</span>
       <div class="producto-detalle">
-        <div class="detalle-imagen">
-          <img id="detalle-img" src="" alt="Imagen producto" />
+        <!-- Columna izquierda: Imagen y descripción -->
+        <div class="columna-izquierda">
+          <div class="detalle-imagen">
+            <img id="detalle-img" src="" alt="Imagen producto" />
+          </div>
+          <p id="detalle-descripcion"></p>
         </div>
+        
+        <!-- Columna derecha: Info del producto -->
         <div class="detalle-info">
           <h2 id="detalle-nombre"></h2>
-          <p id="detalle-descripcion"></p>
           
           <!-- Opciones del producto -->
           <div id="opciones-container">

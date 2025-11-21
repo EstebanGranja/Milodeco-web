@@ -243,33 +243,6 @@ function abrirModalProducto(categoriaId, productoId) {
     detalleDemora.classList.remove("en-stock");
   }
 
-  // Reorganizar elementos: mover descripción y demora junto a la imagen
-  const detalleImagenContainer = document.querySelector(".detalle-imagen");
-  const detalleInfo = document.querySelector(".detalle-info");
-  const productoDetalleContainer = document.querySelector(".producto-detalle");
-  const opcionDemoraWrapper = document.getElementById("opcion-demora-wrapper");
-  
-  // Limpiar columna izquierda anterior si existe
-  let columnaIzquierda = document.querySelector(".columna-izquierda");
-  if (columnaIzquierda) {
-    columnaIzquierda.remove();
-  }
-  
-  // Crear nueva columna izquierda
-  columnaIzquierda = document.createElement("div");
-  columnaIzquierda.className = "columna-izquierda";
-  productoDetalleContainer.insertBefore(columnaIzquierda, detalleInfo);
-  
-  // Agregar elementos a la columna izquierda
-  columnaIzquierda.appendChild(detalleImagenContainer);
-  
-  const descripcionElement = document.createElement("p");
-  descripcionElement.className = "producto-descripcion-detalle";
-  descripcionElement.textContent = productoActual.descripcion || "";
-  columnaIzquierda.appendChild(descripcionElement);
-  
-  columnaIzquierda.appendChild(opcionDemoraWrapper);
-
   // Configurar navegación de imágenes
   configurarNavegacionImagenes();
 
