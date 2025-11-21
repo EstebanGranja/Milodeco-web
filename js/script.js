@@ -27,7 +27,9 @@ let seleccion = {
   cantidad: 1
 };
 let carrito = [];
-let carruselIntervalos = {}; // Para guardar los intervalos de cada carrusel
+let carruselIntervalos = {};
+let imagenActualIndex = 0;
+let imagenesProductoActual = [];
 
 // Número de WhatsApp
 const telefonoWhats = "5493547656901";
@@ -100,7 +102,6 @@ function mostrarProductosCategoria(categoriaId) {
   volver.className = "producto volver-btn";
   volver.innerHTML = `<h3>← Volver a categorías</h3>`;
   volver.addEventListener("click", () => {
-    // Limpiar intervalos al volver
     Object.values(carruselIntervalos).forEach(intervalo => clearInterval(intervalo));
     carruselIntervalos = {};
     productosContainer.classList.add("oculto");
@@ -117,11 +118,9 @@ function mostrarProductosCategoria(categoriaId) {
     
     const precioTexto = calcularPrecioBase(prod);
     
-    // Determinar si hay múltiples imágenes
     const imagenes = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes : [prod.imagen];
     const tieneMultiplesImagenes = imagenes.length > 1;
 
-    // Crear estructura HTML para el carrusel
     div.innerHTML = `
       <div class="imagen-container" data-producto-id="${prod.id}">
         <div class="carrusel-wrapper">
@@ -142,56 +141,47 @@ function mostrarProductosCategoria(categoriaId) {
 
     div.querySelector(".btn-ver").addEventListener("click", () => abrirModalProducto(cat.id, prod.id));
     
-    // Si tiene múltiples imágenes, iniciar carrusel automático
     if (tieneMultiplesImagenes) {
       const carruselWrapper = div.querySelector(".carrusel-wrapper");
       const imagenesElements = div.querySelectorAll(".producto-img");
       const dotsContainer = div.querySelector(".carrusel-dots");
       let indiceActual = 0;
       
-      // Crear indicadores de puntos
       imagenes.forEach((_, index) => {
         const dot = document.createElement("span");
         dot.className = `dot ${index === 0 ? 'active' : ''}`;
         dot.addEventListener("click", () => {
           clearTimeout(carruselIntervalos[prod.id]);
           mostrarImagen(index);
-          iniciarCarrusel(); // Reiniciar el intervalo
+          iniciarCarrusel();
         });
         dotsContainer.appendChild(dot);
       });
       
-      // Función para mostrar una imagen específica
       const mostrarImagen = (nuevoIndice) => {
-        // Remover clase active de todas las imágenes y puntos
         imagenesElements.forEach(img => img.classList.remove("active"));
         dotsContainer.querySelectorAll(".dot").forEach(dot => dot.classList.remove("active"));
         
-        // Aplicar clase active a la imagen y punto actual
         imagenesElements[nuevoIndice].classList.add("active");
         dotsContainer.querySelectorAll(".dot")[nuevoIndice].classList.add("active");
         
         indiceActual = nuevoIndice;
       };
       
-      // Función para cambiar a la siguiente imagen
       const siguienteImagen = () => {
         const nuevoIndice = (indiceActual + 1) % imagenes.length;
         mostrarImagen(nuevoIndice);
       };
       
-      // Iniciar el carrusel automático
       const iniciarCarrusel = () => {
         carruselIntervalos[prod.id] = setTimeout(() => {
           siguienteImagen();
-          iniciarCarrusel(); // Programar siguiente cambio
-        }, 3000); // Cambiar cada 3 segundos
+          iniciarCarrusel();
+        }, 3000);
       };
       
-      // Iniciar el carrusel
       iniciarCarrusel();
       
-      // Pausar carrusel al hacer hover
       const imagenContainer = div.querySelector(".imagen-container");
       imagenContainer.addEventListener("mouseenter", () => {
         clearTimeout(carruselIntervalos[prod.id]);
@@ -227,6 +217,11 @@ function abrirModalProducto(categoriaId, productoId) {
   if (!prod) return;
 
   productoActual = { ...prod, categoria: categoriaId };
+  imagenesProductoActual = productoActual.imagenes && productoActual.imagenes.length > 0 
+    ? productoActual.imagenes 
+    : [productoActual.imagen];
+  imagenActualIndex = 0;
+
   seleccion = {
     medida: null,
     medidaIndex: null,
@@ -236,8 +231,47 @@ function abrirModalProducto(categoriaId, productoId) {
   inputCantidad.value = 1;
   detalleNombre.textContent = productoActual.nombre;
   detalleDescripcion.textContent = productoActual.descripcion || "";
-  detalleImg.src = productoActual.imagen || "img/placeholder.jpg";
-  detalleDemora.textContent = productoActual.demora || "Consultar";
+  actualizarImagenModal();
+  
+  // Configurar demora con clase especial si es "En stock"
+  const demoraTexto = productoActual.demora || "Consultar";
+  detalleDemora.textContent = demoraTexto;
+  
+  if (demoraTexto.toLowerCase() === "en stock") {
+    detalleDemora.classList.add("en-stock");
+  } else {
+    detalleDemora.classList.remove("en-stock");
+  }
+
+  // Reorganizar elementos: mover descripción y demora junto a la imagen
+  const detalleImagenContainer = document.querySelector(".detalle-imagen");
+  const detalleInfo = document.querySelector(".detalle-info");
+  const productoDetalleContainer = document.querySelector(".producto-detalle");
+  const opcionDemoraWrapper = document.getElementById("opcion-demora-wrapper");
+  
+  // Limpiar columna izquierda anterior si existe
+  let columnaIzquierda = document.querySelector(".columna-izquierda");
+  if (columnaIzquierda) {
+    columnaIzquierda.remove();
+  }
+  
+  // Crear nueva columna izquierda
+  columnaIzquierda = document.createElement("div");
+  columnaIzquierda.className = "columna-izquierda";
+  productoDetalleContainer.insertBefore(columnaIzquierda, detalleInfo);
+  
+  // Agregar elementos a la columna izquierda
+  columnaIzquierda.appendChild(detalleImagenContainer);
+  
+  const descripcionElement = document.createElement("p");
+  descripcionElement.className = "producto-descripcion-detalle";
+  descripcionElement.textContent = productoActual.descripcion || "";
+  columnaIzquierda.appendChild(descripcionElement);
+  
+  columnaIzquierda.appendChild(opcionDemoraWrapper);
+
+  // Configurar navegación de imágenes
+  configurarNavegacionImagenes();
 
   // Medidas
   opcionesMedidas.innerHTML = "";
@@ -266,20 +300,189 @@ function abrirModalProducto(categoriaId, productoId) {
   productoModal.classList.remove("oculto");
 }
 
+// Actualizar imagen del modal
+function actualizarImagenModal() {
+  detalleImg.src = imagenesProductoActual[imagenActualIndex] || "img/placeholder.jpg";
+}
+
+// Configurar navegación de imágenes en el modal
+function configurarNavegacionImagenes() {
+  const detalleImagenContainer = document.querySelector(".detalle-imagen");
+  
+  // Limpiar controles previos
+  const controlesAnteriores = detalleImagenContainer.querySelectorAll('.imagen-nav-arrow, .imagen-indicators');
+  controlesAnteriores.forEach(el => el.remove());
+
+  // Si solo hay una imagen, agregar evento de zoom y salir
+  if (imagenesProductoActual.length === 1) {
+    detalleImg.onclick = () => abrirImagenFullscreen();
+    return;
+  }
+
+  // Crear flechas de navegación
+  const flechaPrev = document.createElement("button");
+  flechaPrev.className = "imagen-nav-arrow prev";
+  flechaPrev.innerHTML = "‹";
+  flechaPrev.onclick = (e) => {
+    e.stopPropagation();
+    cambiarImagenModal(-1);
+  };
+
+  const flechaNext = document.createElement("button");
+  flechaNext.className = "imagen-nav-arrow next";
+  flechaNext.innerHTML = "›";
+  flechaNext.onclick = (e) => {
+    e.stopPropagation();
+    cambiarImagenModal(1);
+  };
+
+  // Crear indicadores
+  const indicatorsContainer = document.createElement("div");
+  indicatorsContainer.className = "imagen-indicators";
+  
+  imagenesProductoActual.forEach((_, index) => {
+    const indicator = document.createElement("span");
+    indicator.className = `imagen-indicator ${index === 0 ? 'active' : ''}`;
+    indicator.onclick = (e) => {
+      e.stopPropagation();
+      imagenActualIndex = index;
+      actualizarImagenModal();
+      actualizarIndicadores();
+    };
+    indicatorsContainer.appendChild(indicator);
+  });
+
+  detalleImagenContainer.appendChild(flechaPrev);
+  detalleImagenContainer.appendChild(flechaNext);
+  detalleImagenContainer.appendChild(indicatorsContainer);
+
+  // Evento para abrir en pantalla completa
+  detalleImg.onclick = () => abrirImagenFullscreen();
+}
+
+// Cambiar imagen en el modal
+function cambiarImagenModal(direccion) {
+  imagenActualIndex = (imagenActualIndex + direccion + imagenesProductoActual.length) % imagenesProductoActual.length;
+  actualizarImagenModal();
+  actualizarIndicadores();
+}
+
+// Actualizar indicadores activos
+function actualizarIndicadores() {
+  const indicators = document.querySelectorAll(".imagen-indicator");
+  indicators.forEach((ind, idx) => {
+    if (idx === imagenActualIndex) {
+      ind.classList.add("active");
+    } else {
+      ind.classList.remove("active");
+    }
+  });
+}
+
+// Abrir imagen en pantalla completa
+function abrirImagenFullscreen() {
+  const fullscreenModal = document.createElement("div");
+  fullscreenModal.className = "imagen-fullscreen-modal";
+  
+  const fullscreenContent = document.createElement("div");
+  fullscreenContent.className = "fullscreen-content";
+  
+  const img = document.createElement("img");
+  img.src = imagenesProductoActual[imagenActualIndex];
+  img.alt = productoActual.nombre;
+  
+  const cerrar = document.createElement("span");
+  cerrar.className = "cerrar-modal";
+  cerrar.innerHTML = "&times;";
+  cerrar.onclick = (e) => {
+    e.stopPropagation();
+    fullscreenModal.remove();
+  };
+  
+  fullscreenContent.appendChild(img);
+  
+  // Si hay múltiples imágenes, agregar controles de navegación
+  if (imagenesProductoActual.length > 1) {
+    const flechaPrev = document.createElement("button");
+    flechaPrev.className = "imagen-nav-arrow prev";
+    flechaPrev.innerHTML = "‹";
+    flechaPrev.onclick = (e) => {
+      e.stopPropagation();
+      imagenActualIndex = (imagenActualIndex - 1 + imagenesProductoActual.length) % imagenesProductoActual.length;
+      img.src = imagenesProductoActual[imagenActualIndex];
+      actualizarIndicadoresFullscreen();
+    };
+
+    const flechaNext = document.createElement("button");
+    flechaNext.className = "imagen-nav-arrow next";
+    flechaNext.innerHTML = "›";
+    flechaNext.onclick = (e) => {
+      e.stopPropagation();
+      imagenActualIndex = (imagenActualIndex + 1) % imagenesProductoActual.length;
+      img.src = imagenesProductoActual[imagenActualIndex];
+      actualizarIndicadoresFullscreen();
+    };
+
+    // Crear indicadores
+    const indicatorsContainer = document.createElement("div");
+    indicatorsContainer.className = "imagen-indicators";
+    
+    imagenesProductoActual.forEach((_, index) => {
+      const indicator = document.createElement("span");
+      indicator.className = `imagen-indicator ${index === imagenActualIndex ? 'active' : ''}`;
+      indicator.onclick = (e) => {
+        e.stopPropagation();
+        imagenActualIndex = index;
+        img.src = imagenesProductoActual[imagenActualIndex];
+        actualizarIndicadoresFullscreen();
+      };
+      indicatorsContainer.appendChild(indicator);
+    });
+
+    fullscreenContent.appendChild(flechaPrev);
+    fullscreenContent.appendChild(flechaNext);
+    fullscreenModal.appendChild(indicatorsContainer);
+
+    // Función para actualizar indicadores en fullscreen
+    function actualizarIndicadoresFullscreen() {
+      const indicators = indicatorsContainer.querySelectorAll(".imagen-indicator");
+      indicators.forEach((ind, idx) => {
+        if (idx === imagenActualIndex) {
+          ind.classList.add("active");
+        } else {
+          ind.classList.remove("active");
+        }
+      });
+      // También actualizar los indicadores del modal principal
+      actualizarIndicadores();
+    }
+  }
+  
+  fullscreenModal.appendChild(fullscreenContent);
+  fullscreenModal.appendChild(cerrar);
+  
+  // Cerrar al hacer click en el fondo
+  fullscreenModal.onclick = (e) => {
+    if (e.target === fullscreenModal) {
+      fullscreenModal.remove();
+    }
+  };
+  
+  document.body.appendChild(fullscreenModal);
+}
+
 // Actualizar precio en el modal
 function actualizarPrecio() {
   if (!productoActual) return;
 
   let precio = 0;
 
-  // Si tiene array de precios y una medida seleccionada
   if (productoActual.precios && productoActual.precios.length > 0 && seleccion.medidaIndex !== null) {
     const precioSeleccionado = productoActual.precios[seleccion.medidaIndex];
     if (typeof precioSeleccionado === 'number') {
       precio = precioSeleccionado;
     }
   }
-  // Si tiene precio único
   else if (productoActual.precio && typeof productoActual.precio === 'number') {
     precio = productoActual.precio;
   }
@@ -336,7 +539,6 @@ btnAgregarCarrito.addEventListener("click", () => {
     precioTotal: precio * seleccion.cantidad
   };
 
-  // Verificar si ya existe en el carrito
   const existente = carrito.find(item => item.id === itemCarrito.id);
   if (existente) {
     existente.cantidad += itemCarrito.cantidad;
@@ -387,7 +589,7 @@ function actualizarContadorCarrito() {
   }
 }
 
-// Abrir carrito (placeholder para implementar después)
+// Abrir carrito
 btnCarrito.addEventListener("click", () => {
   if (carrito.length === 0) {
     mostrarNotificacion("El carrito está vacío", "error");
