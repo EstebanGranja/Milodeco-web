@@ -3,13 +3,14 @@
    =========================== */
 
 header {
-  background-color: var(--color-primary);
+  background: linear-gradient(to right, #967955 0%, #967955 40%, #6b5640 100%);
   color: var(--color-secondary);
-  padding: 1rem 2rem;
+  padding: 0 2rem;
   box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
   z-index: 1000;
+  height: 110px;
 }
 
 .header-content {
@@ -18,15 +19,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
 .logo-section {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .logo-img {
-  height: 60px;
+  height: 100%;
   width: auto;
   object-fit: contain;
 }
@@ -44,7 +47,7 @@ header {
 }
 
 .social-link {
-  color: var(--color-secondary);
+  color: #ffffff;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -52,11 +55,11 @@ header {
   padding: 0.5rem;
   border-radius: 8px;
   transition: var(--transition);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #3d2e1f;
 }
 
 .social-link:hover {
-  background-color: var(--color-hover);
+  background-color: #2a1f14;
   transform: scale(1.05);
 }
 
@@ -79,21 +82,32 @@ header {
 }
 
 .carrito-btn {
-  background-color: var(--color-accent);
-  color: var(--color-secondary);
+  background-color: #c9a227;
+  color: #2a1f14;
   border: none;
-  padding: 0.65rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 8px;
   cursor: pointer;
   transition: var(--transition);
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.6rem;
   position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.carrito-btn img {
+  height: 24px;
+  width: 24px;
+  object-fit: contain;
 }
 
 .carrito-btn:hover {
-  background-color: var(--color-hover);
+  background-color: #b8922a;
   transform: scale(1.05);
 }
 
@@ -118,29 +132,70 @@ header {
 /* Responsive Header */
 @media (max-width: 768px) {
   header {
-    padding: 1rem 1rem;
-  }
-
-  .logo-img {
-    height: 45px;
+    padding: 0 1rem;
+    height: 100px;
   }
 
   .header-right {
-    gap: 1rem;
+    gap: 0.6rem;
   }
 
   .socials {
+    gap: 0.4rem;
+  }
+
+  .social-link {
+    padding: 0.45rem;
+  }
+
+  .social-link svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .carrito-btn {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .carrito-btn img {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0 0.75rem;
+    height: 85px;
+  }
+
+  .header-right {
     gap: 0.5rem;
+  }
+
+  .socials {
+    gap: 0.3rem;
   }
 
   .social-link {
     padding: 0.4rem;
   }
-}
 
-@media (max-width: 480px) {
-  .logo-img {
-    height: 40px;
+  .social-link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .carrito-btn {
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+    gap: 0.4rem;
+  }
+
+  .carrito-btn img {
+    height: 20px;
+    width: 20px;
   }
 }
-
