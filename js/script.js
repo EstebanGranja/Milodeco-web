@@ -100,7 +100,7 @@ function mostrarProductosCategoria(categoriaId) {
   // Botón volver
   const volver = document.createElement("div");
   volver.className = "producto volver-btn";
-  volver.innerHTML = `<h3>← Volver a categorías</h3>`;
+  volver.innerHTML = `<h3>Volver a categorías</h3>`;
   volver.addEventListener("click", () => {
     Object.values(carruselIntervalos).forEach(intervalo => clearInterval(intervalo));
     carruselIntervalos = {};
