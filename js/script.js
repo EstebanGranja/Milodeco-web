@@ -47,7 +47,7 @@ async function cargarStock() {
     }
     
     data = await resp.json();
-    console.log("✓ Datos cargados exitosamente:", data);
+    console.log("Datos cargados exitosamente:", data);
     
     // ESTA LÍNEA FALTABA - Mostrar las categorías
     mostrarCategorias();
@@ -56,7 +56,7 @@ async function cargarStock() {
     console.error("Error cargando stock.json:", e);
     categoriasContainer.innerHTML = `
       <div class="cargando" style="color: #d32f2f;">
-        ⚠️ No se pudieron cargar los productos.<br>
+        No se pudieron cargar los productos.<br>
         Error: ${e.message}<br>
         <button onclick="location.reload()" style="margin-top: 10px; padding: 8px 16px; cursor: pointer;">
           Recargar

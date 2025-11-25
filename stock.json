@@ -5,20 +5,7 @@
       "nombre": "ESPEJOS",
       "imagen": "img/espejo_portada.jpeg",
       "productos": [
-        {
-          "id": 1,
-          "nombre": "Espejo Circular Artesanal",
-          "descripcion": "Espejo circular con marco de hierro forjado a mano. Diseño único y elegante.",
-          "imagen": "img/espejo_11.jpeg",
-          "imagenes": [
-            "img/espejo_11.jpeg",
-            "img/espejo_12.jpeg",
-            "img/espejo_13.jpeg"
-          ],
-          "medidas": ["40cm", "60cm", "80cm"],
-          "precios": [18500, 28500, 42000],
-          "demora": "7-10 días hábiles"
-        },
+        
         {
           "id": 2,
           "nombre": "Espejo AURA",
@@ -70,6 +57,20 @@
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
           "precios": [52000, 62000, 67000],
+          "demora": "7-10 días hábiles"
+        },
+        {
+          "id": 1,
+          "nombre": "Espejo OJO DE PEZ",
+          "descripcion": "Espejo circular con marco de hierro forjado a mano. Diseño único y elegante.",
+          "imagen": "img/espejo_11.jpeg",
+          "imagenes": [
+            "img/espejo_11.jpeg",
+            "img/espejo_12.jpeg",
+            "img/espejo_13.jpeg"
+          ],
+          "medidas": ["40cm", "60cm", "80cm"],
+          "precios": [18500, 28500, 42000],
           "demora": "7-10 días hábiles"
         }
       ]
@@ -134,16 +135,44 @@
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
           "precios": [46000, 48000, 50000],
           "demora": "8-12 días hábiles"
+        },
+        {
+          "id": 10,
+          "nombre": "Lámpara ELINA",
+          "descripcion": "Luz ambiental con estilo artesanal. La lámpara Elina combina una estructura de hierro forjado con una pantalla de papel craft tejida a mano. Ideal para iluminar rincones de lectura, salas de estar o dormitorios, aportando calidez y un toque rústico",
+          "imagen": "img/lampara_51.jpeg",
+          "imagenes": [
+            "img/lampara_51.jpeg"
+          ],
+          "medidas": ["50cm diámetro - 35cm alto", "60cm diámetro - 40cm alto"],
+          "precios": [75000, 85000],
+          "demora": "10-15 días hábiles"
         }
       ]
     },
     {
       "id": "deco",
       "nombre": "DECO",
-      "imagen": "img/deco_11.jpeg",
+      "imagen": "img/deco_21.jpeg",
       "productos": [
         {
           "id": 10,
+          "nombre": "Arbolitos de Navidad",
+          "descripcion": "Las mas pedidas!! Decoración navideña artesanal en hierro forjado y tejido a mano. Perfecta para ambientar tu hogar en las fiestas",
+          "imagen": "img/deco_01.jpeg",
+          "imagenes": [
+            "img/deco_21.jpeg",
+            "img/deco_22.jpeg",
+            "img/deco_23.jpeg",
+            "img/deco_24.jpeg",
+            "img/deco_25.jpeg"
+          ],
+          "medidas": ["30cm alto", "60cm alto", "100cm alto"],
+          "precios": [39000, 69000, 99000 ],
+          "demora": "En stock"
+        },
+        {
+          "id": 11,
           "nombre": "Mesa NORDICA",
           "descripcion": "Decoración única en hierro forjado a mano. Perfecta para dar carácter a cualquier espacio.",
           "imagen": "img/deco_11.jpeg",
@@ -155,6 +184,31 @@
           "medidas": ["50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo", "70cm diámetro - 50cm espejo"],
           "precios": [74000, 81000],
           "demora": "10-15 días hábiles"
+        },
+        {
+          "id": 12,
+          "nombre": "Canasto Multiuso AMBAR",
+          "descripcion": "Canasto de hierro forjado a mano. Ideal para almacenamiento y decoración. Resistente y liviano.",
+          "imagen": "img/deco_16.jpeg",
+          "imagenes": [
+            "img/deco_31.jpeg",
+            "img/deco_32.jpeg"
+          ],
+          "medidas": ["25cm diámetro - 10cm alto"],
+          "precios": [35000],
+          "demora": "En stock"
+        },
+        {
+          "id": 13,
+          "nombre": "Matera",
+          "descripcion": "Matera clásica de hierro forjado a mano. Super comoda y practica. Liviana y resistente",
+          "imagen": "img/deco_21.jpeg",
+          "imagenes": [
+            "img/deco_41.jpeg"
+          ],
+          "medidas": ["20cm alto - 23cm ancho"],
+          "precios": [52000],
+          "demora": "7-10 días hábiles"
         }
       ]
     },
@@ -179,7 +233,7 @@
           "imagen": "img/insumo_manijas.jpg",
           "medidas": ["Estándar", "Grande"],
           "precios": [4500, 6500],
-          "demora": "5-7 días hábiles"
+          "demora": "En stock"
         },
         {
           "id": 13,
@@ -188,7 +242,7 @@
           "imagen": "img/insumo_soportes.jpg",
           "medidas": ["20cm", "30cm", "40cm"],
           "precios": [5500, 8000, 11000],
-          "demora": "5-7 días hábiles"
+          "demora": "En stock"
         },
         {
           "id": 14,

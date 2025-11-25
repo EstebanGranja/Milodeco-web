@@ -29,7 +29,7 @@
 
 .imagen-wrapper {
   width: 100%;
-  height: 280px;
+  height: 180px;
   overflow: hidden;
   background-color: var(--color-light);
   position: relative;
@@ -42,15 +42,21 @@
   transition: var(--transition);
 }
 
+/* Ajuste específico para imagen de categoría DECO */
+/* Ajusta el porcentaje vertical (0% = arriba, 50% = centro, 100% = abajo) */
+.categoria img[src="img/deco_21.jpeg"] {
+  object-position: center 60%;
+}
+
 .categoria:hover img {
   transform: scale(1.08);
   filter: brightness(1.05);
 }
 
 .categoria h3 {
-  padding: 1.5rem;
+  padding: 1rem;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--color-text);
   background-color: var(--color-secondary);
@@ -68,12 +74,12 @@
   }
 
   .imagen-wrapper {
-    height: 220px;
+    height: 160px;
   }
 
   .categoria h3 {
-    font-size: 1.2rem;
-    padding: 1.25rem;
+    font-size: 1.1rem;
+    padding: 0.9rem;
   }
 }
 
@@ -84,6 +90,6 @@
   }
 
   .imagen-wrapper {
-    height: 240px;
+    height: 150px;
   }
 }
