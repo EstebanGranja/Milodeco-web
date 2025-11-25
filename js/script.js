@@ -133,7 +133,12 @@ function mostrarProductosCategoria(categoriaId) {
     
     const precioTexto = calcularPrecioBase(prod);
     
-    const imagenes = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes : [prod.imagen];
+    // Para Arbolitos de Navidad, usar solo las 2 primeras imágenes en el carrusel
+    let imagenes = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes : [prod.imagen];
+    if (prod.nombre === "Arbolitos de Navidad" && imagenes.length > 2) {
+      imagenes = imagenes.slice(0, 2);
+    }
+    
     const tieneMultiplesImagenes = imagenes.length > 1;
 
     div.innerHTML = `
@@ -192,7 +197,7 @@ function mostrarProductosCategoria(categoriaId) {
         carruselIntervalos[prod.id] = setTimeout(() => {
           siguienteImagen();
           iniciarCarrusel();
-        }, 3000);
+        }, 4000);
       };
       
       iniciarCarrusel();
@@ -275,6 +280,25 @@ function abrirModalProducto(categoriaId, productoId) {
         seleccion.medida = m;
         seleccion.medidaIndex = idx;
         actualizarPrecio();
+        
+        // Cambiar imagen según medida en Arbolitos de Navidad
+        if (productoActual.nombre === "Arbolitos de Navidad") {
+          // Mapeo de medidas a índices de imagen
+          // 30cm -> deco_23.jpeg (índice 2)
+          // 60cm -> deco_24.jpeg (índice 3)
+          // 100cm -> deco_25.jpeg (índice 4)
+          const mapaImagenes = {
+            "30cm alto": 2,
+            "60cm alto": 3,
+            "100cm alto": 4
+          };
+          
+          if (mapaImagenes[m] !== undefined) {
+            imagenActualIndex = mapaImagenes[m];
+            actualizarImagenModal();
+            actualizarIndicadores();
+          }
+        }
       });
       opcionesMedidas.appendChild(chip);
       if (idx === 0) chip.click();
@@ -290,7 +314,18 @@ function abrirModalProducto(categoriaId, productoId) {
 
 // Actualizar imagen del modal
 function actualizarImagenModal() {
-  detalleImg.src = imagenesProductoActual[imagenActualIndex] || "img/placeholder.jpg";
+  const imagenSrc = imagenesProductoActual[imagenActualIndex] || "img/placeholder.jpg";
+  detalleImg.src = imagenSrc;
+  
+  // Detectar imágenes verticales específicas (arbolitos de navidad)
+  const imagenesVerticales = ['deco_23.jpeg', 'deco_24.jpeg', 'deco_25.jpeg'];
+  const esImagenVertical = imagenesVerticales.some(img => imagenSrc.includes(img));
+  
+  if (esImagenVertical) {
+    detalleImg.classList.add('imagen-vertical');
+  } else {
+    detalleImg.classList.remove('imagen-vertical');
+  }
 }
 
 // Configurar navegación de imágenes en el modal
@@ -577,14 +612,197 @@ function actualizarContadorCarrito() {
   }
 }
 
+// === FUNCIONALIDAD DEL MODAL CARRITO ===
+const modalCarrito = document.getElementById("modal-carrito");
+const cerrarCarritoBtn = document.getElementById("cerrar-carrito");
+const carritoItemsContainer = document.getElementById("carrito-items-container");
+const carritoVacio = document.getElementById("carrito-vacio");
+const carritoContenido = document.getElementById("carrito-contenido");
+const carritoFooter = document.getElementById("carrito-footer");
+const totalCarrito = document.getElementById("total-carrito");
+const btnFinalizarCompra = document.getElementById("btn-finalizar");
+const btnCancelarCarrito = document.getElementById("btn-cancelar-carrito");
+const nombreClienteInput = document.getElementById("nombre-cliente");
+const btnGuardarNombre = document.getElementById("btn-guardar-nombre");
+const mensajeGuardado = document.getElementById("mensaje-guardado");
+const btnInfo = document.getElementById("btn-info");
+const tooltipInfo = document.getElementById("tooltip-info");
+
 // Abrir carrito
 btnCarrito.addEventListener("click", () => {
+  abrirModalCarrito();
+});
+
+// Función para abrir el modal del carrito
+function abrirModalCarrito() {
+  modalCarrito.classList.add("activo");
+  actualizarVistaCarrito();
+  cargarNombreGuardado();
+}
+
+// Cerrar modal carrito
+cerrarCarritoBtn.addEventListener("click", () => {
+  modalCarrito.classList.remove("activo");
+});
+
+btnCancelarCarrito.addEventListener("click", () => {
+  modalCarrito.classList.remove("activo");
+});
+
+// Cerrar al hacer click fuera del contenido
+modalCarrito.addEventListener("click", (e) => {
+  if (e.target === modalCarrito) {
+    modalCarrito.classList.remove("activo");
+  }
+});
+
+// Actualizar vista del carrito
+function actualizarVistaCarrito() {
+  if (carrito.length === 0) {
+    carritoVacio.style.display = "block";
+    carritoContenido.style.display = "none";
+    carritoFooter.style.display = "none";
+    carritoItemsContainer.innerHTML = "";
+  } else {
+    carritoVacio.style.display = "none";
+    carritoContenido.style.display = "block";
+    carritoFooter.style.display = "block";
+    renderizarItemsCarrito();
+    actualizarTotalCarrito();
+  }
+}
+
+// Renderizar items del carrito
+function renderizarItemsCarrito() {
+  carritoItemsContainer.innerHTML = "";
+  
+  carrito.forEach((item, index) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.className = "carrito-item";
+    
+    itemDiv.innerHTML = `
+      <div class="item-imagen">
+        <img src="${item.imagen || 'img/placeholder.jpg'}" alt="${item.nombre}" onerror="this.onerror=null;this.src='img/placeholder.jpg'">
+      </div>
+      <div class="item-info">
+        <p class="item-nombre">${item.nombre}</p>
+        <p class="item-medida">Medida: ${item.medida}</p>
+        <p class="item-cantidad">Cantidad: ${item.cantidad}</p>
+      </div>
+      <div class="item-derecha">
+        <p class="item-precio">$${item.precioTotal.toLocaleString('es-AR')}</p>
+        <button class="btn-eliminar" data-index="${index}" aria-label="Eliminar producto">×</button>
+      </div>
+    `;
+    
+    // Event listener para eliminar
+    const btnEliminar = itemDiv.querySelector(".btn-eliminar");
+    btnEliminar.addEventListener("click", () => eliminarDelCarrito(index));
+    
+    carritoItemsContainer.appendChild(itemDiv);
+  });
+}
+
+// Actualizar total del carrito
+function actualizarTotalCarrito() {
+  const total = carrito.reduce((sum, item) => sum + item.precioTotal, 0);
+  totalCarrito.textContent = `$${total.toLocaleString('es-AR')}`;
+}
+
+// Eliminar producto del carrito
+function eliminarDelCarrito(index) {
+  carrito.splice(index, 1);
+  guardarCarrito();
+  actualizarContadorCarrito();
+  actualizarVistaCarrito();
+  mostrarNotificacion("Producto eliminado del carrito", "error");
+}
+
+// Guardar nombre del cliente
+btnGuardarNombre.addEventListener("click", () => {
+  const nombre = nombreClienteInput.value.trim();
+  if (nombre) {
+    localStorage.setItem('nombreClienteHierro', nombre);
+    mostrarMensajeGuardado();
+  }
+});
+
+// Cargar nombre guardado
+function cargarNombreGuardado() {
+  const nombreGuardado = localStorage.getItem('nombreClienteHierro');
+  if (nombreGuardado) {
+    nombreClienteInput.value = nombreGuardado;
+  }
+}
+
+// Mostrar mensaje de guardado
+function mostrarMensajeGuardado() {
+  mensajeGuardado.classList.add("mostrar");
+  setTimeout(() => {
+    mensajeGuardado.classList.remove("mostrar");
+  }, 2000);
+}
+
+// Toggle tooltip info
+btnInfo.addEventListener("click", (e) => {
+  e.stopPropagation();
+  tooltipInfo.classList.toggle("mostrar");
+});
+
+// Cerrar tooltip al hacer click fuera
+document.addEventListener("click", (e) => {
+  if (!btnInfo.contains(e.target) && !tooltipInfo.contains(e.target)) {
+    tooltipInfo.classList.remove("mostrar");
+  }
+});
+
+// Finalizar compra - enviar por WhatsApp
+btnFinalizarCompra.addEventListener("click", () => {
   if (carrito.length === 0) {
     mostrarNotificacion("El carrito está vacío", "error");
     return;
   }
-  alert("El carrito se implementará en la próxima versión. Por ahora puedes contactarnos por WhatsApp.");
+  
+  generarMensajeWhatsApp();
 });
+
+// Generar mensaje de WhatsApp
+function generarMensajeWhatsApp() {
+  let mensaje = "¡Hola Silvana! Quiero realizar una compra:\n\n";
+  
+  // Agregar nombre si existe
+  const nombre = nombreClienteInput.value.trim();
+  if (nombre) {
+    mensaje += `*Nombre:* ${nombre}\n\n`;
+  }
+  
+  // Agregar productos
+  mensaje += "*PRODUCTOS:*\n";
+  carrito.forEach((item, index) => {
+    mensaje += `${index + 1}. *${item.nombre}*\n`;
+    mensaje += `   - Medida: ${item.medida}\n`;
+    mensaje += `   - Cantidad: ${item.cantidad}\n`;
+    mensaje += `   - Precio: $${item.precioTotal.toLocaleString('es-AR')}\n\n`;
+  });
+  
+  // Agregar total
+  const total = carrito.reduce((sum, item) => sum + item.precioTotal, 0);
+  mensaje += `*TOTAL: $${total.toLocaleString('es-AR')}*\n\n`;
+  mensaje += "Quedo a la espera de tu respuesta. ¡Gracias!";
+  
+  // Codificar mensaje para URL
+  const mensajeCodificado = encodeURIComponent(mensaje);
+  const urlWhatsApp = `https://wa.me/${telefonoWhats}?text=${mensajeCodificado}`;
+  
+  // Abrir WhatsApp
+  window.open(urlWhatsApp, '_blank');
+  
+  // Opcional: limpiar carrito después de enviar
+  // carrito = [];
+  // guardarCarrito();
+  // actualizarContadorCarrito();
+  // modalCarrito.classList.remove("activo");
+}
 
 // Cerrar modal
 btnCancelar.addEventListener("click", () => {
@@ -611,6 +829,8 @@ function mostrarNotificacion(mensaje, tipo = "success") {
   document.body.appendChild(notification);
   setTimeout(() => notification.remove(), 3000);
 }
+
+
 
 // Inicializar al cargar la página
 document.addEventListener("DOMContentLoaded", () => {

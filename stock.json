@@ -115,8 +115,7 @@
           "imagenes": [
             "img/lampara_31.jpeg",
             "img/lampara_32.jpeg",
-            "img/lampara_33.jpeg",
-            "img/lampara_34.jpeg"
+            "img/lampara_33.jpeg"
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
           "precios": [46000, 48000, 50000],
