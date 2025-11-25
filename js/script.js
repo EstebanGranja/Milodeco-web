@@ -37,19 +37,34 @@ const telefonoWhats = "5493547656901";
 // Cargar datos del stock.json desde GitHub
 async function cargarStock() {
   categoriasContainer.innerHTML = '<div class="cargando">Cargando productos...</div>';
+  
   try {
-    const resp = await fetch("https://raw.githubusercontent.com/EstebanGranja/milodeco-stock/refs/heads/master/stock.json");
-    if (!resp.ok) throw new Error("No se pudo cargar stock.json");
+    console.log("Cargando stock.json local...");
+    const resp = await fetch("stock.json");
+    
+    if (!resp.ok) {
+      throw new Error(`HTTP ${resp.status}`);
+    }
+    
     data = await resp.json();
-    console.log("Datos cargados:", data);
+    console.log("✓ Datos cargados exitosamente:", data);
+    
+    // ESTA LÍNEA FALTABA - Mostrar las categorías
+    mostrarCategorias();
+    
   } catch (e) {
-    console.error("Error cargando stock.json", e);
-    categoriasContainer.innerHTML = '<div class="cargando">Error al cargar productos. Por favor recarga la página.</div>';
+    console.error("Error cargando stock.json:", e);
+    categoriasContainer.innerHTML = `
+      <div class="cargando" style="color: #d32f2f;">
+        ⚠️ No se pudieron cargar los productos.<br>
+        Error: ${e.message}<br>
+        <button onclick="location.reload()" style="margin-top: 10px; padding: 8px 16px; cursor: pointer;">
+          Recargar
+        </button>
+      </div>
+    `;
     return;
   }
-
-  mostrarCategorias();
-  cargarCarrito();
 }
 
 // Mostrar categorías

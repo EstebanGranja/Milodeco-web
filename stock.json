@@ -1,0 +1,205 @@
+{
+  "categorias": [
+    {
+      "id": "espejos",
+      "nombre": "ESPEJOS",
+      "imagen": "img/espejo_portada.jpeg",
+      "productos": [
+        {
+          "id": 1,
+          "nombre": "Espejo Circular Artesanal",
+          "descripcion": "Espejo circular con marco de hierro forjado a mano. Diseño único y elegante.",
+          "imagen": "img/espejo_11.jpeg",
+          "imagenes": [
+            "img/espejo_11.jpeg",
+            "img/espejo_12.jpeg",
+            "img/espejo_13.jpeg"
+          ],
+          "medidas": ["40cm", "60cm", "80cm"],
+          "precios": [18500, 28500, 42000],
+          "demora": "7-10 días hábiles"
+        },
+        {
+          "id": 2,
+          "nombre": "Espejo AURA",
+          "descripcion": "El centro de calma para cualquier espacio. Un espejo simple y delicado que parece flotar entre fibras tejidas con papel craft.",
+          "imagen": "img/espejo_21.jpeg",
+          "imagenes": [
+            "img/espejo_21.jpeg",
+            "img/espejo_22.jpeg",
+            "img/espejo_23.jpeg"
+          ],
+          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
+          "precios": [47000, 57000, 61000],
+          "demora": "10-15 días hábiles"
+        },
+        {
+          "id": 3,
+          "nombre": "Espejo TRENZA",
+          "descripcion": "Un diseño que enreda miradas. El círculo central de espejo está rodeado por un tejido trenzado de papel craft que combina técnica y calidez.",
+          "imagen": "img/espejo_31.jpeg",
+          "imagenes": [
+            "img/espejo_31.jpeg",
+            "img/espejo_32.jpeg",
+            "img/espejo_33.jpeg"
+          ],
+          "medidas": ["40cm diámetro - 20cm espejo", "50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo"],
+          "precios": [37000, 43000, 50000, 57000],
+          "demora": "En stock"
+        },
+        {
+          "id": 4,
+          "nombre": "Espejo PATRIA",
+          "descripcion": "Una pieza con carácter, como nuestras raíces. El espejo redondo se asoma desde lo alto y el papel craft cae en forma de flecos artesanales, abrazando la mitad inferior.",
+          "imagen": "img/espejo_41.jpeg",
+          "imagenes": [
+            "img/espejo_41.jpeg",
+            "img/espejo_42.jpeg"
+          ],
+          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
+          "precios": [49000, 55000, 63000],
+          "demora": "15-20 días hábiles"
+        },
+        {
+          "id": 5,
+          "nombre": "Espejo TRENZADO",
+          "descripcion": "Espejo con marco fino de hierro. Estilo minimalista y elegante.",
+          "imagen": "img/espejo_51.jpeg",
+          "imagenes": [
+            "img/espejo_51.jpeg"
+          ],
+          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
+          "precios": [52000, 62000, 67000],
+          "demora": "7-10 días hábiles"
+        }
+      ]
+    },
+    {
+      "id": "lamparas",
+      "nombre": "LÁMPARAS",
+      "imagen": "img/lampara_portada.jpeg",
+      "productos": [
+        {
+          "id": 6,
+          "nombre": "Lámpara Colgante Industrial",
+          "descripcion": "Lámpara colgante de hierro con acabado industrial. Ideal para comedores.",
+          "imagen": "img/lampara_11.jpeg",
+          "imagenes": [
+            "img/lampara_11.jpeg",
+            "img/lampara_12.jpeg"
+          ],
+          "medidas": ["30cm diámetro", "45cm diámetro"],
+          "precios": [28000, 42000],
+          "demora": "10-12 días hábiles"
+        },
+        {
+          "id": 7,
+          "nombre": "Lámpara PAMPA",
+          "descripcion": "Luz cálida y forma suave. La Pampa se apoya en su estructura cónica para crear ambientes íntimos y acogedores. Su diseño funciona muy bien en rincones de lectura, dormitorios tranquilos o comedores donde los detalles artesanales son protagonistas.",
+          "imagen": "img/lampara_21.jpeg",
+          "imagenes": [
+            "img/lampara_21.jpeg",
+            "img/lampara_22.jpeg",
+            "img/lampara_23.jpeg"
+          ],
+          "medidas": ["40x20x30cm", "50x30x30cm"],
+          "precios": [53000, 56000],
+          "demora": "12-15 días hábiles"
+        },
+        {
+          "id": 8,
+          "nombre": "Lámpara AMBAR",
+          "descripcion": "Sutil, recta, con presencia. La Ámbar combina hierro y papel craft en una línea limpia que aporta calidez y carácter. Es ideal para colocar sobre una barra de cocina, iluminar un escritorio de estudio o acompañar una mesa de comedor larga.",
+          "imagen": "img/lampara_31.jpeg",
+          "imagenes": [
+            "img/lampara_31.jpeg",
+            "img/lampara_32.jpeg",
+            "img/lampara_33.jpeg",
+            "img/lampara_34.jpeg"
+          ],
+          "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
+          "precios": [46000, 48000, 50000],
+          "demora": "15-20 días hábiles"
+        },
+        {
+          "id": 9,
+          "nombre": "Capelina RIO",
+          "descripcion": "El movimiento hecho luz. La Río tiene una forma ondulada que da textura, suavidad y dinamismo a cualquier ambiente. Su estilo orgánico resalta en livings serenos, estudios creativos o espacios de descanso y meditación.",
+          "imagen": "img/lampara_41.jpeg",
+          "imagenes": [
+            "img/lampara_41.jpeg",
+            "img/lampara_42.jpeg",
+            "img/lampara_43.jpeg"
+          ],
+          "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
+          "precios": [46000, 48000, 50000],
+          "demora": "8-12 días hábiles"
+        }
+      ]
+    },
+    {
+      "id": "deco",
+      "nombre": "DECO",
+      "imagen": "img/deco_11.jpeg",
+      "productos": [
+        {
+          "id": 10,
+          "nombre": "Mesa NORDICA",
+          "descripcion": "Decoración única en hierro forjado a mano. Perfecta para dar carácter a cualquier espacio.",
+          "imagen": "img/deco_11.jpeg",
+          "imagenes": [
+            "img/deco_11.jpeg",
+            "img/deco_12.jpeg",
+            "img/deco_13.jpeg"
+          ],
+          "medidas": ["50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo", "70cm diámetro - 50cm espejo"],
+          "precios": [74000, 81000],
+          "demora": "10-15 días hábiles"
+        }
+      ]
+    },
+    {
+      "id": "insumos",
+      "nombre": "INSUMOS",
+      "imagen": "img/insumo_portada.jpg",
+      "productos": [
+        {
+          "id": 11,
+          "nombre": "Bisagras Decorativas",
+          "descripcion": "Set de bisagras de hierro forjado para puertas y muebles. Diseño artesanal.",
+          "imagen": "img/insumo_bisagras.jpg",
+          "medidas": ["10cm", "15cm", "20cm"],
+          "precios": [3500, 5000, 7500],
+          "demora": "3-5 días hábiles"
+        },
+        {
+          "id": 12,
+          "nombre": "Manijas para Puertas",
+          "descripcion": "Manijas de hierro forjado a mano. Disponibles en diferentes diseños.",
+          "imagen": "img/insumo_manijas.jpg",
+          "medidas": ["Estándar", "Grande"],
+          "precios": [4500, 6500],
+          "demora": "5-7 días hábiles"
+        },
+        {
+          "id": 13,
+          "nombre": "Soportes para Estantes",
+          "descripcion": "Par de soportes de hierro para estantes. Alta resistencia y acabado profesional.",
+          "imagen": "img/insumo_soportes.jpg",
+          "medidas": ["20cm", "30cm", "40cm"],
+          "precios": [5500, 8000, 11000],
+          "demora": "5-7 días hábiles"
+        },
+        {
+          "id": 14,
+          "nombre": "Ganchos Decorativos",
+          "descripcion": "Set de 4 ganchos de hierro forjado para pared. Funcionales y decorativos.",
+          "imagen": "img/insumo_ganchos.jpg",
+          "medidas": ["Pequeño", "Mediano", "Grande"],
+          "precios": [6000, 8500, 12000],
+          "demora": "3-5 días hábiles"
+        }
+      ]
+    }
+  ]
+}
