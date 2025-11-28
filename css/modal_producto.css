@@ -471,23 +471,32 @@ order: 4;
 display: contents;
 }
 
+/* Selector de Color/Medidas */
 #opcion-medida-wrapper {
 order: 4;
 margin-bottom: 0.5rem;
 }
 
-#opcion-demora-wrapper {
+/* Selector de Grosor (específico para Papel Kraft) */
+#opciones-medidas-kraft {
 order: 5;
+margin-bottom: 0.5rem;
+}
+
+/* Demora */
+#opcion-demora-wrapper {
+order: 6;
 margin-bottom: 0.75rem;
 }
 
-#opciones-container > .opcion:nth-child(3) {
-order: 6;
+/* Cantidad */
+#opcion-cantidad-wrapper {
+order: 7;
 margin-bottom: 1rem;
 }
 
 .modal-footer {
-order: 7;
+order: 8;
 margin-top: 0.5rem;
 width: 100%;
 align-self: stretch;

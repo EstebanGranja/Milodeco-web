@@ -16,7 +16,7 @@
             "img/espejo_22.jpeg",
             "img/espejo_23.jpeg"
           ],
-          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
+          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [47000, 57000, 61000],
           "demora": "10-15 días hábiles"
         },
@@ -30,7 +30,7 @@
             "img/espejo_32.jpeg",
             "img/espejo_33.jpeg"
           ],
-          "medidas": ["40cm diámetro - 20cm espejo", "50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo"],
+          "medidas": ["50cm diámetro - 20cm espejo", "60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [37000, 43000, 50000, 57000],
           "demora": "En stock"
         },
@@ -43,7 +43,7 @@
             "img/espejo_41.jpeg",
             "img/espejo_42.jpeg"
           ],
-          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
+          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [49000, 55000, 63000],
           "demora": "15-20 días hábiles"
         },
@@ -69,8 +69,8 @@
             "img/espejo_12.jpeg",
             "img/espejo_13.jpeg"
           ],
-          "medidas": ["40cm", "60cm", "80cm"],
-          "precios": [18500, 28500, 42000],
+          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
+          "precios": [48000, 57000],
           "demora": "7-10 días hábiles"
         }
       ]
@@ -218,39 +218,33 @@
       "productos": [
         {
           "id": 11,
-          "nombre": "Bisagras Decorativas",
-          "descripcion": "Set de bisagras de hierro forjado para puertas y muebles. Diseño artesanal.",
+          "nombre": "Papel Kraft",
+          "descripcion": "Papel kraft de alta calidad, ideal para tejidos artesanales. Disponible en dos colores y diferentes grosores. Venta por metros, mínimo 50m.",
           "imagen": "img/insumo_bisagras.jpg",
-          "medidas": ["10cm", "15cm", "20cm"],
-          "precios": [3500, 5000, 7500],
+          "imagenes": ["img/insumo_11.jpeg"],
+          "tipo": "papel_kraft",
+          "colores": ["Marrón", "Negro"],
+          "medidas_por_color": {
+            "Marrón": ["2mm", "4mm"],
+            "Negro": ["4mm"]
+          },
+          "precios_por_color": {
+            "Marrón": [5000, 6000],
+            "Negro": [6000]
+          },
+          "unidad": "metros",
+          "minimo": 50,
+          "incremento": 50,
           "demora": "3-5 días hábiles"
         },
         {
           "id": 12,
-          "nombre": "Manijas para Puertas",
-          "descripcion": "Manijas de hierro forjado a mano. Disponibles en diferentes diseños.",
+          "nombre": "Estructuras de hierro",
+          "descripcion": "Estructuras de hierro forjado a mano. Disponibles en diferentes diseños.",
           "imagen": "img/insumo_manijas.jpg",
           "medidas": ["Estándar", "Grande"],
           "precios": [4500, 6500],
           "demora": "En stock"
-        },
-        {
-          "id": 13,
-          "nombre": "Soportes para Estantes",
-          "descripcion": "Par de soportes de hierro para estantes. Alta resistencia y acabado profesional.",
-          "imagen": "img/insumo_soportes.jpg",
-          "medidas": ["20cm", "30cm", "40cm"],
-          "precios": [5500, 8000, 11000],
-          "demora": "En stock"
-        },
-        {
-          "id": 14,
-          "nombre": "Ganchos Decorativos",
-          "descripcion": "Set de 4 ganchos de hierro forjado para pared. Funcionales y decorativos.",
-          "imagen": "img/insumo_ganchos.jpg",
-          "medidas": ["Pequeño", "Mediano", "Grande"],
-          "precios": [6000, 8500, 12000],
-          "demora": "3-5 días hábiles"
         }
       ]
     }

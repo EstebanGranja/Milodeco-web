@@ -30,6 +30,7 @@ let carrito = [];
 let carruselIntervalos = {};
 let imagenActualIndex = 0;
 let imagenesProductoActual = [];
+let seleccionColor = null;
 
 // Número de WhatsApp
 const telefonoWhats = "5493547656901";
@@ -230,6 +231,7 @@ function calcularPrecioBase(prod) {
 }
 
 // Abrir modal de producto
+// Abrir modal de producto
 function abrirModalProducto(categoriaId, productoId) {
   const cat = data.categorias.find(c => c.id === categoriaId);
   if (!cat) return;
@@ -242,18 +244,37 @@ function abrirModalProducto(categoriaId, productoId) {
     : [productoActual.imagen];
   imagenActualIndex = 0;
 
-  seleccion = {
-    medida: null,
-    medidaIndex: null,
-    cantidad: 1
-  };
+  // Configuración especial para Papel Kraft
+  if (productoActual.tipo === "papel_kraft") {
+    seleccion = {
+      medida: null,
+      medidaIndex: null,
+      cantidad: 100 // Por defecto 100m
+    };
+    seleccionColor = null;
+  } else {
+    seleccion = {
+      medida: null,
+      medidaIndex: null,
+      cantidad: 1
+    };
+    seleccionColor = null;
+  }
 
-  inputCantidad.value = 1;
+  inputCantidad.value = seleccion.cantidad;
+  
+  // Actualizar label de cantidad según el tipo de producto
+  const labelCantidad = document.querySelector('.opcion:has(#input-cantidad) label');
+  if (productoActual.tipo === "papel_kraft") {
+    labelCantidad.textContent = "Cantidad";
+  } else {
+    labelCantidad.textContent = "Cantidad";
+  }
+
   detalleNombre.textContent = productoActual.nombre;
   detalleDescripcion.textContent = productoActual.descripcion || "";
   actualizarImagenModal();
   
-  // Configurar demora con clase especial si es "En stock"
   const demoraTexto = productoActual.demora || "Consultar";
   detalleDemora.textContent = demoraTexto;
   
@@ -263,54 +284,169 @@ function abrirModalProducto(categoriaId, productoId) {
     detalleDemora.classList.remove("en-stock");
   }
 
-  // Configurar navegación de imágenes
   configurarNavegacionImagenes();
 
-  // Medidas
-  opcionesMedidas.innerHTML = "";
-  if (productoActual.medidas && productoActual.medidas.length) {
-    opcionMedidaWrapper.style.display = "block";
-    productoActual.medidas.forEach((m, idx) => {
-      const chip = document.createElement("button");
-      chip.className = "chip";
-      chip.textContent = m;
-      chip.addEventListener("click", () => {
-        [...opcionesMedidas.children].forEach(x => x.classList.remove("selected"));
-        chip.classList.add("selected");
-        seleccion.medida = m;
-        seleccion.medidaIndex = idx;
-        actualizarPrecio();
-        
-        // Cambiar imagen según medida en Arbolitos de Navidad
-        if (productoActual.nombre === "Arbolitos de Navidad") {
-          // Mapeo de medidas a índices de imagen
-          // 30cm -> deco_23.jpeg (índice 2)
-          // 60cm -> deco_24.jpeg (índice 3)
-          // 100cm -> deco_25.jpeg (índice 4)
-          const mapaImagenes = {
-            "30cm alto": 2,
-            "60cm alto": 3,
-            "100cm alto": 4
-          };
-          
-          if (mapaImagenes[m] !== undefined) {
-            imagenActualIndex = mapaImagenes[m];
-            actualizarImagenModal();
-            actualizarIndicadores();
-          }
-        }
-      });
-      opcionesMedidas.appendChild(chip);
-      if (idx === 0) chip.click();
-    });
+  // Limpiar cualquier contenedor de medidas kraft anterior
+  const medidaKraftAnterior = document.getElementById("opciones-medidas-kraft");
+  if (medidaKraftAnterior) {
+    medidaKraftAnterior.remove();
+  }
+
+  // Lógica especial para Papel Kraft
+  if (productoActual.tipo === "papel_kraft") {
+    configurarSelectorPapelKraft();
   } else {
-    opcionMedidaWrapper.style.display = "none";
-    seleccion.medida = null;
+    // Lógica normal para otros productos
+    opcionesMedidas.innerHTML = "";
+    if (productoActual.medidas && productoActual.medidas.length) {
+      opcionMedidaWrapper.style.display = "block";
+      productoActual.medidas.forEach((m, idx) => {
+        const chip = document.createElement("button");
+        chip.className = "chip";
+        chip.textContent = m;
+        chip.addEventListener("click", () => {
+          [...opcionesMedidas.children].forEach(x => x.classList.remove("selected"));
+          chip.classList.add("selected");
+          seleccion.medida = m;
+          seleccion.medidaIndex = idx;
+          actualizarPrecio();
+          
+          if (productoActual.nombre === "Arbolitos de Navidad") {
+            const mapaImagenes = {
+              "30cm alto": 2,
+              "60cm alto": 3,
+              "100cm alto": 4
+            };
+            
+            if (mapaImagenes[m] !== undefined) {
+              imagenActualIndex = mapaImagenes[m];
+              actualizarImagenModal();
+              actualizarIndicadores();
+            }
+          }
+        });
+        opcionesMedidas.appendChild(chip);
+        if (idx === 0) chip.click();
+      });
+    } else {
+      opcionMedidaWrapper.style.display = "none";
+      seleccion.medida = null;
+    }
   }
 
   actualizarPrecio();
   productoModal.classList.remove("oculto");
 }
+
+
+function configurarSelectorPapelKraft() {
+  // Obtener el contenedor principal de opciones
+  const opcionesContainer = document.getElementById("opciones-container");
+  
+  // Obtener referencias a los elementos que necesitamos reorganizar
+  const opcionDemoraWrapper = document.getElementById("opcion-demora-wrapper");
+  const opcionCantidad = document.getElementById("opcion-cantidad-wrapper");
+  
+  // Configurar el selector de Color
+  opcionMedidaWrapper.style.display = "block";
+  const labelMedida = opcionMedidaWrapper.querySelector('label');
+  labelMedida.textContent = "Color";
+  
+  opcionesMedidas.innerHTML = "";
+  
+  // Crear selector de color
+  productoActual.colores.forEach(color => {
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.textContent = color;
+    chip.addEventListener("click", () => {
+      seleccionarColorPapelKraft(color);
+    });
+    opcionesMedidas.appendChild(chip);
+  });
+  
+  // Crear contenedor para el selector de Grosor
+  const medidaContainer = document.createElement("div");
+  medidaContainer.id = "opciones-medidas-kraft";
+  medidaContainer.className = "opcion";
+  medidaContainer.style.display = "none";
+  medidaContainer.innerHTML = `
+    <label>Grosor</label>
+    <div id="chips-medidas-kraft"></div>
+  `;
+  
+  // Reorganizar elementos en el orden correcto: Color -> Grosor -> Demora -> Cantidad
+  // Usando appendChild en elementos ya existentes los MUEVE (no los duplica)
+  
+  // 1. Asegurar que Color esté primero (ya está en opcionMedidaWrapper)
+  opcionesContainer.appendChild(opcionMedidaWrapper);
+  
+  // 2. Agregar Grosor después de Color
+  opcionesContainer.appendChild(medidaContainer);
+  
+  // 3. Mover Demora después de Grosor
+  if (opcionDemoraWrapper) {
+    opcionesContainer.appendChild(opcionDemoraWrapper);
+  }
+  
+  // 4. Mover Cantidad después de Demora
+  if (opcionCantidad) {
+    opcionesContainer.appendChild(opcionCantidad);
+  }
+  
+  // Auto-seleccionar Marrón por defecto
+  const colorPorDefecto = productoActual.colores[0];
+  const chipMarron = [...opcionesMedidas.children].find(c => c.textContent === colorPorDefecto);
+  if (chipMarron) {
+    chipMarron.click();
+    
+    // Después de seleccionar Marrón, auto-seleccionar 4mm (índice 1)
+    setTimeout(() => {
+      const chipsMedidasKraft = document.getElementById("chips-medidas-kraft");
+      if (chipsMedidasKraft && chipsMedidasKraft.children.length > 1) {
+        chipsMedidasKraft.children[1].click();
+      }
+    }, 0);
+  }
+}
+
+
+function seleccionarColorPapelKraft(color) {
+  seleccionColor = color;
+  
+  // Actualizar chips de color
+  [...opcionesMedidas.children].forEach(chip => {
+    chip.classList.remove("selected");
+    if (chip.textContent === color) {
+      chip.classList.add("selected");
+    }
+  });
+  
+  // Mostrar y actualizar medidas según el color
+  const medidaContainer = document.getElementById("opciones-medidas-kraft");
+  const chipsMedidasKraft = document.getElementById("chips-medidas-kraft");
+  
+  medidaContainer.style.display = "flex";
+  chipsMedidasKraft.innerHTML = "";
+  
+  const medidasDisponibles = productoActual.medidas_por_color[color];
+  const preciosDisponibles = productoActual.precios_por_color[color];
+  
+  medidasDisponibles.forEach((medida, idx) => {
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.textContent = medida;
+    chip.addEventListener("click", () => {
+      [...chipsMedidasKraft.children].forEach(x => x.classList.remove("selected"));
+      chip.classList.add("selected");
+      seleccion.medida = medida;
+      seleccion.medidaIndex = idx;
+      actualizarPrecio();
+    });
+    chipsMedidasKraft.appendChild(chip);
+  });
+}
+
 
 // Actualizar imagen del modal
 function actualizarImagenModal() {
@@ -500,19 +636,25 @@ function actualizarPrecio() {
 
   let precio = 0;
 
-  if (productoActual.precios && productoActual.precios.length > 0 && seleccion.medidaIndex !== null) {
+  // Lógica especial para Papel Kraft
+  if (productoActual.tipo === "papel_kraft" && seleccionColor && seleccion.medidaIndex !== null) {
+    const precioPor100m = productoActual.precios_por_color[seleccionColor][seleccion.medidaIndex];
+    const metros = seleccion.cantidad;
+    precio = (precioPor100m / 100) * metros;
+  }
+  // Lógica normal para otros productos
+  else if (productoActual.precios && productoActual.precios.length > 0 && seleccion.medidaIndex !== null) {
     const precioSeleccionado = productoActual.precios[seleccion.medidaIndex];
     if (typeof precioSeleccionado === 'number') {
-      precio = precioSeleccionado;
+      precio = precioSeleccionado * seleccion.cantidad;
     }
   }
   else if (productoActual.precio && typeof productoActual.precio === 'number') {
-    precio = productoActual.precio;
+    precio = productoActual.precio * seleccion.cantidad;
   }
 
   if (precio > 0) {
-    const precioTotal = precio * seleccion.cantidad;
-    detallePrecio.textContent = `$${precioTotal.toLocaleString('es-AR')}`;
+    detallePrecio.textContent = `$${Math.round(precio).toLocaleString('es-AR')}`;
   } else {
     detallePrecio.textContent = "Consultar";
   }
@@ -520,44 +662,86 @@ function actualizarPrecio() {
 
 // Event listeners cantidad
 btnRestar.addEventListener("click", () => {
+  const isPapelKraft = productoActual && productoActual.tipo === "papel_kraft";
+  const incremento = isPapelKraft ? 50 : 1;
+  const minimo = isPapelKraft ? 50 : 1;
+  
   let current = parseInt(inputCantidad.value);
-  if (current > 1) {
-    inputCantidad.value = current - 1;
-    seleccion.cantidad = current - 1;
+  if (current > minimo) {
+    inputCantidad.value = current - incremento;
+    seleccion.cantidad = current - incremento;
     actualizarPrecio();
   }
 });
 
 btnSumar.addEventListener("click", () => {
+  const isPapelKraft = productoActual && productoActual.tipo === "papel_kraft";
+  const incremento = isPapelKraft ? 50 : 1;
+  const maximo = isPapelKraft ? 9999 : 99;
+  
   let current = parseInt(inputCantidad.value);
-  if (current < 99) {
-    inputCantidad.value = current + 1;
-    seleccion.cantidad = current + 1;
+  if (current < maximo) {
+    inputCantidad.value = current + incremento;
+    seleccion.cantidad = current + incremento;
     actualizarPrecio();
   }
 });
 
 inputCantidad.addEventListener("change", (e) => {
+  const isPapelKraft = productoActual && productoActual.tipo === "papel_kraft";
+  const incremento = isPapelKraft ? 50 : 1;
+  const minimo = isPapelKraft ? 50 : 1;
+  const maximo = isPapelKraft ? 9999 : 99;
+  
   let value = parseInt(e.target.value);
-  if (value < 1) e.target.value = 1;
-  if (value > 99) e.target.value = 99;
-  seleccion.cantidad = parseInt(e.target.value);
+  
+  if (isPapelKraft) {
+    // Redondear al múltiplo de 50 más cercano
+    value = Math.round(value / incremento) * incremento;
+  }
+  
+  if (value < minimo) value = minimo;
+  if (value > maximo) value = maximo;
+  
+  e.target.value = value;
+  seleccion.cantidad = value;
   actualizarPrecio();
 });
+
 
 // Agregar al carrito
 btnAgregarCarrito.addEventListener("click", () => {
   if (!productoActual) return;
 
+  // Validación especial para Papel Kraft
+  if (productoActual.tipo === "papel_kraft") {
+    if (!seleccionColor) {
+      mostrarNotificacion("Por favor selecciona un color", "error");
+      return;
+    }
+    if (seleccion.medidaIndex === null) {
+      mostrarNotificacion("Por favor selecciona un grosor", "error");
+      return;
+    }
+  }
+
   const precio = calcularPrecioProducto();
   
+  let descripcionMedida = seleccion.medida || "Sin especificar";
+  
+  // Para Papel Kraft, agregar el color en la descripción
+  if (productoActual.tipo === "papel_kraft" && seleccionColor) {
+    descripcionMedida = `${seleccionColor} - ${seleccion.medida}`;
+  }
+  
   const itemCarrito = {
-    id: `${productoActual.id}-${seleccion.medidaIndex}`,
+    id: `${productoActual.id}-${seleccionColor || ''}-${seleccion.medidaIndex}`,
     productoId: productoActual.id,
     nombre: productoActual.nombre,
     imagen: productoActual.imagen,
-    medida: seleccion.medida || "Sin especificar",
+    medida: descripcionMedida,
     cantidad: seleccion.cantidad,
+    unidad: productoActual.unidad || "unidades",
     precio: precio,
     precioTotal: precio * seleccion.cantidad
   };
@@ -576,15 +760,34 @@ btnAgregarCarrito.addEventListener("click", () => {
   productoModal.classList.add("oculto");
 });
 
+
 // Calcular precio del producto actual
-function calcularPrecioProducto() {
-  let precio = 0;
-  if (productoActual.precios && productoActual.precios.length > 0 && seleccion.medidaIndex !== null) {
-    precio = productoActual.precios[seleccion.medidaIndex];
-  } else if (productoActual.precio) {
-    precio = productoActual.precio;
+function calcularPrecioBase(prod) {
+  // Lógica especial para Papel Kraft
+  if (prod.tipo === "papel_kraft") {
+    // Por defecto: Marrón, 4mm (índice 1), 100m
+    const colorPorDefecto = "Marrón";
+    const indicePorDefecto = 1; // 4mm es el índice 1 en el array de Marrón
+    const cantidadPorDefecto = 100;
+    
+    const precioPor100m = prod.precios_por_color[colorPorDefecto][indicePorDefecto];
+    const precioCalculado = (precioPor100m / 100) * cantidadPorDefecto;
+    
+    return `$${Math.round(precioCalculado).toLocaleString('es-AR')}`;
   }
-  return precio;
+  
+  // Lógica normal para otros productos
+  if (prod.precios && prod.precios.length > 0) {
+    const preciosNumericos = prod.precios.filter(p => typeof p === 'number');
+    if (preciosNumericos.length > 0) {
+      const minPrecio = Math.min(...preciosNumericos);
+      return `Desde $${minPrecio.toLocaleString('es-AR')}`;
+    }
+  }
+  if (prod.precio && typeof prod.precio === 'number') {
+    return `$${prod.precio.toLocaleString('es-AR')}`;
+  }
+  return "Consultar precio";
 }
 
 // Guardar carrito en localStorage
