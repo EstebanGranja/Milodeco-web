@@ -33,7 +33,7 @@ let imagenesProductoActual = [];
 let seleccionColor = null;
 
 // Número de WhatsApp
-const telefonoWhats = "5493547656901";
+const telefonoWhats = "5493547576851";
 
 // Cargar datos del stock.json desde GitHub
 async function cargarStock() {
@@ -83,6 +83,7 @@ function mostrarCategorias() {
     const img = document.createElement("img");
     img.src = cat.imagen || "img/placeholder.jpg";
     img.alt = cat.nombre || cat.id;
+    img.loading = "lazy";
     img.onerror = function() {
       this.onerror = null;
       this.src = 'img/placeholder.jpg';
@@ -113,10 +114,19 @@ function mostrarProductosCategoria(categoriaId) {
   productosContainer.classList.remove("oculto");
   productosContainer.innerHTML = "";
 
+  // Contenedor header con botón y título
+  const header = document.createElement("div");
+  header.className = "categoria-header";
+
   // Botón volver
-  const volver = document.createElement("div");
-  volver.className = "producto volver-btn";
-  volver.innerHTML = `<h3>Volver a categorías</h3>`;
+  const volver = document.createElement("button");
+  volver.className = "btn-volver-categorias";
+  volver.innerHTML = `
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Volver a categorías
+  `;
   volver.addEventListener("click", () => {
     Object.values(carruselIntervalos).forEach(intervalo => clearInterval(intervalo));
     carruselIntervalos = {};
@@ -124,7 +134,15 @@ function mostrarProductosCategoria(categoriaId) {
     categoriasContainer.classList.remove("oculto");
     mostrarCategorias();
   });
-  productosContainer.appendChild(volver);
+
+  // Título de la categoría
+  const titulo = document.createElement("h1");
+  titulo.className = "titulo-categoria";
+  titulo.textContent = cat.nombre.toUpperCase();
+
+  header.appendChild(volver);
+  header.appendChild(titulo);
+  productosContainer.appendChild(header);
 
   // Productos
   const productos = cat.productos || [];
@@ -148,7 +166,8 @@ function mostrarProductosCategoria(categoriaId) {
           ${imagenes.map((img, index) => 
             `<img src="${img || 'img/placeholder.jpg'}" 
                   alt="${prod.nombre}" 
-                  class="producto-img ${index === 0 ? 'active' : ''}"
+                  class="producto-img ${index === 0 ? 'active' : ''}" 
+                  loading="lazy"
                   onerror="this.onerror=null;this.src='img/placeholder.jpg'">`
           ).join('')}
         </div>
@@ -158,9 +177,7 @@ function mostrarProductosCategoria(categoriaId) {
       <p>${prod.descripcion}</p>
       <div class="producto-info"><strong>${precioTexto}</strong></div>
       <button class="btn-ver">Ver producto</button>
-    `;
-
-    div.querySelector(".btn-ver").addEventListener("click", () => abrirModalProducto(cat.id, prod.id));
+    `;    div.querySelector(".btn-ver").addEventListener("click", () => abrirModalProducto(cat.id, prod.id));
     
     if (tieneMultiplesImagenes) {
       const carruselWrapper = div.querySelector(".carrusel-wrapper");
@@ -266,7 +283,7 @@ function abrirModalProducto(categoriaId, productoId) {
   // Actualizar label de cantidad según el tipo de producto
   const labelCantidad = document.querySelector('.opcion:has(#input-cantidad) label');
   if (productoActual.tipo === "papel_kraft") {
-    labelCantidad.textContent = "Cantidad";
+    labelCantidad.textContent = "Cantidad (metros)";
   } else {
     labelCantidad.textContent = "Cantidad";
   }
@@ -741,6 +758,12 @@ btnAgregarCarrito.addEventListener("click", () => {
     descripcionMedida = `${seleccionColor} - ${seleccion.medida}`;
   }
   
+  // Para Papel Kraft, el precio ya incluye la cantidad (metros)
+  // Para otros productos, necesitamos el precio unitario
+  const precioUnitario = productoActual.tipo === "papel_kraft" 
+    ? precio / seleccion.cantidad 
+    : precio / seleccion.cantidad;
+  
   const itemCarrito = {
     id: `${productoActual.id}-${seleccionColor || ''}-${seleccion.medidaIndex}`,
     productoId: productoActual.id,
@@ -749,8 +772,8 @@ btnAgregarCarrito.addEventListener("click", () => {
     medida: descripcionMedida,
     cantidad: seleccion.cantidad,
     unidad: productoActual.unidad || "unidades",
-    precio: precio,
-    precioTotal: precio * seleccion.cantidad
+    precio: precioUnitario,
+    precioTotal: precio
   };
 
   const existente = carrito.find(item => item.id === itemCarrito.id);
@@ -813,7 +836,13 @@ function cargarCarrito() {
 
 // Actualizar contador del carrito
 function actualizarContadorCarrito() {
-  const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+  const totalItems = carrito.reduce((sum, item) => {
+    // Para Papel Kraft, contar como 1 item sin importar los metros
+    if (item.unidad === "metros") {
+      return sum + 1;
+    }
+    return sum + item.cantidad;
+  }, 0);
   carritoCount.textContent = totalItems;
   if (totalItems > 0) {
     carritoCount.style.display = "flex";
@@ -890,6 +919,8 @@ function renderizarItemsCarrito() {
     const itemDiv = document.createElement("div");
     itemDiv.className = "carrito-item";
     
+    const precioTexto = item.precioTotal === 0 ? 'A consultar' : `$${item.precioTotal.toLocaleString('es-AR')}`;
+    
     itemDiv.innerHTML = `
       <div class="item-imagen">
         <img src="${item.imagen || 'img/placeholder.jpg'}" alt="${item.nombre}" onerror="this.onerror=null;this.src='img/placeholder.jpg'">
@@ -897,10 +928,10 @@ function renderizarItemsCarrito() {
       <div class="item-info">
         <p class="item-nombre">${item.nombre}</p>
         <p class="item-medida">Medida: ${item.medida}</p>
-        <p class="item-cantidad">Cantidad: ${item.cantidad}</p>
+        <p class="item-cantidad">Cantidad: ${item.cantidad}${item.unidad === 'metros' ? 'm' : ''}</p>
       </div>
       <div class="item-derecha">
-        <p class="item-precio">$${item.precioTotal.toLocaleString('es-AR')}</p>
+        <p class="item-precio">${precioTexto}</p>
         <button class="btn-eliminar" data-index="${index}" aria-label="Eliminar producto">×</button>
       </div>
     `;
@@ -915,8 +946,19 @@ function renderizarItemsCarrito() {
 
 // Actualizar total del carrito
 function actualizarTotalCarrito() {
-  const total = carrito.reduce((sum, item) => sum + item.precioTotal, 0);
-  totalCarrito.textContent = `$${total.toLocaleString('es-AR')}`;
+  const hayProductosSinPrecio = carrito.some(item => item.precioTotal === 0);
+  
+  if (hayProductosSinPrecio) {
+    const total = carrito.reduce((sum, item) => sum + item.precioTotal, 0);
+    if (total === 0) {
+      totalCarrito.textContent = 'A consultar';
+    } else {
+      totalCarrito.textContent = `$${total.toLocaleString('es-AR')} + A consultar`;
+    }
+  } else {
+    const total = carrito.reduce((sum, item) => sum + item.precioTotal, 0);
+    totalCarrito.textContent = `$${total.toLocaleString('es-AR')}`;
+  }
 }
 
 // Eliminar producto del carrito
@@ -978,7 +1020,7 @@ btnFinalizarCompra.addEventListener("click", () => {
 
 // Generar mensaje de WhatsApp
 function generarMensajeWhatsApp() {
-  let mensaje = "¡Hola Silvana! Quiero realizar una compra:\n\n";
+  let mensaje = "Hola Silvana! Quiero realizar una compra:\n\n";
   
   // Agregar nombre si existe
   const nombre = nombreClienteInput.value.trim();
@@ -1040,9 +1082,262 @@ function mostrarNotificacion(mensaje, tipo = "success") {
   setTimeout(() => notification.remove(), 3000);
 }
 
+// ===========================
+// SECCIÓN SOBRE MÍ
+// ===========================
+
+// Selectores
+const btnSobreMi = document.getElementById("btn-sobre-mi");
+const btnVolverProductos = document.getElementById("btn-volver-productos");
+const sobreMiSection = document.getElementById("sobre-mi-section");
+const videoPlayer = document.getElementById("video-player");
+const progressFill = document.getElementById("progress-fill");
+const prevButton = document.getElementById("prev-video");
+const nextButton = document.getElementById("next-video");
+const indicators = document.querySelectorAll(".video-indicator");
+
+// Segundo reproductor de video
+const videoPlayer2 = document.getElementById("video-player-2");
+const progressFill2 = document.getElementById("progress-fill-2");
+const prevButton2 = document.getElementById("prev-video-2");
+const nextButton2 = document.getElementById("next-video-2");
+const indicators2 = videoPlayer2 
+  ? videoPlayer2.closest('.video-wrapper-talleres').querySelectorAll(".video-indicator")
+  : [];
+
+// Videos
+const videos = [
+  'videos/video1.mp4',
+  'videos/video2.mp4',
+  'videos/video3.mp4'
+];
+
+// Videos del segundo reproductor
+const videos2 = [
+  'videos/video5.mp4'
+];
+
+let currentVideoIndex = 0;
+let updateProgressInterval = null;
+
+let currentVideoIndex2 = 0;
+let updateProgressInterval2 = null;
+
+// Mostrar sección Sobre Mí
+btnSobreMi.addEventListener("click", () => {
+  categoriasContainer.classList.add("oculto");
+  productosContainer.classList.add("oculto");
+  sobreMiSection.classList.remove("oculto");
+  
+  // Scroll al inicio
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  // Intentar reproducir los videos
+  setTimeout(() => {
+    if (videoPlayer) {
+      videoPlayer.play().catch(err => {
+        console.log('Reproducción automática bloqueada:', err);
+      });
+    }
+    if (videoPlayer2) {
+      videoPlayer2.play().catch(err => {
+        console.log('Reproducción automática bloqueada video 2:', err);
+      });
+    }
+  }, 300);
+});
+
+// Volver a productos
+btnVolverProductos.addEventListener("click", () => {
+  sobreMiSection.classList.add("oculto");
+  categoriasContainer.classList.remove("oculto");
+  
+  // Pausar videos
+  if (videoPlayer) {
+    videoPlayer.pause();
+  }
+  if (videoPlayer2) {
+    videoPlayer2.pause();
+  }
+  
+  // Scroll al inicio
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Funciones del carrusel de videos
+function loadVideo(index) {
+  if (!videoPlayer) return;
+  
+  currentVideoIndex = index;
+  videoPlayer.src = videos[index];
+  videoPlayer.load();
+  videoPlayer.play().catch(err => {
+    console.log('Error al reproducir el video:', err);
+  });
+  
+  // Actualizar indicadores
+  indicators.forEach((indicator, idx) => {
+    if (idx === index) {
+      indicator.classList.add('active');
+    } else {
+      indicator.classList.remove('active');
+    }
+  });
+  
+  // Resetear barra de progreso
+  if (progressFill) {
+    progressFill.style.width = '0%';
+  }
+}
+
+// Actualizar barra de progreso
+function updateProgress() {
+  if (videoPlayer && videoPlayer.duration > 0 && progressFill) {
+    const progress = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+    progressFill.style.width = progress + '%';
+  }
+}
+
+// Iniciar actualización de progreso
+function startProgressUpdate() {
+  if (updateProgressInterval) {
+    clearInterval(updateProgressInterval);
+  }
+  updateProgressInterval = setInterval(updateProgress, 100);
+}
+
+// Event listeners de los controles
+if (prevButton) {
+  prevButton.addEventListener('click', () => {
+    const newIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
+    loadVideo(newIndex);
+  });
+}
+
+if (nextButton) {
+  nextButton.addEventListener('click', () => {
+    const newIndex = (currentVideoIndex + 1) % videos.length;
+    loadVideo(newIndex);
+  });
+}
+
+// Click en indicadores
+indicators.forEach((indicator, index) => {
+  indicator.addEventListener('click', () => {
+    loadVideo(index);
+  });
+});
+
+// Event listeners del video
+if (videoPlayer) {
+  videoPlayer.addEventListener('play', () => {
+    startProgressUpdate();
+  });
+
+  videoPlayer.addEventListener('ended', () => {
+    const nextIndex = (currentVideoIndex + 1) % videos.length;
+    loadVideo(nextIndex);
+  });
+
+  videoPlayer.addEventListener('timeupdate', updateProgress);
+
+  videoPlayer.addEventListener('pause', () => {
+    if (updateProgressInterval) {
+      clearInterval(updateProgressInterval);
+    }
+  });
+}
+
+// ========== SEGUNDO REPRODUCTOR DE VIDEO ==========
+
+// Funciones del segundo carrusel de videos
+function loadVideo2(index) {
+  if (!videoPlayer2) return;
+  
+  currentVideoIndex2 = index;
+  videoPlayer2.src = videos2[index];
+  videoPlayer2.load();
+  videoPlayer2.play().catch(err => {
+    console.log('Error al reproducir el video 2:', err);
+  });
+  
+  // Actualizar indicadores
+  indicators2.forEach((indicator, idx) => {
+    if (idx === index) {
+      indicator.classList.add('active');
+    } else {
+      indicator.classList.remove('active');
+    }
+  });
+  
+  // Resetear barra de progreso
+  if (progressFill2) {
+    progressFill2.style.width = '0%';
+  }
+}
+
+// Actualizar barra de progreso del segundo reproductor
+function updateProgress2() {
+  if (videoPlayer2 && videoPlayer2.duration > 0 && progressFill2) {
+    const progress = (videoPlayer2.currentTime / videoPlayer2.duration) * 100;
+    progressFill2.style.width = progress + '%';
+  }
+}
+
+// Iniciar actualización de progreso del segundo reproductor
+function startProgressUpdate2() {
+  if (updateProgressInterval2) {
+    clearInterval(updateProgressInterval2);
+  }
+  updateProgressInterval2 = setInterval(updateProgress2, 100);
+}
+
+// Event listeners de los controles del segundo reproductor
+if (prevButton2) {
+  prevButton2.addEventListener('click', () => {
+    const newIndex = (currentVideoIndex2 - 1 + videos2.length) % videos2.length;
+    loadVideo2(newIndex);
+  });
+}
+
+if (nextButton2) {
+  nextButton2.addEventListener('click', () => {
+    const newIndex = (currentVideoIndex2 + 1) % videos2.length;
+    loadVideo2(newIndex);
+  });
+}
+
+// Click en indicadores del segundo reproductor
+indicators2.forEach((indicator, index) => {
+  indicator.addEventListener('click', () => {
+    loadVideo2(index);
+  });
+});
+
+// Event listeners del segundo video player
+if (videoPlayer2) {
+  videoPlayer2.addEventListener('play', () => {
+    startProgressUpdate2();
+  });
+
+  videoPlayer2.addEventListener('ended', () => {
+    const nextIndex = (currentVideoIndex2 + 1) % videos2.length;
+    loadVideo2(nextIndex);
+  });
+
+  videoPlayer2.addEventListener('timeupdate', updateProgress2);
+
+  videoPlayer2.addEventListener('pause', () => {
+    if (updateProgressInterval2) {
+      clearInterval(updateProgressInterval2);
+    }
+  });
+}
 
 
 // Inicializar al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
   cargarStock();
 });
+
+

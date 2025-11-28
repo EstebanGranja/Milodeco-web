@@ -6,6 +6,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* Prevenir zoom en doble tap en dispositivos táctiles */
+  touch-action: manipulation;
 }
 
 :root {
@@ -60,7 +62,7 @@ main {
 /* Notificaciones */
 .notificacion {
   position: fixed;
-  top: 20px;
+  top: 100px;
   right: 20px;
   background-color: var(--color-accent);
   color: var(--color-secondary);

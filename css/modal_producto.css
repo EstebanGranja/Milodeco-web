@@ -308,7 +308,8 @@ border-left-color: #4ade80;
 }
 
 /* Chips de selección (medidas) - AHORA EN COLUMNA */
-#opciones-medidas {
+#opciones-medidas,
+#chips-medidas-kraft {
 display: flex;
 flex-direction: column;
 gap: 0.5rem;

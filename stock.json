@@ -5,21 +5,6 @@
       "nombre": "ESPEJOS",
       "imagen": "img/espejo_portada.jpeg",
       "productos": [
-        
-        {
-          "id": 2,
-          "nombre": "Espejo AURA",
-          "descripcion": "El centro de calma para cualquier espacio. Un espejo simple y delicado que parece flotar entre fibras tejidas con papel craft.",
-          "imagen": "img/espejo_21.jpeg",
-          "imagenes": [
-            "img/espejo_21.jpeg",
-            "img/espejo_22.jpeg",
-            "img/espejo_23.jpeg"
-          ],
-          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
-          "precios": [47000, 57000, 61000],
-          "demora": "10-15 días hábiles"
-        },
         {
           "id": 3,
           "nombre": "Espejo TRENZA",
@@ -45,7 +30,21 @@
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [49000, 55000, 63000],
-          "demora": "15-20 días hábiles"
+          "demora": "En stock"
+        },
+        {
+          "id": 2,
+          "nombre": "Espejo AURA",
+          "descripcion": "El centro de calma para cualquier espacio. Un espejo simple y delicado que parece flotar entre fibras tejidas con papel craft.",
+          "imagen": "img/espejo_21.jpeg",
+          "imagenes": [
+            "img/espejo_21.jpeg",
+            "img/espejo_22.jpeg",
+            "img/espejo_23.jpeg"
+          ],
+          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
+          "precios": [47000, 57000, 61000],
+          "demora": "En stock"
         },
         {
           "id": 5,
@@ -57,7 +56,7 @@
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
           "precios": [52000, 62000, 67000],
-          "demora": "7-10 días hábiles"
+          "demora": "En stock"
         },
         {
           "id": 1,
@@ -71,27 +70,28 @@
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [48000, 57000],
-          "demora": "7-10 días hábiles"
+          "demora": "En stock"
         }
       ]
     },
     {
       "id": "lamparas",
-      "nombre": "LÁMPARAS",
+      "nombre": "LAMPARAS",
       "imagen": "img/lampara_portada.jpeg",
       "productos": [
         {
-          "id": 6,
-          "nombre": "Lámpara Colgante Industrial",
-          "descripcion": "Lámpara colgante de hierro con acabado industrial. Ideal para comedores.",
-          "imagen": "img/lampara_11.jpeg",
+          "id": 8,
+          "nombre": "Lámpara AMBAR",
+          "descripcion": "Sutil, recta, con presencia. La Ámbar combina hierro y papel craft en una línea limpia que aporta calidez y carácter. Es ideal para colocar sobre una barra de cocina, iluminar un escritorio de estudio o acompañar una mesa de comedor larga.",
+          "imagen": "img/lampara_31.jpeg",
           "imagenes": [
-            "img/lampara_11.jpeg",
-            "img/lampara_12.jpeg"
+            "img/lampara_31.jpeg",
+            "img/lampara_32.jpeg",
+            "img/lampara_33.jpeg"
           ],
-          "medidas": ["30cm diámetro", "45cm diámetro"],
-          "precios": [28000, 42000],
-          "demora": "10-12 días hábiles"
+          "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
+          "precios": [46000, 48000, 50000],
+          "demora": "En stock"
         },
         {
           "id": 7,
@@ -105,21 +105,7 @@
           ],
           "medidas": ["40x20x30cm", "50x30x30cm"],
           "precios": [53000, 56000],
-          "demora": "12-15 días hábiles"
-        },
-        {
-          "id": 8,
-          "nombre": "Lámpara AMBAR",
-          "descripcion": "Sutil, recta, con presencia. La Ámbar combina hierro y papel craft en una línea limpia que aporta calidez y carácter. Es ideal para colocar sobre una barra de cocina, iluminar un escritorio de estudio o acompañar una mesa de comedor larga.",
-          "imagen": "img/lampara_31.jpeg",
-          "imagenes": [
-            "img/lampara_31.jpeg",
-            "img/lampara_32.jpeg",
-            "img/lampara_33.jpeg"
-          ],
-          "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [46000, 48000, 50000],
-          "demora": "15-20 días hábiles"
+          "demora": "En stock"
         },
         {
           "id": 9,
@@ -133,7 +119,7 @@
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
           "precios": [46000, 48000, 50000],
-          "demora": "8-12 días hábiles"
+          "demora": "En stock"
         },
         {
           "id": 10,
@@ -147,7 +133,20 @@
           ],
           "medidas": ["50cm diámetro - 35cm alto", "60cm diámetro - 40cm alto"],
           "precios": [75000, 85000],
-          "demora": "10-15 días hábiles"
+          "demora": "En stock"
+        },
+        {
+          "id": 6,
+          "nombre": "Lámpara RODEO",
+          "descripcion": "Lámpara colgante de hierro con acabado industrial. Ideal para comedores.",
+          "imagen": "img/lampara_11.jpeg",
+          "imagenes": [
+            "img/lampara_11.jpeg",
+            "img/lampara_12.jpeg"
+          ],
+          "medidas": ["30cm diámetro", "45cm diámetro"],
+          "precios": [28000, 42000],
+          "demora": "En stock"
         }
       ]
     },
@@ -184,8 +183,8 @@
             "img/deco_14.jpeg"
           ],
           "medidas": ["50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo", "70cm diámetro - 50cm espejo"],
-          "precios": [74000, 81000],
-          "demora": "10-15 días hábiles"
+          "precios": [74000, 81000, 88000],
+          "demora": "En stock"
         },
         {
           "id": 12,
@@ -212,7 +211,7 @@
           ],
           "medidas": ["20cm alto - 23cm ancho"],
           "precios": [52000],
-          "demora": "7-10 días hábiles"
+          "demora": "En stock"
         },
         {
           "id": 14,
@@ -253,16 +252,16 @@
           "unidad": "metros",
           "minimo": 50,
           "incremento": 50,
-          "demora": "3-5 días hábiles"
+          "demora": "En stock"
         },
         {
           "id": 12,
           "nombre": "Estructuras de hierro",
-          "descripcion": "Estructuras de hierro forjado a mano. Disponibles en diferentes diseños.",
-          "imagen": "img/insumo_manijas.jpg",
-          "medidas": ["Estándar", "Grande"],
-          "precios": [4500, 6500],
-          "demora": "En stock"
+          "descripcion": "Estructuras de hierro forjado a mano. Listas para tejer, armar o utilizar. Disponibles en diferentes formas y diseños. Se realizan solo por encargo",
+          "imagen": "img/insumo_21.jpeg",
+          "medidas": [],
+          "precios": ["A consultar"],
+          "demora": "3-5 días demora"
         }
       ]
     }

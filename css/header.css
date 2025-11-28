@@ -25,6 +25,7 @@ header {
 .logo-section {
   display: flex;
   align-items: center;
+  gap: 1.5rem;
   height: 100%;
 }
 
@@ -32,6 +33,25 @@ header {
   height: 100%;
   width: auto;
   object-fit: contain;
+}
+
+.nombre-sitio {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  letter-spacing: 1px;
+  position: relative;
+  top: 0.5rem;
+}
+
+.nombre-oscuro {
+  color: #4a3a2a;
+}
+
+.nombre-claro {
+  color: #d4c5b5;
+  text-shadow: none;
 }
 
 .header-right {
@@ -66,14 +86,6 @@ header {
 .social-link svg {
   width: 24px;
   height: 24px;
-}
-
-.whatsapp-btn {
-  background-color: #25D366;
-}
-
-.whatsapp-btn:hover {
-  background-color: #20BA5A;
 }
 
 /* Carrito en header */
@@ -115,7 +127,7 @@ header {
   position: absolute;
   top: -8px;
   right: -8px;
-  background-color: #dc3545;
+  background-color: var(--color-accent);
   color: white;
   font-size: 0.7rem;
   font-weight: 700;
@@ -131,6 +143,10 @@ header {
 
 /* Responsive Header */
 @media (max-width: 768px) {
+  .nombre-sitio {
+    display: none;
+  }
+
   header {
     padding: 0 1rem;
     height: 100px;

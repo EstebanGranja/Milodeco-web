@@ -3,9 +3,13 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Milodeco</title>
   <link rel="icon" type="image/jpg" href="img/logo.png">
+  
+  <!-- Preload recursos críticos -->
+  <link rel="preload" href="img/logo.png" as="image">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" as="style">
   
   <link rel="stylesheet" href="css/style.css" />  
   <link rel="stylesheet" href="css/categorias.css" />  
@@ -14,6 +18,7 @@
   <link rel="stylesheet" href="css/modal_producto.css" />  
   <link rel="stylesheet" href="css/productos.css" />
   <link rel="stylesheet" href="css/modal_carrito.css" />
+  <link rel="stylesheet" href="css/sobre_mi.css" />
   
   <!-- Fuentes de Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -24,22 +29,23 @@
     <div class="header-content">
       <div class="logo-section">
         <img src="img/logo.png" alt="Logo Hierro Artesanal" class="logo-img">
+        <h1 class="nombre-sitio"><span class="nombre-oscuro">MILO</span><span class="nombre-claro">DECO</span></h1>
       </div>
       <div class="header-right">
         <div class="socials">
-          <a href="https://www.instagram.com/hierroartesanal" target="_blank" aria-label="Instagram" class="social-link">
+          <a href="https://www.instagram.com/miloo_deco/" target="_blank" aria-label="Instagram" class="social-link">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5z" stroke="currentColor" stroke-width="1.4"/>
               <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" stroke="currentColor" stroke-width="1.4"/>
               <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="1.6"/>
             </svg>
           </a>
-          <a href="https://www.facebook.com/hierroartesanal" target="_blank" aria-label="Facebook" class="social-link">
+          <a href="https://www.facebook.com/profile.php?id=100063649685032" target="_blank" aria-label="Facebook" class="social-link">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a href="https://wa.me/5493547656901" target="_blank" class="social-link whatsapp-btn">
+          <a href="https://wa.me/5493547576851" target="_blank" class="social-link whatsapp-btn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/>
             </svg>
@@ -59,6 +65,136 @@
   <main>
     <section id="categorias-container" class="categorias-grid"></section>
     <section id="productos-container" class="productos-grid oculto"></section>
+    
+    <!-- Sección Sobre Mí -->
+    <section id="sobre-mi-section" class="oculto">
+      <div class="sobre-mi-container">
+        <!-- Botón volver -->
+        <button id="btn-volver-productos" class="btn-volver-sobre-mi">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Volver a Productos
+        </button>
+
+        <!-- Título principal -->
+        <h1 class="titulo-principal">Sobre Mí</h1>
+
+        <!-- Introducción -->
+        <section class="intro-section">
+          <p class="texto-intro">
+            Hola! Soy <strong>Silvana Lerda</strong>, y te doy la bienvenida a <strong>Milodeco</strong>. 
+            Es un emprendimiento al que le pongo muchísimo amor y dedicación, cuidando cada detalle de las piezas que creo para ustedes. 
+            Quiero contarte un poco sobre lo que hago y sobre este espacio que fui construyendo con el tiempo.
+          </p>
+
+        </section>
+
+        <!-- Carrusel de videos -->
+        <section class="videos-section">
+          <div class="video-carrusel">
+            <div class="video-wrapper">
+              <video id="video-player" class="video-player" muted playsinline>
+                <source src="videos/video1.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+              </video>
+              
+              <!-- Controles personalizados -->
+              <div class="video-controls">
+                <button class="video-arrow prev" id="prev-video" aria-label="Video anterior">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"/>
+                  </svg>
+                </button>
+                
+                <div class="progress-bar">
+                  <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                
+                <button class="video-arrow next" id="next-video" aria-label="Siguiente video">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Indicadores de video -->
+              <div class="video-indicators">
+                <span class="video-indicator active" data-video="0"></span>
+                <span class="video-indicator" data-video="1"></span>
+                <span class="video-indicator" data-video="2"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mi espacio de trabajo -->
+        <section class="info-section">
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <h2>Mi Espacio de Creación</h2>
+            <p>
+              Vivo en <strong>Villa San Isidro</strong>, en una casa de campo donde la naturaleza y la tranquilidad 
+              se combinan perfectamente para dar vida a cada una de mis creaciones. Aquí, en este rincón especial, 
+              produzco todo lo que pueden ver en la página (y muchas cositas más que van surgiendo día a día!). 
+              Cada pieza lleva consigo la <strong>esencia</strong> de este lugar y el <strong>cariño</strong> con el que trabajo.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h2>Talleres de Tejido</h2>
+            <p>
+              También realizo <strong>cursos de tejido</strong> de algunas de las piezas que ves en la página. 
+              Nos juntamos en mi hogar para producir juntos la pieza que te llevarás a tu casa. Es un espacio 
+              maravilloso donde no solo <strong>aprendemos técnicas y secretos</strong> del tejido, sino que también compartimos 
+              momentos únicos, risas y comemos rico. Es una experiencia que va mucho más allá de lo artesanal, 
+              contactame por mi <strong>WhatsApp</strong> o <strong>Instagram</strong> si querés formar parte!
+            </p>
+            
+            <!-- Video de talleres -->
+            <div class="video-carrusel-talleres">
+              <div class="video-wrapper-talleres">
+                <video id="video-player-2" class="video-player-talleres" muted playsinline autoplay loop>
+                  <source src="videos/video5.mp4" type="video/mp4">
+                  Tu navegador no soporta videos HTML5.
+                </video>
+                
+                <!-- Controles personalizados -->
+                <div class="video-controls">
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill-2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Ubicación -->
+        <section class="ubicacion-section">
+          <div class="ubicacion-content">
+            <svg class="ubicacion-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span class="ubicacion-texto">General Paz S/N, Villa San Isidro</span>
+          </div>
+        </section>
+      </div>
+    </section>
   </main>
 
   <!-- Modal producto -->
@@ -152,7 +288,7 @@
                 type="text" 
                 id="nombre-cliente" 
                 class="nombre-input" 
-                placeholder="Ingrese su nombre (opcional)"
+                placeholder="Ingresá tu nombre (opcional)"
               />
               <span class="mensaje-guardado" id="mensaje-guardado">Se ha registrado su respuesta</span>
             </div>
@@ -172,7 +308,9 @@
             i
           </button>
           <div class="tooltip-info" id="tooltip-info">
-            Serás redirigido al chat de WhatsApp con el mensaje ya personalizado para enviar con toda la información de la compra. Ahí vas a poder hablar conmigo, Silvana. Te podes sacar todas las dudas que tengas, y si estás conforme proseguiremos con la compra.
+            Vas a ser redirigido a mi chat de WhatsApp con el mensaje ya personalizado para enviar con toda la información de la compra.<br><br>
+            Ahí vas a poder hablar conmigo, Silvana<br><br>
+            Te podes sacar todas las dudas que tengas, personalizar el pedido como quieras, y si estás conforme proseguiremos con la compra 😁
           </div>
         </div>
         
@@ -191,7 +329,16 @@
 
   <footer>
     <div class="footer-content">
-      <p>&copy; 2024 Hierro Artesanal - Decoración hecha a mano</p>
+      <div class="footer-links">
+        <button id="btn-sobre-mi" class="footer-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          Sobre Mí
+        </button>
+      </div>
+      <p>&copy; 2025 Milodeco - Decoración hecha a mano</p>
     </div>
   </footer>
 
