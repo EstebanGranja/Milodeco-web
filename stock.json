@@ -141,7 +141,9 @@
           "descripcion": "Luz ambiental con estilo artesanal. La lámpara Elina combina una estructura de hierro forjado con una pantalla de papel craft tejida a mano. Ideal para iluminar rincones de lectura, salas de estar o dormitorios, aportando calidez y un toque rústico",
           "imagen": "img/lampara_51.jpeg",
           "imagenes": [
-            "img/lampara_51.jpeg"
+            "img/lampara_51.jpeg",
+            "img/lampara_52.jpeg",
+            "img/lampara_53.jpeg"
           ],
           "medidas": ["50cm diámetro - 35cm alto", "60cm diámetro - 40cm alto"],
           "precios": [75000, 85000],
@@ -178,7 +180,8 @@
           "imagenes": [
             "img/deco_11.jpeg",
             "img/deco_12.jpeg",
-            "img/deco_13.jpeg"
+            "img/deco_13.jpeg",
+            "img/deco_14.jpeg"
           ],
           "medidas": ["50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo", "70cm diámetro - 50cm espejo"],
           "precios": [74000, 81000],
@@ -191,7 +194,9 @@
           "imagen": "img/deco_16.jpeg",
           "imagenes": [
             "img/deco_31.jpeg",
-            "img/deco_32.jpeg"
+            "img/deco_32.jpeg",
+            "img/deco_33.jpeg",
+            "img/deco_34.jpeg"
           ],
           "medidas": ["25cm diámetro - 10cm alto"],
           "precios": [35000],
@@ -208,6 +213,19 @@
           "medidas": ["20cm alto - 23cm ancho"],
           "precios": [52000],
           "demora": "7-10 días hábiles"
+        },
+        {
+          "id": 14,
+          "nombre": "Macetera",
+          "descripcion": "Macetera de hierro forjado a mano. Diseño elegante y funcional para organizar tus plantas, flores o utensilios. Ideal para interiores y exteriores!",
+          "imagen": "img/deco_51.jpeg",
+          "imagenes": [
+            "img/deco_51.jpeg",
+            "img/deco_52.jpeg"
+          ],
+          "medidas": ["40cm alto", "60cm alto"],
+          "precios": [45000, 55000],
+          "demora": "En stock"
         }
       ]
     },

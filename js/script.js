@@ -221,7 +221,7 @@ function calcularPrecioBase(prod) {
     const preciosNumericos = prod.precios.filter(p => typeof p === 'number');
     if (preciosNumericos.length > 0) {
       const minPrecio = Math.min(...preciosNumericos);
-      return `Desde $${minPrecio.toLocaleString('es-AR')}`;
+      return `$${minPrecio.toLocaleString('es-AR')}`;
     }
   }
   if (prod.precio && typeof prod.precio === 'number') {
@@ -631,8 +631,9 @@ function abrirImagenFullscreen() {
 }
 
 // Actualizar precio en el modal
-function actualizarPrecio() {
-  if (!productoActual) return;
+// Función para calcular el precio del producto (sin actualizar UI)
+function calcularPrecioProducto() {
+  if (!productoActual) return 0;
 
   let precio = 0;
 
@@ -653,8 +654,14 @@ function actualizarPrecio() {
     precio = productoActual.precio * seleccion.cantidad;
   }
 
+  return Math.round(precio);
+}
+
+function actualizarPrecio() {
+  const precio = calcularPrecioProducto();
+
   if (precio > 0) {
-    detallePrecio.textContent = `$${Math.round(precio).toLocaleString('es-AR')}`;
+    detallePrecio.textContent = `$${precio.toLocaleString('es-AR')}`;
   } else {
     detallePrecio.textContent = "Consultar";
   }
@@ -738,7 +745,7 @@ btnAgregarCarrito.addEventListener("click", () => {
     id: `${productoActual.id}-${seleccionColor || ''}-${seleccion.medidaIndex}`,
     productoId: productoActual.id,
     nombre: productoActual.nombre,
-    imagen: productoActual.imagen,
+    imagen: productoActual.imagenes && productoActual.imagenes.length > 0 ? productoActual.imagenes[0] : productoActual.imagen,
     medida: descripcionMedida,
     cantidad: seleccion.cantidad,
     unidad: productoActual.unidad || "unidades",
@@ -781,7 +788,7 @@ function calcularPrecioBase(prod) {
     const preciosNumericos = prod.precios.filter(p => typeof p === 'number');
     if (preciosNumericos.length > 0) {
       const minPrecio = Math.min(...preciosNumericos);
-      return `Desde $${minPrecio.toLocaleString('es-AR')}`;
+      return `$${minPrecio.toLocaleString('es-AR')}`;
     }
   }
   if (prod.precio && typeof prod.precio === 'number') {
