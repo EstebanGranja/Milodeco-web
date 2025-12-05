@@ -7,7 +7,6 @@ const detalleNombre = document.getElementById("detalle-nombre");
 const detalleDescripcion = document.getElementById("detalle-descripcion");
 const opcionesMedidas = document.getElementById("opciones-medidas");
 const opcionMedidaWrapper = document.getElementById("opcion-medida-wrapper");
-const detalleDemora = document.getElementById("detalle-demora");
 const detallePrecio = document.getElementById("detalle-precio");
 const btnAgregarCarrito = document.getElementById("btn-agregar-carrito");
 const btnCancelar = document.getElementById("btn-cancelar");
@@ -292,16 +291,17 @@ function abrirModalProducto(categoriaId, productoId) {
   detalleDescripcion.textContent = productoActual.descripcion || "";
   actualizarImagenModal();
   
-  const demoraTexto = productoActual.demora || "Consultar";
-  detalleDemora.textContent = demoraTexto;
-  
-  if (demoraTexto.toLowerCase() === "en stock") {
-    detalleDemora.classList.add("en-stock");
-  } else {
-    detalleDemora.classList.remove("en-stock");
-  }
-
   configurarNavegacionImagenes();
+
+  // Mostrar demora si existe
+  const demoraWrapper = document.getElementById("opcion-demora-wrapper");
+  const demoraMensaje = document.getElementById("info-demora-mensaje");
+  if (productoActual.demora) {
+    demoraMensaje.textContent = productoActual.demora;
+    demoraWrapper.style.display = "flex";
+  } else {
+    demoraWrapper.style.display = "none";
+  }
 
   // Limpiar cualquier contenedor de medidas kraft anterior
   const medidaKraftAnterior = document.getElementById("opciones-medidas-kraft");
@@ -321,14 +321,15 @@ function abrirModalProducto(categoriaId, productoId) {
         const chip = document.createElement("button");
         chip.className = "chip";
         chip.textContent = m;
-        chip.addEventListener("click", () => {
+        chip.addEventListener("click", (event) => {
           [...opcionesMedidas.children].forEach(x => x.classList.remove("selected"));
           chip.classList.add("selected");
           seleccion.medida = m;
           seleccion.medidaIndex = idx;
           actualizarPrecio();
           
-          if (productoActual.nombre === "Arbolitos de Navidad") {
+          // Solo cambiar imagen si es un click real del usuario (no programático)
+          if (productoActual.nombre === "Arbolitos de Navidad" && event.isTrusted) {
             const mapaImagenes = {
               "30cm alto": 2,
               "60cm alto": 3,
@@ -361,7 +362,6 @@ function configurarSelectorPapelKraft() {
   const opcionesContainer = document.getElementById("opciones-container");
   
   // Obtener referencias a los elementos que necesitamos reorganizar
-  const opcionDemoraWrapper = document.getElementById("opcion-demora-wrapper");
   const opcionCantidad = document.getElementById("opcion-cantidad-wrapper");
   
   // Configurar el selector de Color
@@ -392,7 +392,7 @@ function configurarSelectorPapelKraft() {
     <div id="chips-medidas-kraft"></div>
   `;
   
-  // Reorganizar elementos en el orden correcto: Color -> Grosor -> Demora -> Cantidad
+  // Reorganizar elementos en el orden correcto: Color -> Grosor -> Cantidad
   // Usando appendChild en elementos ya existentes los MUEVE (no los duplica)
   
   // 1. Asegurar que Color esté primero (ya está en opcionMedidaWrapper)
@@ -401,12 +401,7 @@ function configurarSelectorPapelKraft() {
   // 2. Agregar Grosor después de Color
   opcionesContainer.appendChild(medidaContainer);
   
-  // 3. Mover Demora después de Grosor
-  if (opcionDemoraWrapper) {
-    opcionesContainer.appendChild(opcionDemoraWrapper);
-  }
-  
-  // 4. Mover Cantidad después de Demora
+  // 3. Mover Cantidad después de Grosor
   if (opcionCantidad) {
     opcionesContainer.appendChild(opcionCantidad);
   }
@@ -806,12 +801,11 @@ function calcularPrecioBase(prod) {
     return `$${Math.round(precioCalculado).toLocaleString('es-AR')}`;
   }
   
-  // Lógica normal para otros productos
+  // Lógica normal para otros productos - mostrar SIEMPRE el primer precio
   if (prod.precios && prod.precios.length > 0) {
-    const preciosNumericos = prod.precios.filter(p => typeof p === 'number');
-    if (preciosNumericos.length > 0) {
-      const minPrecio = Math.min(...preciosNumericos);
-      return `$${minPrecio.toLocaleString('es-AR')}`;
+    const primerPrecio = prod.precios[0];
+    if (typeof primerPrecio === 'number') {
+      return `$${primerPrecio.toLocaleString('es-AR')}`;
     }
   }
   if (prod.precio && typeof prod.precio === 'number') {

@@ -15,9 +15,9 @@
             "img/espejo_32.jpeg",
             "img/espejo_33.jpeg"
           ],
-          "medidas": ["50cm diámetro - 20cm espejo", "60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
+          "medidas": ["40cm diámetro - 20cm espejo", "50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo", "70cm diámetro - 50cm espejo"],
           "precios": [37000, 43000, 50000, 57000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 4,
@@ -30,7 +30,7 @@
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [49000, 55000, 63000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 2,
@@ -44,24 +44,24 @@
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [47000, 57000, 61000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 5,
           "nombre": "Espejo TRENZADO",
-          "descripcion": "Espejo con marco fino de hierro. Estilo minimalista y elegante.",
+          "descripcion": "La elegancia en su expresión más pura. El Trenzado presenta un marco fino de hierro que rodea delicadamente el espejo, creando líneas sutiles y un estilo minimalista que dialoga con espacios contemporáneos.",
           "imagen": "img/espejo_51.jpeg",
           "imagenes": [
             "img/espejo_51.jpeg"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
           "precios": [52000, 62000, 67000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 1,
           "nombre": "Espejo OJO DE PEZ",
-          "descripcion": "Espejo circular con marco de hierro forjado a mano. Diseño único y elegante.",
+          "descripcion": "Una mirada que refleja y atrapa. El Ojo de Pez combina un espejo circular con un marco de hierro forjado a mano, creando un punto focal único que aporta elegancia y carácter artesanal.",
           "imagen": "img/espejo_11.jpeg",
           "imagenes": [
             "img/espejo_11.jpeg",
@@ -69,8 +69,8 @@
             "img/espejo_13.jpeg"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
-          "precios": [48000, 57000],
-          "demora": "En stock"
+          "precios": [45000, 50000],
+          "demora": "10 - 15 días de demora"
         }
       ]
     },
@@ -91,7 +91,7 @@
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
           "precios": [46000, 48000, 50000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 7,
@@ -105,7 +105,7 @@
           ],
           "medidas": ["40x20x30cm", "50x30x30cm"],
           "precios": [53000, 56000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 9,
@@ -119,7 +119,7 @@
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
           "precios": [46000, 48000, 50000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 10,
@@ -133,20 +133,20 @@
           ],
           "medidas": ["50cm diámetro - 35cm alto", "60cm diámetro - 40cm alto"],
           "precios": [75000, 85000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 6,
           "nombre": "Lámpara RODEO",
-          "descripcion": "Lámpara colgante de hierro con acabado industrial. Ideal para comedores.",
+          "descripcion": "Fuerza y carácter desde lo alto. La Rodeo es una lámpara colgante de hierro con acabado industrial que ilumina con personalidad. Perfecta para comedores, cocinas rústicas o espacios que celebran lo artesanal.",
           "imagen": "img/lampara_11.jpeg",
           "imagenes": [
             "img/lampara_11.jpeg",
             "img/lampara_12.jpeg"
           ],
-          "medidas": ["30cm diámetro", "45cm diámetro"],
-          "precios": [28000, 42000],
-          "demora": "En stock"
+          "medidas": ["30cm diámetro - 20cm alto", "40cm diámetro - 24cm alto", "50cm diámetro - 24cm alto"],
+          "precios": [37000, 46000, 51000],
+          "demora": "10 - 15 días de demora"
         }
       ]
     },
@@ -169,12 +169,12 @@
           ],
           "medidas": ["30cm alto", "60cm alto", "100cm alto"],
           "precios": [39000, 69000, 99000 ],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 11,
           "nombre": "Mesa NORDICA",
-          "descripcion": "Decoración única en hierro forjado a mano. Perfecta para dar carácter a cualquier espacio.",
+          "descripcion": "Geometría y calidez en equilibrio perfecto. La Mesa Nórdica es una pieza de hierro forjado a mano que combina líneas limpias con textura artesanal. Funciona como mesa auxiliar, soporte para plantas o punto focal decorativo.",
           "imagen": "img/deco_11.jpeg",
           "imagenes": [
             "img/deco_11.jpeg",
@@ -182,14 +182,14 @@
             "img/deco_13.jpeg",
             "img/deco_14.jpeg"
           ],
-          "medidas": ["50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo", "70cm diámetro - 50cm espejo"],
-          "precios": [74000, 81000, 88000],
-          "demora": "En stock"
+          "medidas": ["50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo"],
+          "precios": [74000, 81000],
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 12,
           "nombre": "Canasto Multiuso AMBAR",
-          "descripcion": "Canasto de hierro forjado a mano. Ideal para almacenamiento y decoración. Resistente y liviano.",
+          "descripcion": "Orden con estilo artesanal. El Canasto Ámbar es una pieza de hierro forjado a mano que combina funcionalidad y belleza. Resistente pero liviano, se adapta a cualquier ambiente sin perder presencia decorativa.",
           "imagen": "img/deco_16.jpeg",
           "imagenes": [
             "img/deco_31.jpeg",
@@ -199,32 +199,47 @@
           ],
           "medidas": ["25cm diámetro - 10cm alto"],
           "precios": [35000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 13,
           "nombre": "Matera",
-          "descripcion": "Matera clásica de hierro forjado a mano. Super comoda y practica. Liviana y resistente",
+          "descripcion": "Dale vida a tus plantas con estilo. Esta matera clásica de hierro forjado a mano combina tradición y funcionalidad. Liviana pero resistente, su acabado artesanal aporta carácter a balcones, terrazas o interiores verdes.",
           "imagen": "img/deco_21.jpeg",
           "imagenes": [
             "img/deco_41.jpeg"
           ],
           "medidas": ["20cm alto - 23cm ancho"],
           "precios": [52000],
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 14,
-          "nombre": "Macetera",
-          "descripcion": "Macetera de hierro forjado a mano. Diseño elegante y funcional para organizar tus plantas, flores o utensilios. Ideal para interiores y exteriores!",
+          "nombre": "Portamaceta en altura",
+          "descripcion": "Macetera de hierro forjado a mano. Las medidas son personalizables a tu gusto. Diseño elegante para organizar tus plantas, flores o utensilios. Ideal para interiores y exteriores!",
           "imagen": "img/deco_51.jpeg",
           "imagenes": [
             "img/deco_51.jpeg",
             "img/deco_52.jpeg"
           ],
-          "medidas": ["40cm alto", "60cm alto"],
-          "precios": [45000, 55000],
-          "demora": "En stock"
+          "medidas": ["Canasto 25cm diámetro - 20cm alto / Pie 55cm alto",
+                     "Canasto 25cm diámetro - 20cm alto / Pie 60cm alto",
+                     "Canasto 25cm diámetro - 20cm alto / Pie 70cm alto"],
+          "precios": [48000, 49000, 50000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
+          "id": 15,
+          "nombre": "Portamaceta de piso",
+          "descripcion": "Portamaceta de hierro forjado a mano. Diseño elegante y funcional para organizar tus plantas. Ideal para cualquier ambiente",
+          "imagen": "img/deco_61.jpeg",
+          "imagenes": [
+            "img/deco_61.jpeg",
+            "img/deco_62.jpeg"
+          ],
+          "medidas": ["45cm diámetro - 40cm alto"],
+          "precios": [80000],
+          "demora": "10 - 15 días de demora"
         }
       ]
     },
@@ -252,16 +267,16 @@
           "unidad": "metros",
           "minimo": 50,
           "incremento": 50,
-          "demora": "En stock"
+          "demora": "10 - 15 días de demora"
         },
         {
           "id": 12,
           "nombre": "Estructuras de hierro",
-          "descripcion": "Estructuras de hierro forjado a mano. Listas para tejer, armar o utilizar. Disponibles en diferentes formas y diseños. Se realizan solo por encargo",
+          "descripcion": "La base de tu próxima creación. Estructuras de hierro forjado a mano, diseñadas para convertirse en lo que vos imagines: lámparas, espejos, maceteros o lo que decidas. Se realizan por encargo, listas para tejer o intervenir.",
           "imagen": "img/insumo_21.jpeg",
           "medidas": [],
           "precios": ["A consultar"],
-          "demora": "3-5 días demora"
+          "demora": "10 - 15 días de demora"
         }
       ]
     }
