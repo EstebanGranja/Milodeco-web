@@ -15,8 +15,8 @@
             "img/espejo_32.jpeg",
             "img/espejo_33.jpeg"
           ],
-          "medidas": ["40cm diámetro - 20cm espejo", "50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo", "70cm diámetro - 50cm espejo"],
-          "precios": [40000, 46400, 54000, 61600],
+          "medidas": ["50cm diámetro - 20cm espejo", "60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
+          "precios": [46400, 54000, 61600, 69900],
           "demora": "10 - 15 días de demora"
         },
         {
