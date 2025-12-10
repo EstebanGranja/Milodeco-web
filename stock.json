@@ -16,7 +16,7 @@
             "img/espejo_33.jpeg"
           ],
           "medidas": ["40cm diámetro - 20cm espejo", "50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo", "70cm diámetro - 50cm espejo"],
-          "precios": [37000, 43000, 50000, 57000],
+          "precios": [40000, 46400, 54000, 61600],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -29,7 +29,7 @@
             "img/espejo_42.jpeg"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
-          "precios": [49000, 55000, 63000],
+          "precios": [52900, 59400, 68000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -43,7 +43,7 @@
             "img/espejo_23.jpeg"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
-          "precios": [47000, 57000, 61000],
+          "precios": [50800, 61600, 65900],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -55,7 +55,7 @@
             "img/espejo_51.jpeg"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
-          "precios": [52000, 62000, 67000],
+          "precios": [56200, 67000, 72400],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -69,7 +69,7 @@
             "img/espejo_13.jpeg"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
-          "precios": [45000, 50000],
+          "precios": [48600, 54000],
           "demora": "10 - 15 días de demora"
         }
       ]
@@ -90,7 +90,7 @@
             "img/lampara_33.jpeg"
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [46000, 48000, 50000],
+          "precios": [49700, 51800, 54000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -104,7 +104,7 @@
             "img/lampara_23.jpeg"
           ],
           "medidas": ["40x20x30cm", "50x30x30cm"],
-          "precios": [53000, 56000],
+          "precios": [57200, 60500],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -118,7 +118,7 @@
             "img/lampara_43.jpeg"
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [46000, 48000, 50000],
+          "precios": [49700, 51800, 54000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -132,7 +132,7 @@
             "img/lampara_53.jpeg"
           ],
           "medidas": ["50cm diámetro - 35cm alto", "60cm diámetro - 40cm alto"],
-          "precios": [75000, 85000],
+          "precios": [81000, 91800],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -145,7 +145,7 @@
             "img/lampara_12.jpeg"
           ],
           "medidas": ["30cm diámetro - 20cm alto", "40cm diámetro - 24cm alto", "50cm diámetro - 24cm alto"],
-          "precios": [37000, 46000, 51000],
+          "precios": [40000, 49700, 55100],
           "demora": "10 - 15 días de demora"
         }
       ]
@@ -168,7 +168,7 @@
             "img/deco_25.jpeg"
           ],
           "medidas": ["30cm alto", "60cm alto", "100cm alto"],
-          "precios": [39000, 69000, 99000 ],
+          "precios": [42100, 74500, 106900 ],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -183,7 +183,7 @@
             "img/deco_14.jpeg"
           ],
           "medidas": ["50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo"],
-          "precios": [74000, 81000],
+          "precios": [79900, 87500],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -198,7 +198,7 @@
             "img/deco_34.jpeg"
           ],
           "medidas": ["25cm diámetro - 10cm alto"],
-          "precios": [35000],
+          "precios": [37800],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -210,7 +210,7 @@
             "img/deco_41.jpeg"
           ],
           "medidas": ["20cm alto - 23cm ancho"],
-          "precios": [52000],
+          "precios": [56200],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -225,7 +225,7 @@
           "medidas": ["Canasto 25cm diámetro - 20cm alto / Pie 55cm alto",
                      "Canasto 25cm diámetro - 20cm alto / Pie 60cm alto",
                      "Canasto 25cm diámetro - 20cm alto / Pie 70cm alto"],
-          "precios": [48000, 49000, 50000],
+          "precios": [51800, 52900, 54000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -238,7 +238,7 @@
             "img/deco_62.jpeg"
           ],
           "medidas": ["45cm diámetro - 40cm alto"],
-          "precios": [80000],
+          "precios": [86400],
           "demora": "10 - 15 días de demora"
         }
       ]
@@ -261,8 +261,8 @@
             "Negro": ["4mm"]
           },
           "precios_por_color": {
-            "Marrón": [5000, 6000],
-            "Negro": [6000]
+            "Marrón": [5400, 6500],
+            "Negro": [6500]
           },
           "unidad": "metros",
           "minimo": 50,

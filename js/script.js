@@ -105,6 +105,9 @@ function mostrarProductosCategoria(categoriaId) {
   const cat = data.categorias.find(c => c.id === categoriaId);
   if (!cat) return;
 
+  // Scroll hacia arriba
+  window.scrollTo(0, 0);
+
   // Limpiar intervalos anteriores
   Object.values(carruselIntervalos).forEach(intervalo => clearInterval(intervalo));
   carruselIntervalos = {};
