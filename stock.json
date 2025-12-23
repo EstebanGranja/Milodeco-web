@@ -187,6 +187,20 @@
           "demora": "10 - 15 días de demora"
         },
         {
+          "id": 9,
+          "nombre": "Bodega artesanal",
+          "descripcion": "Bodeguita artesanal para 4 botellas, ideal para regalar o lucir en tu hogar. Hecha a mano, resistente y con un diseño rústico que queda bien en cualquier ambiente",
+          "imagen": "img/deco_71.jpeg",
+          "imagenes": [
+            "img/deco_71.jpeg",
+            "img/deco_72.jpeg",
+            "img/deco_73.jpeg"
+          ],
+          "medidas": ["23cm diámetro - 18cm profundidad"],
+          "precios": [50000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
           "id": 12,
           "nombre": "Canasto Multiuso AMBAR",
           "descripcion": "Orden con estilo artesanal. El Canasto Ámbar es una pieza de hierro forjado a mano que combina funcionalidad y belleza. Resistente pero liviano, se adapta a cualquier ambiente sin perder presencia decorativa.",
