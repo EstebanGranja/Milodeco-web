@@ -36,7 +36,7 @@ const telefonoWhats = "5493547576851";
 
 // Cargar datos del stock.json desde GitHub
 async function cargarStock() {
-  categoriasContainer.innerHTML = '<div class="cargando">Cargando productos...</div>';
+  categoriasContainer.innerHTML = '<div class="cargando"><div class="spinner spinner-lg"></div><span>Cargando productos...</span></div>';
   
   try {
     console.log("Cargando stock.json local...");
@@ -67,6 +67,35 @@ async function cargarStock() {
   }
 }
 
+// Crear spinner de carga
+function crearSpinner() {
+  const loader = document.createElement("div");
+  loader.className = "image-loader";
+  loader.innerHTML = '<div class="spinner"></div>';
+  return loader;
+}
+
+// Configurar imagen con spinner
+function configurarImagenConSpinner(img, contenedor) {
+  const spinner = crearSpinner();
+  contenedor.appendChild(spinner);
+  
+  // Si la imagen ya está cacheada, ocultar spinner inmediatamente
+  if (img.complete && img.naturalHeight !== 0) {
+    spinner.classList.add("loaded");
+    setTimeout(() => spinner.remove(), 300);
+  } else {
+    img.addEventListener("load", function() {
+      spinner.classList.add("loaded");
+      setTimeout(() => spinner.remove(), 300);
+    });
+    img.addEventListener("error", function() {
+      spinner.classList.add("loaded");
+      setTimeout(() => spinner.remove(), 300);
+    });
+  }
+}
+
 // Mostrar categorías
 function mostrarCategorias() {
   categoriasContainer.innerHTML = "";
@@ -92,6 +121,7 @@ function mostrarCategorias() {
     h3.textContent = cat.nombre || cat.id;
 
     imgWrapper.appendChild(img);
+    configurarImagenConSpinner(img, imgWrapper);
     div.appendChild(imgWrapper);
     div.appendChild(h3);
 
@@ -164,6 +194,7 @@ function mostrarProductosCategoria(categoriaId) {
 
     div.innerHTML = `
       <div class="imagen-container" data-producto-id="${prod.id}">
+        <div class="image-loader"><div class="spinner"></div></div>
         <div class="carrusel-wrapper">
           ${imagenes.map((img, index) => 
             `<img src="${img || 'img/placeholder.jpg'}" 
@@ -179,7 +210,28 @@ function mostrarProductosCategoria(categoriaId) {
       <p>${prod.descripcion}</p>
       <div class="producto-info"><strong>${precioTexto}</strong></div>
       <button class="btn-ver">Ver producto</button>
-    `;    div.querySelector(".btn-ver").addEventListener("click", () => abrirModalProducto(cat.id, prod.id));
+    `;
+    
+    // Configurar spinner para la primera imagen del producto
+    const imagenContainer = div.querySelector(".imagen-container");
+    const primeraImagen = div.querySelector(".producto-img");
+    const spinnerProducto = div.querySelector(".image-loader");
+    
+    if (primeraImagen.complete && primeraImagen.naturalHeight !== 0) {
+      spinnerProducto.classList.add("loaded");
+      setTimeout(() => spinnerProducto.remove(), 300);
+    } else {
+      primeraImagen.addEventListener("load", function() {
+        spinnerProducto.classList.add("loaded");
+        setTimeout(() => spinnerProducto.remove(), 300);
+      });
+      primeraImagen.addEventListener("error", function() {
+        spinnerProducto.classList.add("loaded");
+        setTimeout(() => spinnerProducto.remove(), 300);
+      });
+    }
+    
+    div.querySelector(".btn-ver").addEventListener("click", () => abrirModalProducto(cat.id, prod.id));
     
     if (tieneMultiplesImagenes) {
       const carruselWrapper = div.querySelector(".carrusel-wrapper");
@@ -222,7 +274,6 @@ function mostrarProductosCategoria(categoriaId) {
       
       iniciarCarrusel();
       
-      const imagenContainer = div.querySelector(".imagen-container");
       imagenContainer.addEventListener("mouseenter", () => {
         clearTimeout(carruselIntervalos[prod.id]);
       });
@@ -920,6 +971,7 @@ function renderizarItemsCarrito() {
     
     itemDiv.innerHTML = `
       <div class="item-imagen">
+        <div class="image-loader"><div class="spinner"></div></div>
         <img src="${item.imagen || 'img/placeholder.jpg'}" alt="${item.nombre}" onerror="this.onerror=null;this.src='img/placeholder.jpg'">
       </div>
       <div class="item-info">
@@ -932,6 +984,24 @@ function renderizarItemsCarrito() {
         <button class="btn-eliminar" data-index="${index}" aria-label="Eliminar producto">×</button>
       </div>
     `;
+    
+    // Configurar spinner para la imagen del carrito
+    const imagenCarrito = itemDiv.querySelector("img");
+    const spinnerCarrito = itemDiv.querySelector(".image-loader");
+    
+    if (imagenCarrito.complete && imagenCarrito.naturalHeight !== 0) {
+      spinnerCarrito.classList.add("loaded");
+      setTimeout(() => spinnerCarrito.remove(), 300);
+    } else {
+      imagenCarrito.addEventListener("load", function() {
+        spinnerCarrito.classList.add("loaded");
+        setTimeout(() => spinnerCarrito.remove(), 300);
+      });
+      imagenCarrito.addEventListener("error", function() {
+        spinnerCarrito.classList.add("loaded");
+        setTimeout(() => spinnerCarrito.remove(), 300);
+      });
+    }
     
     // Event listener para eliminar
     const btnEliminar = itemDiv.querySelector(".btn-eliminar");

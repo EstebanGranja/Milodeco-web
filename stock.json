@@ -3,17 +3,17 @@
     {
       "id": "espejos",
       "nombre": "ESPEJOS",
-      "imagen": "img/espejo_portada.jpeg",
+      "imagen": "img/espejo_portada.webp",
       "productos": [
         {
           "id": 3,
           "nombre": "Espejo TRENZA",
           "descripcion": "Un diseño que enreda miradas. El círculo central de espejo está rodeado por un tejido trenzado de papel craft que combina técnica y calidez.",
-          "imagen": "img/espejo_31.jpeg",
+          "imagen": "img/espejo_31.webp",
           "imagenes": [
-            "img/espejo_31.jpeg",
-            "img/espejo_32.jpeg",
-            "img/espejo_33.jpeg"
+            "img/espejo_31.webp",
+            "img/espejo_32.webp",
+            "img/espejo_33.webp"
           ],
           "medidas": ["50cm diámetro - 20cm espejo", "60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
           "precios": [46400, 54000, 61600, 69900],
@@ -23,10 +23,10 @@
           "id": 4,
           "nombre": "Espejo PATRIA",
           "descripcion": "Una pieza con carácter, como nuestras raíces. El espejo redondo se asoma desde lo alto y el papel craft cae en forma de flecos artesanales, abrazando la mitad inferior.",
-          "imagen": "img/espejo_41.jpeg",
+          "imagen": "img/espejo_41.webp",
           "imagenes": [
-            "img/espejo_41.jpeg",
-            "img/espejo_42.jpeg"
+            "img/espejo_41.webp",
+            "img/espejo_42.webp"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [52900, 59400, 68000],
@@ -36,11 +36,11 @@
           "id": 2,
           "nombre": "Espejo AURA",
           "descripcion": "El centro de calma para cualquier espacio. Un espejo simple y delicado que parece flotar entre fibras tejidas con papel craft.",
-          "imagen": "img/espejo_21.jpeg",
+          "imagen": "img/espejo_21.webp",
           "imagenes": [
-            "img/espejo_21.jpeg",
-            "img/espejo_22.jpeg",
-            "img/espejo_23.jpeg"
+            "img/espejo_21.webp",
+            "img/espejo_22.webp",
+            "img/espejo_23.webp"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [50800, 61600, 65900],
@@ -50,9 +50,9 @@
           "id": 5,
           "nombre": "Espejo TRENZADO",
           "descripcion": "La elegancia en su expresión más pura. El Trenzado presenta un marco fino de hierro que rodea delicadamente el espejo, creando líneas sutiles y un estilo minimalista que dialoga con espacios contemporáneos.",
-          "imagen": "img/espejo_51.jpeg",
+          "imagen": "img/espejo_51.webp",
           "imagenes": [
-            "img/espejo_51.jpeg"
+            "img/espejo_51.webp"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
           "precios": [56200, 67000, 72400],
@@ -62,11 +62,11 @@
           "id": 1,
           "nombre": "Espejo OJO DE PEZ",
           "descripcion": "Una mirada que refleja y atrapa. El Ojo de Pez combina un espejo circular con un marco de hierro forjado a mano, creando un punto focal único que aporta elegancia y carácter artesanal.",
-          "imagen": "img/espejo_11.jpeg",
+          "imagen": "img/espejo_11.webp",
           "imagenes": [
-            "img/espejo_11.jpeg",
-            "img/espejo_12.jpeg",
-            "img/espejo_13.jpeg"
+            "img/espejo_11.webp",
+            "img/espejo_12.webp",
+            "img/espejo_13.webp"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
           "precios": [48600, 54000],
@@ -77,17 +77,17 @@
     {
       "id": "lamparas",
       "nombre": "LAMPARAS",
-      "imagen": "img/lampara_portada.jpeg",
+      "imagen": "img/lampara_portada.webp",
       "productos": [
         {
           "id": 8,
           "nombre": "Lámpara AMBAR",
           "descripcion": "Sutil, recta, con presencia. La Ámbar combina hierro y papel craft en una línea limpia que aporta calidez y carácter. Es ideal para colocar sobre una barra de cocina, iluminar un escritorio de estudio o acompañar una mesa de comedor larga.",
-          "imagen": "img/lampara_31.jpeg",
+          "imagen": "img/lampara_31.webp",
           "imagenes": [
-            "img/lampara_31.jpeg",
-            "img/lampara_32.jpeg",
-            "img/lampara_33.jpeg"
+            "img/lampara_31.webp",
+            "img/lampara_32.webp",
+            "img/lampara_33.webp"
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
           "precios": [49700, 51800, 54000],
@@ -97,11 +97,11 @@
           "id": 7,
           "nombre": "Lámpara PAMPA",
           "descripcion": "Luz cálida y forma suave. La Pampa se apoya en su estructura cónica para crear ambientes íntimos y acogedores. Su diseño funciona muy bien en rincones de lectura, dormitorios tranquilos o comedores donde los detalles artesanales son protagonistas.",
-          "imagen": "img/lampara_21.jpeg",
+          "imagen": "img/lampara_21.webp",
           "imagenes": [
-            "img/lampara_21.jpeg",
-            "img/lampara_22.jpeg",
-            "img/lampara_23.jpeg"
+            "img/lampara_21.webp",
+            "img/lampara_22.webp",
+            "img/lampara_23.webp"
           ],
           "medidas": ["40x20x30cm", "50x30x30cm"],
           "precios": [57200, 60500],
@@ -111,11 +111,11 @@
           "id": 9,
           "nombre": "Capelina RIO",
           "descripcion": "El movimiento hecho luz. La Río tiene una forma ondulada que da textura, suavidad y dinamismo a cualquier ambiente. Su estilo orgánico resalta en livings serenos, estudios creativos o espacios de descanso y meditación.",
-          "imagen": "img/lampara_41.jpeg",
+          "imagen": "img/lampara_41.webp",
           "imagenes": [
-            "img/lampara_41.jpeg",
-            "img/lampara_42.jpeg",
-            "img/lampara_43.jpeg"
+            "img/lampara_41.webp",
+            "img/lampara_42.webp",
+            "img/lampara_43.webp"
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
           "precios": [49700, 51800, 54000],
@@ -125,11 +125,11 @@
           "id": 10,
           "nombre": "Lámpara ELINA",
           "descripcion": "Luz ambiental con estilo artesanal. La lámpara Elina combina una estructura de hierro forjado con una pantalla de papel craft tejida a mano. Ideal para iluminar rincones de lectura, salas de estar o dormitorios, aportando calidez y un toque rústico",
-          "imagen": "img/lampara_51.jpeg",
+          "imagen": "img/lampara_51.webp",
           "imagenes": [
-            "img/lampara_51.jpeg",
-            "img/lampara_52.jpeg",
-            "img/lampara_53.jpeg"
+            "img/lampara_51.webp",
+            "img/lampara_52.webp",
+            "img/lampara_53.webp"
           ],
           "medidas": ["50cm diámetro - 35cm alto", "60cm diámetro - 40cm alto"],
           "precios": [81000, 91800],
@@ -139,10 +139,10 @@
           "id": 6,
           "nombre": "Lámpara RODEO",
           "descripcion": "Fuerza y carácter desde lo alto. La Rodeo es una lámpara colgante de hierro con acabado industrial que ilumina con personalidad. Perfecta para comedores, cocinas rústicas o espacios que celebran lo artesanal.",
-          "imagen": "img/lampara_11.jpeg",
+          "imagen": "img/lampara_11.webp",
           "imagenes": [
-            "img/lampara_11.jpeg",
-            "img/lampara_12.jpeg"
+            "img/lampara_11.webp",
+            "img/lampara_12.webp"
           ],
           "medidas": ["30cm diámetro - 20cm alto", "40cm diámetro - 24cm alto", "50cm diámetro - 24cm alto"],
           "precios": [40000, 49700, 55100],
@@ -153,34 +153,19 @@
     {
       "id": "deco",
       "nombre": "DECO",
-      "imagen": "img/deco_21.jpeg",
+      "imagen": "img/deco_21.webp",
       "productos": [
-        {
-          "id": 10,
-          "nombre": "Arbolitos de Navidad",
-          "descripcion": "Las mas pedidas!! Decoración navideña artesanal en hierro forjado y tejido a mano. Perfecta para ambientar tu hogar en las fiestas",
-          "imagen": "img/deco_01.jpeg",
-          "imagenes": [
-            "img/deco_21.jpeg",
-            "img/deco_22.jpeg",
-            "img/deco_23.jpeg",
-            "img/deco_24.jpeg",
-            "img/deco_25.jpeg"
-          ],
-          "medidas": ["30cm alto", "60cm alto", "100cm alto"],
-          "precios": [42100, 74500, 106900 ],
-          "demora": "10 - 15 días de demora"
-        },
+        
         {
           "id": 11,
           "nombre": "Mesa NORDICA",
           "descripcion": "Geometría y calidez en equilibrio perfecto. La Mesa Nórdica es una pieza de hierro forjado a mano que combina líneas limpias con textura artesanal. Funciona como mesa auxiliar, soporte para plantas o punto focal decorativo.",
-          "imagen": "img/deco_11.jpeg",
+          "imagen": "img/deco_11.webp",
           "imagenes": [
-            "img/deco_11.jpeg",
-            "img/deco_12.jpeg",
-            "img/deco_13.jpeg",
-            "img/deco_14.jpeg"
+            "img/deco_11.webp",
+            "img/deco_12.webp",
+            "img/deco_13.webp",
+            "img/deco_14.webp"
           ],
           "medidas": ["50cm diámetro - 30cm espejo", "60cm diámetro - 40cm espejo"],
           "precios": [79900, 87500],
@@ -190,11 +175,11 @@
           "id": 9,
           "nombre": "Bodega artesanal",
           "descripcion": "Bodeguita artesanal para 4 botellas, ideal para regalar o lucir en tu hogar. Hecha a mano, resistente y con un diseño rústico que queda bien en cualquier ambiente",
-          "imagen": "img/deco_71.jpeg",
+          "imagen": "img/deco_71.webp",
           "imagenes": [
-            "img/deco_71.jpeg",
-            "img/deco_72.jpeg",
-            "img/deco_73.jpeg"
+            "img/deco_71.webp",
+            "img/deco_72.webp",
+            "img/deco_73.webp"
           ],
           "medidas": ["23cm diámetro - 18cm profundidad"],
           "precios": [50000],
@@ -204,12 +189,12 @@
           "id": 12,
           "nombre": "Canasto Multiuso AMBAR",
           "descripcion": "Orden con estilo artesanal. El Canasto Ámbar es una pieza de hierro forjado a mano que combina funcionalidad y belleza. Resistente pero liviano, se adapta a cualquier ambiente sin perder presencia decorativa.",
-          "imagen": "img/deco_16.jpeg",
+          "imagen": "img/deco_16.webp",
           "imagenes": [
-            "img/deco_31.jpeg",
-            "img/deco_32.jpeg",
-            "img/deco_33.jpeg",
-            "img/deco_34.jpeg"
+            "img/deco_31.webp",
+            "img/deco_32.webp",
+            "img/deco_33.webp",
+            "img/deco_34.webp"
           ],
           "medidas": ["25cm diámetro - 10cm alto"],
           "precios": [37800],
@@ -217,24 +202,73 @@
         },
         {
           "id": 13,
-          "nombre": "Matera",
-          "descripcion": "Dale vida a tus plantas con estilo. Esta matera clásica de hierro forjado a mano combina tradición y funcionalidad. Liviana pero resistente, su acabado artesanal aporta carácter a balcones, terrazas o interiores verdes.",
-          "imagen": "img/deco_21.jpeg",
+          "nombre": "Bandeja",
+          "descripcion": "Bandejas artesanales de hierro forjado, super prácticas y decorativas. Vienen medidas en tamaño rectangular y redondas con espejo en el centro. Ideales para servir, organizar o decorar cualquier espacio de tu hogar",
+          "imagen": "img/deco_91.webp",
           "imagenes": [
-            "img/deco_41.jpeg"
+            "img/deco_91.webp",
+            "img/deco_92.webp",
+            "img/deco_93.webp",
+            "img/deco_94.webp"
+          ],
+          "medidas": ["Rectangular 40cm x 30cm x 5cm alto",
+                     "Rectangular 35cm x 25cm x 10cm alto",
+                     "Redonda 50cm diámetro x 30cm espejo",
+                     "Redonda 60cm diámetro x 40cm espejo"],
+          "precios": [45000, 43000, 65000, 70000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
+          "id": 14,
+          "nombre": "Portaplatos",
+            "descripcion": "Un clásico para la cocina o el comedor. El portaplatos artesanal de hierro forjado es resistente y práctico, ideal para organizar tus platos y mantenerlos siempre a mano. Su diseño simple y funcional suma un toque decorativo a cualquier ambiente.",
+          "imagen": "img/deco_81.webp",
+          "imagenes": [
+            "img/deco_81.webp",
+            "img/deco_82.webp",
+            "img/deco_83.webp",
+            "img/deco_84.webp"
+          ],
+          "medidas": ["30cm ancho - 40cm alto - 20cm profundidad"],
+          "precios": [32000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
+          "id": 13,
+          "nombre": "Matera",
+          "descripcion": "Esta matera clásica de hierro forjado a mano combina tradición y funcionalidad. Liviana pero resistente",
+          "imagen": "img/deco_21.webp",
+          "imagenes": [
+            "img/deco_41.webp"
           ],
           "medidas": ["20cm alto - 23cm ancho"],
           "precios": [56200],
           "demora": "10 - 15 días de demora"
         },
         {
+          "id": 10,
+          "nombre": "Arbolitos de Navidad",
+          "descripcion": "Las mas pedidas!! Decoración navideña artesanal en hierro forjado y tejido a mano. Perfecta para ambientar tu hogar en las fiestas",
+          "imagen": "img/deco_01.webp",
+          "imagenes": [
+            "img/deco_21.webp",
+            "img/deco_22.webp",
+            "img/deco_23.webp",
+            "img/deco_24.webp",
+            "img/deco_25.webp"
+          ],
+          "medidas": ["30cm alto", "60cm alto", "100cm alto"],
+          "precios": [42100, 74500, 106900 ],
+          "demora": "10 - 15 días de demora"
+        },
+        {
           "id": 14,
           "nombre": "Portamaceta en altura",
           "descripcion": "Macetera de hierro forjado a mano. Las medidas son personalizables a tu gusto. Diseño elegante para organizar tus plantas, flores o utensilios. Ideal para interiores y exteriores!",
-          "imagen": "img/deco_51.jpeg",
+          "imagen": "img/deco_51.webp",
           "imagenes": [
-            "img/deco_51.jpeg",
-            "img/deco_52.jpeg"
+            "img/deco_51.webp",
+            "img/deco_52.webp"
           ],
           "medidas": ["Canasto 25cm diámetro - 20cm alto / Pie 55cm alto",
                      "Canasto 25cm diámetro - 20cm alto / Pie 60cm alto",
@@ -246,10 +280,10 @@
           "id": 15,
           "nombre": "Portamaceta de piso",
           "descripcion": "Portamaceta de hierro forjado a mano. Diseño elegante y funcional para organizar tus plantas. Ideal para cualquier ambiente",
-          "imagen": "img/deco_61.jpeg",
+          "imagen": "img/deco_61.webp",
           "imagenes": [
-            "img/deco_61.jpeg",
-            "img/deco_62.jpeg"
+            "img/deco_61.webp",
+            "img/deco_62.webp"
           ],
           "medidas": ["45cm diámetro - 40cm alto"],
           "precios": [86400],
@@ -260,14 +294,14 @@
     {
       "id": "insumos",
       "nombre": "INSUMOS",
-      "imagen": "img/insumo_portada.jpg",
+      "imagen": "img/insumo_portada.webp",
       "productos": [
         {
           "id": 11,
           "nombre": "Papel Kraft",
           "descripcion": "Papel kraft de alta calidad, ideal para tejidos artesanales. Disponible en dos colores y diferentes grosores. Venta por metros, mínimo 50m.",
-          "imagen": "img/insumo_bisagras.jpg",
-          "imagenes": ["img/insumo_11.jpeg"],
+          "imagen": "img/insumo_bisagras.webp",
+          "imagenes": ["img/insumo_11.webp"],
           "tipo": "papel_kraft",
           "colores": ["Marrón", "Negro"],
           "medidas_por_color": {
@@ -287,7 +321,7 @@
           "id": 12,
           "nombre": "Estructuras de hierro",
           "descripcion": "La base de tu próxima creación. Estructuras de hierro forjado a mano, diseñadas para convertirse en lo que vos imagines: lámparas, espejos, maceteros o lo que decidas. Se realizan por encargo, listas para tejer o intervenir.",
-          "imagen": "img/insumo_21.jpeg",
+          "imagen": "img/insumo_21.webp",
           "medidas": [],
           "precios": ["A consultar"],
           "demora": "10 - 15 días de demora"

@@ -117,6 +117,7 @@
   border-radius: 6px;
   overflow: hidden;
   flex-shrink: 0;
+  position: relative;
 }
 
 .item-imagen img {
