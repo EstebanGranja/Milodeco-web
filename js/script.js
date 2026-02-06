@@ -3,6 +3,7 @@ const categoriasContainer = document.getElementById("categorias-container");
 const productosContainer = document.getElementById("productos-container");
 const productoModal = document.getElementById("producto-modal");
 const detalleImg = document.getElementById("detalle-img");
+const detalleVideo = document.getElementById("detalle-video");
 const detalleNombre = document.getElementById("detalle-nombre");
 const detalleDescripcion = document.getElementById("detalle-descripcion");
 const opcionesMedidas = document.getElementById("opciones-medidas");
@@ -184,8 +185,11 @@ function mostrarProductosCategoria(categoriaId) {
     
     const precioTexto = calcularPrecioBase(prod);
     
-    // Para Arbolitos de Navidad, usar solo las 2 primeras imágenes en el carrusel
+    // Filtrar solo imágenes (excluir videos) para el carrusel
     let imagenes = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes : [prod.imagen];
+    imagenes = imagenes.filter(src => !esVideo(src));
+    
+    // Para Arbolitos de Navidad, usar solo las 2 primeras imágenes en el carrusel
     if (prod.nombre === "Arbolitos de Navidad" && imagenes.length > 2) {
       imagenes = imagenes.slice(0, 2);
     }
@@ -514,19 +518,37 @@ function seleccionarColorPapelKraft(color) {
 }
 
 
+// Detectar si un archivo es video
+function esVideo(src) {
+  return src && (src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.ogg'));
+}
+
 // Actualizar imagen del modal
 function actualizarImagenModal() {
-  const imagenSrc = imagenesProductoActual[imagenActualIndex] || "img/placeholder.jpg";
-  detalleImg.src = imagenSrc;
+  const mediaSrc = imagenesProductoActual[imagenActualIndex] || "img/placeholder.jpg";
   
-  // Detectar imágenes verticales específicas (arbolitos de navidad)
-  const imagenesVerticales = ['deco_23.jpeg', 'deco_24.jpeg', 'deco_25.jpeg'];
-  const esImagenVertical = imagenesVerticales.some(img => imagenSrc.includes(img));
-  
-  if (esImagenVertical) {
-    detalleImg.classList.add('imagen-vertical');
+  if (esVideo(mediaSrc)) {
+    // Mostrar video, ocultar imagen
+    detalleImg.style.display = "none";
+    detalleVideo.style.display = "block";
+    detalleVideo.src = mediaSrc;
+    detalleVideo.play();
   } else {
-    detalleImg.classList.remove('imagen-vertical');
+    // Mostrar imagen, ocultar video
+    detalleVideo.style.display = "none";
+    detalleVideo.pause();
+    detalleImg.style.display = "block";
+    detalleImg.src = mediaSrc;
+    
+    // Detectar imágenes verticales específicas (arbolitos de navidad)
+    const imagenesVerticales = ['deco_23.jpeg', 'deco_24.jpeg', 'deco_25.jpeg'];
+    const esImagenVertical = imagenesVerticales.some(img => mediaSrc.includes(img));
+    
+    if (esImagenVertical) {
+      detalleImg.classList.add('imagen-vertical');
+    } else {
+      detalleImg.classList.remove('imagen-vertical');
+    }
   }
 }
 
@@ -538,9 +560,12 @@ function configurarNavegacionImagenes() {
   const controlesAnteriores = detalleImagenContainer.querySelectorAll('.imagen-nav-arrow, .imagen-indicators');
   controlesAnteriores.forEach(el => el.remove());
 
-  // Si solo hay una imagen, agregar evento de zoom y salir
+  // Configurar evento de click en el video para fullscreen
+  detalleVideo.onclick = () => abrirMediaFullscreen();
+
+  // Si solo hay una imagen/video, agregar evento de zoom y salir
   if (imagenesProductoActual.length === 1) {
-    detalleImg.onclick = () => abrirImagenFullscreen();
+    detalleImg.onclick = () => abrirMediaFullscreen();
     return;
   }
 
@@ -582,7 +607,7 @@ function configurarNavegacionImagenes() {
   detalleImagenContainer.appendChild(indicatorsContainer);
 
   // Evento para abrir en pantalla completa
-  detalleImg.onclick = () => abrirImagenFullscreen();
+  detalleImg.onclick = () => abrirMediaFullscreen();
 }
 
 // Cambiar imagen en el modal
@@ -604,38 +629,64 @@ function actualizarIndicadores() {
   });
 }
 
-// Abrir imagen en pantalla completa
-function abrirImagenFullscreen() {
+// Abrir media (imagen o video) en pantalla completa
+function abrirMediaFullscreen() {
   const fullscreenModal = document.createElement("div");
   fullscreenModal.className = "imagen-fullscreen-modal";
   
   const fullscreenContent = document.createElement("div");
   fullscreenContent.className = "fullscreen-content";
   
-  const img = document.createElement("img");
-  img.src = imagenesProductoActual[imagenActualIndex];
-  img.alt = productoActual.nombre;
+  const mediaSrc = imagenesProductoActual[imagenActualIndex];
+  let mediaElement;
+  
+  // Crear elemento según el tipo de media
+  function crearElementoMedia(src) {
+    if (esVideo(src)) {
+      const video = document.createElement("video");
+      video.src = src;
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.controls = true;
+      return video;
+    } else {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = productoActual.nombre;
+      return img;
+    }
+  }
+  
+  mediaElement = crearElementoMedia(mediaSrc);
   
   const cerrar = document.createElement("span");
   cerrar.className = "cerrar-modal";
   cerrar.innerHTML = "&times;";
   cerrar.onclick = (e) => {
     e.stopPropagation();
+    if (mediaElement.tagName === 'VIDEO') mediaElement.pause();
     fullscreenModal.remove();
   };
   
-  fullscreenContent.appendChild(img);
+  fullscreenContent.appendChild(mediaElement);
   
-  // Si hay múltiples imágenes, agregar controles de navegación
+  // Si hay múltiples imágenes/videos, agregar controles de navegación
   if (imagenesProductoActual.length > 1) {
     const flechaPrev = document.createElement("button");
     flechaPrev.className = "imagen-nav-arrow prev";
     flechaPrev.innerHTML = "‹";
     flechaPrev.onclick = (e) => {
       e.stopPropagation();
+      if (mediaElement.tagName === 'VIDEO') mediaElement.pause();
       imagenActualIndex = (imagenActualIndex - 1 + imagenesProductoActual.length) % imagenesProductoActual.length;
-      img.src = imagenesProductoActual[imagenActualIndex];
+      const nuevoSrc = imagenesProductoActual[imagenActualIndex];
+      const nuevoMedia = crearElementoMedia(nuevoSrc);
+      fullscreenContent.replaceChild(nuevoMedia, mediaElement);
+      mediaElement = nuevoMedia;
       actualizarIndicadoresFullscreen();
+      actualizarImagenModal();
     };
 
     const flechaNext = document.createElement("button");
@@ -643,9 +694,14 @@ function abrirImagenFullscreen() {
     flechaNext.innerHTML = "›";
     flechaNext.onclick = (e) => {
       e.stopPropagation();
+      if (mediaElement.tagName === 'VIDEO') mediaElement.pause();
       imagenActualIndex = (imagenActualIndex + 1) % imagenesProductoActual.length;
-      img.src = imagenesProductoActual[imagenActualIndex];
+      const nuevoSrc = imagenesProductoActual[imagenActualIndex];
+      const nuevoMedia = crearElementoMedia(nuevoSrc);
+      fullscreenContent.replaceChild(nuevoMedia, mediaElement);
+      mediaElement = nuevoMedia;
       actualizarIndicadoresFullscreen();
+      actualizarImagenModal();
     };
 
     // Crear indicadores
@@ -657,9 +713,14 @@ function abrirImagenFullscreen() {
       indicator.className = `imagen-indicator ${index === imagenActualIndex ? 'active' : ''}`;
       indicator.onclick = (e) => {
         e.stopPropagation();
+        if (mediaElement.tagName === 'VIDEO') mediaElement.pause();
         imagenActualIndex = index;
-        img.src = imagenesProductoActual[imagenActualIndex];
+        const nuevoSrc = imagenesProductoActual[imagenActualIndex];
+        const nuevoMedia = crearElementoMedia(nuevoSrc);
+        fullscreenContent.replaceChild(nuevoMedia, mediaElement);
+        mediaElement = nuevoMedia;
         actualizarIndicadoresFullscreen();
+        actualizarImagenModal();
       };
       indicatorsContainer.appendChild(indicator);
     });
@@ -689,11 +750,17 @@ function abrirImagenFullscreen() {
   // Cerrar al hacer click en el fondo
   fullscreenModal.onclick = (e) => {
     if (e.target === fullscreenModal) {
+      if (mediaElement.tagName === 'VIDEO') mediaElement.pause();
       fullscreenModal.remove();
     }
   };
   
   document.body.appendChild(fullscreenModal);
+}
+
+// Mantener compatibilidad con nombre anterior
+function abrirImagenFullscreen() {
+  abrirMediaFullscreen();
 }
 
 // Actualizar precio en el modal

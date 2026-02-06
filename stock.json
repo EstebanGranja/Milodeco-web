@@ -47,6 +47,19 @@
           "demora": "10 - 15 días de demora"
         },
         {
+          "id": 16,
+          "nombre": "Espejo GIRASOL",
+          "descripcion": "Un diseño que irradia calidez y alegría. El Girasol combina un espejo circular con un marco de hierro forjado a mano que se despliega en forma de pétalos, creando un punto focal único que aporta elegancia y carácter artesanal a cualquier espacio",
+          "imagen": "img/espejo_61.webp",
+          "imagenes": [
+            "img/espejo_61.webp",
+            "img/espejo_62.webp"
+          ],
+          "medidas": ["100cm diámetro - 40cm espejo", "90cm diámetro - 30cm espejo", "80cm diámetro - 20cm espejo"],
+          "precios": [92000, 85000, 75000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
           "id": 5,
           "nombre": "Espejo TRENZADO",
           "descripcion": "La elegancia en su expresión más pura. El Trenzado presenta un marco fino de hierro que rodea delicadamente el espejo, creando líneas sutiles y un estilo minimalista que dialoga con espacios contemporáneos.",
@@ -89,8 +102,8 @@
             "img/lampara_32.webp",
             "img/lampara_33.webp"
           ],
-          "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [49700, 51800, 54000],
+          "medidas": ["40cm diámetro", "50cm diámetro", "60cm diámetro", "70cm diámetro"],
+          "precios": [46000, 49700, 51800, 54000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -108,6 +121,20 @@
           "demora": "10 - 15 días de demora"
         },
         {
+          "id": 15,
+          "nombre": "Lámpara GEO",
+          "descripcion": "Una lámpara de líneas geométricas y diseño artesanal. Su forma cilíndrica se complementa con un tejido interno en forma de cono, creando un juego de texturas y luz cálida ideal para ambientes modernos o espacios que buscan un toque distintivo",
+          "imagen": "img/lampara_61.webp",
+          "imagenes": [
+            "img/lampara_61.webp",
+            "img/lampara_62.webp",
+            "videos/lampara_63.mp4"
+          ],
+          "medidas": ["50cm diámetro - 25cm alto", "60cm diámetro - 25cm alto"],
+          "precios": [63000, 73000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
           "id": 9,
           "nombre": "Capelina RIO",
           "descripcion": "El movimiento hecho luz. La Río tiene una forma ondulada que da textura, suavidad y dinamismo a cualquier ambiente. Su estilo orgánico resalta en livings serenos, estudios creativos o espacios de descanso y meditación.",
@@ -117,8 +144,8 @@
             "img/lampara_42.webp",
             "img/lampara_43.webp"
           ],
-          "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [49700, 51800, 54000],
+          "medidas": ["40cm diámetro", "50cm diámetro", "60cm diámetro", "70cm diámetro"],
+          "precios": [46000, 49700, 51800, 54000],
           "demora": "10 - 15 días de demora"
         },
         {
