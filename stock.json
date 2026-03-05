@@ -349,6 +349,7 @@
           "nombre": "Estructuras de hierro",
           "descripcion": "La base de tu próxima creación. Estructuras de hierro forjado a mano, diseñadas para convertirse en lo que vos imagines: lámparas, espejos, maceteros o lo que decidas. Se realizan por encargo, listas para tejer o intervenir.",
           "imagen": "img/insumo_21.webp",
+          "imagenes": ["img/insumo_21.webp", "img/insumo_22.webp", "img/insumo_23.webp", "img/insumo_24.webp"],
           "medidas": [],
           "precios": ["A consultar"],
           "demora": "10 - 15 días de demora"

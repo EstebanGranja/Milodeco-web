@@ -206,6 +206,7 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-accent);
+  white-space: nowrap;
 }
 
 .nombre-input-container {
@@ -446,7 +447,7 @@
   }
 
   .carrito-total strong {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
 }
 
