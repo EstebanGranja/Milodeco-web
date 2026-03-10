@@ -240,9 +240,10 @@
           ],
           "medidas": ["Rectangular 40cm x 30cm x 5cm alto",
                      "Rectangular 35cm x 25cm x 10cm alto",
+                     "Redonda 40cm diámetro x 20cm espejo",
                      "Redonda 50cm diámetro x 30cm espejo",
                      "Redonda 60cm diámetro x 40cm espejo"],
-          "precios": [45000, 43000, 65000, 70000],
+          "precios": [45000, 43000, 55000, 65000, 70000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -289,7 +290,7 @@
           "demora": "10 - 15 días de demora"
         },
         {
-          "id": 14,
+          "id": 18,
           "nombre": "Portamaceta en altura",
           "descripcion": "Macetera de hierro forjado a mano. Las medidas son personalizables a tu gusto. Diseño elegante para organizar tus plantas, flores o utensilios. Ideal para interiores y exteriores!",
           "imagen": "img/deco_51.webp",
