@@ -116,8 +116,8 @@
             "img/lampara_22.webp",
             "img/lampara_23.webp"
           ],
-          "medidas": ["40x20x30cm", "50x30x30cm"],
-          "precios": [57200, 60500],
+          "medidas": ["40x20x33cm", "50x30x33cm"],
+          "precios": [30000, 33000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -130,8 +130,8 @@
             "img/lampara_62.webp",
             "videos/lampara_63.mp4"
           ],
-          "medidas": ["50cm diámetro - 25cm alto", "60cm diámetro - 25cm alto"],
-          "precios": [63000, 73000],
+          "medidas": ["50cm diámetro - 23cm alto", "60cm diámetro - 23cm alto"],
+          "precios": [29000, 32000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -144,8 +144,8 @@
             "img/lampara_42.webp",
             "img/lampara_43.webp"
           ],
-          "medidas": ["40cm diámetro", "50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [46000, 49700, 51800, 54000],
+          "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
+          "precios": [25000, 28000, 30000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -159,7 +159,7 @@
             "img/lampara_53.webp"
           ],
           "medidas": ["50cm diámetro - 35cm alto", "60cm diámetro - 40cm alto"],
-          "precios": [81000, 91800],
+          "precios": [45000, 48000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -171,8 +171,8 @@
             "img/lampara_11.webp",
             "img/lampara_12.webp"
           ],
-          "medidas": ["30cm diámetro - 20cm alto", "40cm diámetro - 24cm alto", "50cm diámetro - 24cm alto"],
-          "precios": [40000, 49700, 55100],
+          "medidas": ["40x40x26cm", "50x50x26cm"],
+          "precios": [28000, 30000],
           "demora": "10 - 15 días de demora"
         }
       ]
@@ -209,7 +209,7 @@
             "img/deco_73.webp"
           ],
           "medidas": ["23cm diámetro - 18cm profundidad"],
-          "precios": [50000],
+          "precios": [22000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -223,8 +223,8 @@
             "img/deco_33.webp",
             "img/deco_34.webp"
           ],
-          "medidas": ["25cm diámetro - 10cm alto"],
-          "precios": [37800],
+          "medidas": ["25cm diámetro - 10cm alto", "35cm diámetro - 10cm alto"],
+          "precios": [20000, 23000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -238,12 +238,15 @@
             "img/deco_93.webp",
             "img/deco_94.webp"
           ],
-          "medidas": ["Rectangular 40cm x 30cm x 5cm alto",
-                     "Rectangular 35cm x 25cm x 10cm alto",
+          "medidas": ["Rectangular 40x30x5cm",
+                     "Rectangular 35x25x10cm",
                      "Redonda 40cm diámetro x 20cm espejo",
                      "Redonda 50cm diámetro x 30cm espejo",
-                     "Redonda 60cm diámetro x 40cm espejo"],
-          "precios": [45000, 43000, 55000, 65000, 70000],
+                     "Redonda 60cm diámetro x 40cm espejo",
+                     "Pie bandeja redonda 35x40cm",
+                     "Pie bandeja redonda 45x50cm",
+                     "Pie bandeja redonda 55x60cm"],
+          "precios": [25000, 25000, 26000, 29000, 32000, 13000, 15000, 17000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -270,7 +273,7 @@
             "img/deco_41.webp"
           ],
           "medidas": ["20cm alto - 23cm ancho"],
-          "precios": [56200],
+          "precios": [30000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -298,10 +301,8 @@
             "img/deco_51.webp",
             "img/deco_52.webp"
           ],
-          "medidas": ["Canasto 25cm diámetro - 20cm alto / Pie 55cm alto",
-                     "Canasto 25cm diámetro - 20cm alto / Pie 60cm alto",
-                     "Canasto 25cm diámetro - 20cm alto / Pie 70cm alto"],
-          "precios": [51800, 52900, 54000],
+          "medidas": ["Portamaceta 25x20cm", "Pie de portamaceta 20x55cm", "Pie de portamaceta 20x60cm", "Pie de portamaceta 20x70cm"],
+          "precios": [23000, 11000, 13000, 15000],
           "demora": "10 - 15 días de demora"
         },
         {
