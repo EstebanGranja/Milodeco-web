@@ -15,7 +15,7 @@
             "img/espejo_32.webp",
             "img/espejo_33.webp"
           ],
-          "medidas": ["50cm diámetro - 20cm espejo", "60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
+          "medidas": ["50cm diámetro - 20cm espejo", "60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "75cm diámetro - 50cm espejo"],
           "precios": [46400, 54000, 61600, 69900],
           "demora": "10 - 15 días de demora"
         },
@@ -55,8 +55,8 @@
             "img/espejo_61.webp",
             "img/espejo_62.webp"
           ],
-          "medidas": ["100cm diámetro - 40cm espejo", "90cm diámetro - 30cm espejo", "80cm diámetro - 20cm espejo"],
-          "precios": [92000, 85000, 75000],
+          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "75cm diámetro - 50cm espejo"],
+          "precios": [75000, 85000, 92000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -67,7 +67,7 @@
           "imagenes": [
             "img/espejo_51.webp"
           ],
-          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "80cm diámetro - 50cm espejo"],
+          "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "75cm diámetro - 50cm espejo"],
           "precios": [56200, 67000, 72400],
           "demora": "10 - 15 días de demora"
         },
@@ -102,8 +102,8 @@
             "img/lampara_32.webp",
             "img/lampara_33.webp"
           ],
-          "medidas": ["40cm diámetro", "50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [46000, 49700, 51800, 54000],
+          "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
+          "precios": [49700, 51800, 54000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -116,7 +116,7 @@
             "img/lampara_22.webp",
             "img/lampara_23.webp"
           ],
-          "medidas": ["40x20x30cm", "50x30x30cm"],
+          "medidas": ["40x20x33cm", "50x30x33cm"],
           "precios": [57200, 60500],
           "demora": "10 - 15 días de demora"
         },
@@ -130,7 +130,7 @@
             "img/lampara_62.webp",
             "videos/lampara_63.mp4"
           ],
-          "medidas": ["50cm diámetro - 25cm alto", "60cm diámetro - 25cm alto"],
+          "medidas": ["50cm diámetro - 23cm alto", "60cm diámetro - 23cm alto"],
           "precios": [63000, 73000],
           "demora": "10 - 15 días de demora"
         },
@@ -144,8 +144,8 @@
             "img/lampara_42.webp",
             "img/lampara_43.webp"
           ],
-          "medidas": ["40cm diámetro", "50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [46000, 49700, 51800, 54000],
+          "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
+          "precios": [49700, 51800, 54000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -171,8 +171,8 @@
             "img/lampara_11.webp",
             "img/lampara_12.webp"
           ],
-          "medidas": ["30cm diámetro - 20cm alto", "40cm diámetro - 24cm alto", "50cm diámetro - 24cm alto"],
-          "precios": [40000, 49700, 55100],
+          "medidas": ["40cm diámetro - 26cm alto", "50cm diámetro - 26cm alto"],
+          "precios": [49700, 55100],
           "demora": "10 - 15 días de demora"
         }
       ]
@@ -223,8 +223,8 @@
             "img/deco_33.webp",
             "img/deco_34.webp"
           ],
-          "medidas": ["25cm diámetro - 10cm alto"],
-          "precios": [37800],
+          "medidas": ["25cm diámetro - 10cm alto, 35cm diámetro - 10cm alto"],
+          "precios": [37800, 45000],
           "demora": "10 - 15 días de demora"
         },
         {
