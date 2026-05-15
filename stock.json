@@ -16,7 +16,7 @@
             "img/espejo_33.webp"
           ],
           "medidas": ["50cm diámetro - 20cm espejo", "60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo", "75cm diámetro - 50cm espejo"],
-          "precios": [46400, 54000, 61600, 69900],
+          "precios": [47000, 55000, 61600, 69900],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -43,7 +43,7 @@
             "img/espejo_23.webp"
           ],
           "medidas": ["60cm diámetro - 30cm espejo", "70cm diámetro - 40cm espejo"],
-          "precios": [50800, 61600, 65900],
+          "precios": [52800, 61600, 65900],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -242,7 +242,7 @@
                      "Rectangular 35cm x 25cm x 10cm alto",
                      "Redonda 50cm diámetro x 30cm espejo",
                      "Redonda 60cm diámetro x 40cm espejo"],
-          "precios": [45000, 43000, 65000, 70000],
+          "precios": [45000, 45000, 65000, 70000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -269,7 +269,7 @@
             "img/deco_41.webp"
           ],
           "medidas": ["20cm alto - 23cm ancho"],
-          "precios": [56200],
+          "precios": [57000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -300,7 +300,7 @@
           "medidas": ["Canasto 25cm diámetro - 20cm alto / Pie 55cm alto",
                      "Canasto 25cm diámetro - 20cm alto / Pie 60cm alto",
                      "Canasto 25cm diámetro - 20cm alto / Pie 70cm alto"],
-          "precios": [51800, 52900, 54000],
+          "precios": [57000, 59000, 61000],
           "demora": "10 - 15 días de demora"
         },
         {
