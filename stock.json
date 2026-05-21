@@ -103,7 +103,7 @@
             "img/lampara_33.webp"
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [49700, 51800, 54000],
+          "precios": [51000, 55000, 57000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -145,7 +145,7 @@
             "img/lampara_43.webp"
           ],
           "medidas": ["50cm diámetro", "60cm diámetro", "70cm diámetro"],
-          "precios": [49700, 51800, 54000],
+          "precios": [51000, 55000, 57000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -209,7 +209,7 @@
             "img/deco_73.webp"
           ],
           "medidas": ["23cm diámetro - 18cm profundidad"],
-          "precios": [50000],
+          "precios": [55000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -242,7 +242,7 @@
                      "Rectangular 35cm x 25cm x 10cm alto",
                      "Redonda 50cm diámetro x 30cm espejo",
                      "Redonda 60cm diámetro x 40cm espejo"],
-          "precios": [45000, 45000, 65000, 70000],
+          "precios": [50000, 50000, 65000, 70000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -269,7 +269,7 @@
             "img/deco_41.webp"
           ],
           "medidas": ["20cm alto - 23cm ancho"],
-          "precios": [57000],
+          "precios": [62000],
           "demora": "10 - 15 días de demora"
         },
         {
@@ -300,7 +300,7 @@
           "medidas": ["Canasto 25cm diámetro - 20cm alto / Pie 55cm alto",
                      "Canasto 25cm diámetro - 20cm alto / Pie 60cm alto",
                      "Canasto 25cm diámetro - 20cm alto / Pie 70cm alto"],
-          "precios": [57000, 59000, 61000],
+          "precios": [60000, 61000, 62000],
           "demora": "10 - 15 días de demora"
         },
         {
