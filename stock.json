@@ -180,7 +180,7 @@
     {
       "id": "deco",
       "nombre": "DECO",
-      "imagen": "img/deco_21.webp",
+      "imagen": "img/deco_11.webp",
       "productos": [
         
         {
@@ -304,6 +304,58 @@
           "demora": "10 - 15 días de demora"
         },
         {
+          "id": 22,
+          "nombre": "Perchero AMANECER",
+          "descripcion": "Perchero artesanal con diseño de sol naciente, tejido a mano. Una pieza funcional y decorativa que llena de calidez la entrada de tu hogar.",
+          "imagen": "img/deco_101.jpeg",
+          "imagenes": [
+            "img/deco_101.jpeg",
+            "img/deco_102.jpeg"
+          ],
+          "medidas": ["40cm ancho", "50cm ancho"],
+          "precios": [37000, 37000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
+          "id": 23,
+          "nombre": "Servilletero",
+          "descripcion": "Servilletero artesanal tejido a mano. Práctico y con estilo, es el detalle perfecto para tu mesa o para regalar.",
+          "imagen": "img/deco_111.jpeg",
+          "imagenes": [
+            "img/deco_111.jpeg"
+          ],
+          "medidas": ["18cm"],
+          "precios": [32000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
+          "id": 24,
+          "nombre": "Tótem",
+          "descripcion": "Tótems decorativos artesanales, tejidos a mano. Piezas con presencia que suman textura y calidez a estantes, mesas o rincones. Llevalos solos, en dúo o en combo con la Hoja perchero y el Servilletero.",
+          "imagen": "img/deco_121.jpeg",
+          "imagenes": [
+            "img/deco_121.jpeg",
+            "img/deco_122.jpeg"
+          ],
+          "medidas": ["35cm alto", "30cm alto", "Dúo (35cm + 30cm)", "Combo: Hoja perchero + Servilletero + Dúo Tótem"],
+          "precios": [33500, 32000, 48000, 90000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
+          "id": 25,
+          "nombre": "Hoja perchero",
+          "descripcion": "Perchero artesanal con forma de hoja, tejido a mano. Un diseño original que combina naturaleza y funcionalidad para vestir tus paredes.",
+          "imagen": "img/deco_131.jpeg",
+          "imagenes": [
+            "img/deco_131.jpeg",
+            "img/deco_132.jpeg",
+            "img/deco_133.jpeg"
+          ],
+          "medidas": ["60cm alto"],
+          "precios": [36000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
           "id": 15,
           "nombre": "Portamaceta de piso",
           "descripcion": "Portamaceta de hierro forjado a mano. Diseño elegante y funcional para organizar tus plantas. Ideal para cualquier ambiente",
@@ -314,6 +366,62 @@
           ],
           "medidas": ["45cm diámetro - 40cm alto"],
           "precios": [86400],
+          "demora": "10 - 15 días de demora"
+        }
+      ]
+    },
+    {
+      "id": "bancos",
+      "nombre": "BANCOS",
+      "imagen": "img/banco_21.jpeg",
+      "productos": [
+        {
+          "id": 18,
+          "nombre": "Banquito de madera de pino",
+          "descripcion": "Banquito artesanal de madera de pino, resistente y versátil. Ideal como asiento extra, mesita auxiliar o apoyo decorativo en cualquier rincón de tu hogar.",
+          "imagen": "img/banco_11.jpeg",
+          "imagenes": [
+            "img/banco_11.jpeg"
+          ],
+          "medidas": ["35cm ancho - 45cm alto"],
+          "precios": [65000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
+          "id": 19,
+          "nombre": "Banquito de hierro",
+          "descripcion": "Banquito de hierro forjado a mano, firme y con carácter. Su diseño simple combina con cualquier ambiente y aporta ese toque artesanal que distingue a cada pieza.",
+          "imagen": "img/banco_31.jpeg",
+          "imagenes": [
+            "img/banco_31.jpeg"
+          ],
+          "medidas": ["40cm ancho - 40cm alto"],
+          "precios": [75000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
+          "id": 20,
+          "nombre": "Pie de cama de pino",
+          "descripcion": "Pie de cama de madera de pino, práctico y decorativo. Perfecto para apoyar mantas, almohadones o simplemente sumar calidez al dormitorio. Disponible con o sin parrilla.",
+          "imagen": "img/banco_21.jpeg",
+          "imagenes": [
+            "img/banco_21.jpeg"
+          ],
+          "medidas": ["1m largo - 45cm alto - Con parrilla", "1m largo - 45cm alto - Sin parrilla"],
+          "precios": [140000, 130000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
+          "id": 21,
+          "nombre": "Pie de cama de hierro",
+          "descripcion": "Pie de cama de hierro forjado a mano, elegante y resistente. Una pieza que combina funcionalidad y diseño artesanal para completar tu dormitorio.",
+          "imagen": "img/banco_41.jpeg",
+          "imagenes": [
+            "img/banco_41.jpeg",
+            "img/banco_42.jpeg"
+          ],
+          "medidas": ["40cm ancho - 80cm largo"],
+          "precios": [140000],
           "demora": "10 - 15 días de demora"
         }
       ]

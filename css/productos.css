@@ -151,6 +151,7 @@
   opacity: 1;
 }
 
+
 /* Indicadores del carrusel */
 .carrusel-dots {
   position: absolute;
@@ -191,7 +192,7 @@
 /* Contenido del producto */
 .producto h3 {
   padding: 1rem 1rem 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   font-weight: 600;
   color: var(--color-text);
   margin: 0;
@@ -210,8 +211,11 @@
 .producto-info {
   padding: 0.75rem 1rem;
   font-size: 1.35rem;
-  color: var(--color-accent);
-  font-weight: 400;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Botón Ver producto */
@@ -248,7 +252,7 @@
   }
 
   .producto h3 {
-    font-size: 1.15rem;
+    font-size: 1.4rem;
   }
 
   .producto p {

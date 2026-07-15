@@ -11,6 +11,7 @@ const opcionMedidaWrapper = document.getElementById("opcion-medida-wrapper");
 const detallePrecio = document.getElementById("detalle-precio");
 const btnAgregarCarrito = document.getElementById("btn-agregar-carrito");
 const btnCancelar = document.getElementById("btn-cancelar");
+const btnConsultarWhatsapp = document.getElementById("btn-consultar-whatsapp");
 const cerrarProducto = document.getElementById("cerrar-producto");
 const btnRestar = document.getElementById("btn-restar");
 const btnSumar = document.getElementById("btn-sumar");
@@ -192,6 +193,11 @@ function mostrarProductosCategoria(categoriaId) {
     // Para Arbolitos de Navidad, usar solo las 2 primeras imágenes en el carrusel
     if (prod.nombre === "Arbolitos de Navidad" && imagenes.length > 2) {
       imagenes = imagenes.slice(0, 2);
+    }
+
+    // Para Tótem, la portada queda fija en la primera foto (sin carrusel)
+    if (prod.nombre === "Tótem" && imagenes.length > 1) {
+      imagenes = imagenes.slice(0, 1);
     }
     
     const tieneMultiplesImagenes = imagenes.length > 1;
@@ -1193,6 +1199,17 @@ function generarMensajeWhatsApp() {
 // Cerrar modal
 btnCancelar.addEventListener("click", () => {
   productoModal.classList.add("oculto");
+});
+
+// Consultar producto por WhatsApp
+btnConsultarWhatsapp.addEventListener("click", () => {
+  if (!productoActual) return;
+
+  const mensaje = `Hola! te consulto sobre el producto ${productoActual.nombre} que ví en la página`;
+  const mensajeCodificado = encodeURIComponent(mensaje);
+  const urlWhatsApp = `https://wa.me/${telefonoWhats}?text=${mensajeCodificado}`;
+
+  window.open(urlWhatsApp, '_blank');
 });
 
 if (cerrarProducto) {

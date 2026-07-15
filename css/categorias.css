@@ -4,11 +4,16 @@
 
 .categorias-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 2rem;
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Cada tarjeta ocupa 2 columnas (3 por fila) */
+.categoria {
+  grid-column: span 2;
 }
 
 .categoria {
@@ -21,20 +26,13 @@
   border: 2px solid var(--color-border);
 }
 
-/* Cuarta categoría (INSUMOS) - más pequeña y centrada */
+/* Segunda fila (BANCOS e INSUMOS) - centradas */
 .categoria:nth-child(4) {
-  grid-column: 2 / 3;
+  grid-column: 2 / span 2;
 }
 
-/* Altura reducida solo en desktop */
-@media (min-width: 769px) {
-  .categoria:nth-child(4) .imagen-wrapper {
-    height: 140px;
-  }
-}
-
-.categoria:nth-child(4):hover {
-  transform: translateY(-10px);
+.categoria:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 
 .categoria:hover {
@@ -45,7 +43,7 @@
 
 .imagen-wrapper {
   width: 100%;
-  height: 180px;
+  height: 220px;
   overflow: hidden;
   background-color: var(--color-light);
   position: relative;
@@ -76,9 +74,21 @@
   font-weight: 600;
   color: var(--color-text);
   background-color: var(--color-secondary);
-  margin: 0;
+  width: fit-content;
+  margin: 0 auto;
   font-family: 'Playfair Display', serif;
   letter-spacing: 1px;
+}
+
+/* Subrayado fino, 80% del ancho del texto, centrado */
+.categoria h3::after {
+  content: '';
+  display: block;
+  width: 80%;
+  height: 1px;
+  margin: 0.1rem auto 0;
+  background-color: #000000;
+  transform: scaleY(0.5);
 }
 
 /* Responsive Categorías */
@@ -89,17 +99,22 @@
     padding: 0.5rem;
   }
 
+  .categoria,
   .categoria:nth-child(4) {
+    grid-column: auto;
+  }
+
+  .categoria:nth-child(5) {
     grid-column: 1 / -1;
     width: 100%;
   }
 
   .imagen-wrapper {
-    height: 160px;
+    height: 190px;
   }
 
   .categoria h3 {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     padding: 0.9rem;
   }
 }
@@ -110,11 +125,12 @@
     gap: 1rem;
   }
 
-  .categoria:nth-child(4) {
+  .categoria:nth-child(5) {
+    grid-column: auto;
     width: 100%;
   }
 
   .imagen-wrapper {
-    height: 150px;
+    height: 180px;
   }
 }
