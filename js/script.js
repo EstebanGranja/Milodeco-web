@@ -32,6 +32,7 @@ let carruselIntervalos = {};
 let imagenActualIndex = 0;
 let imagenesProductoActual = [];
 let seleccionColor = null;
+let transicionImagenToken = 0; // descarta transiciones de imagen viejas si se pasa rápido de foto
 
 // Número de WhatsApp
 const telefonoWhats = "5493547576851";
@@ -190,9 +191,9 @@ function mostrarProductosCategoria(categoriaId) {
     let imagenes = prod.imagenes && prod.imagenes.length > 0 ? prod.imagenes : [prod.imagen];
     imagenes = imagenes.filter(src => !esVideo(src));
     
-    // Para Arbolitos de Navidad, usar solo las 2 primeras imágenes en el carrusel
-    if (prod.nombre === "Arbolitos de Navidad" && imagenes.length > 2) {
-      imagenes = imagenes.slice(0, 2);
+    // Para Arbolitos de Navidad, la portada queda fija en la foto de todos los pinos (sin carrusel)
+    if (prod.nombre === "Arbolitos de Navidad" && imagenes.length > 1) {
+      imagenes = imagenes.slice(0, 1);
     }
 
     // Para Tótem, la portada queda fija en la primera foto (sin carrusel)
@@ -353,7 +354,7 @@ function abrirModalProducto(categoriaId, productoId) {
 
   detalleNombre.textContent = productoActual.nombre;
   detalleDescripcion.textContent = productoActual.descripcion || "";
-  actualizarImagenModal();
+  actualizarImagenModal(false);
   
   configurarNavegacionImagenes();
 
@@ -379,6 +380,10 @@ function abrirModalProducto(categoriaId, productoId) {
   } else {
     // Lógica normal para otros productos
     opcionesMedidas.innerHTML = "";
+    // Arbolitos de Navidad muestra "Opciones" en lugar de "Medidas"
+    // (se setea siempre porque Papel Kraft la cambia a "Color")
+    opcionMedidaWrapper.querySelector('label').textContent =
+      productoActual.nombre === "Arbolitos de Navidad" ? "Opciones" : "Medidas";
     if (productoActual.medidas && productoActual.medidas.length) {
       opcionMedidaWrapper.style.display = "block";
       productoActual.medidas.forEach((m, idx) => {
@@ -393,15 +398,12 @@ function abrirModalProducto(categoriaId, productoId) {
           actualizarPrecio();
           
           // Solo cambiar imagen si es un click real del usuario (no programático)
+          // La imagen 0 es la portada; la opción N muestra la imagen N
           if (productoActual.nombre === "Arbolitos de Navidad" && event.isTrusted) {
-            const mapaImagenes = {
-              "30cm alto": 2,
-              "60cm alto": 3,
-              "100cm alto": 4
-            };
-            
-            if (mapaImagenes[m] !== undefined) {
-              imagenActualIndex = mapaImagenes[m];
+            const indiceImagen = idx + 1;
+
+            if (indiceImagen < imagenesProductoActual.length) {
+              imagenActualIndex = indiceImagen;
               actualizarImagenModal();
               actualizarIndicadores();
             }
@@ -529,33 +531,103 @@ function esVideo(src) {
   return src && (src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.ogg'));
 }
 
-// Actualizar imagen del modal
-function actualizarImagenModal() {
+// Actualizar imagen del modal (animar = false al abrir el modal, para que no se vea la foto anterior)
+function actualizarImagenModal(animar = true) {
   const mediaSrc = imagenesProductoActual[imagenActualIndex] || "img/placeholder.jpg";
-  
+
   if (esVideo(mediaSrc)) {
     // Mostrar video, ocultar imagen
+    transicionImagenToken++;
+    quitarImagenesFantasma();
     detalleImg.style.display = "none";
     detalleVideo.style.display = "block";
     detalleVideo.src = mediaSrc;
     detalleVideo.play();
   } else {
     // Mostrar imagen, ocultar video
+    const veniaDeVideo = detalleImg.style.display === "none";
     detalleVideo.style.display = "none";
     detalleVideo.pause();
     detalleImg.style.display = "block";
-    detalleImg.src = mediaSrc;
-    
-    // Detectar imágenes verticales específicas (arbolitos de navidad)
-    const imagenesVerticales = ['deco_23.jpeg', 'deco_24.jpeg', 'deco_25.jpeg'];
-    const esImagenVertical = imagenesVerticales.some(img => mediaSrc.includes(img));
-    
+
+    if (animar && !veniaDeVideo && detalleImg.getAttribute('src') !== mediaSrc) {
+      transicionImagenModal(mediaSrc);
+    } else {
+      transicionImagenToken++;
+      quitarImagenesFantasma();
+      detalleImg.src = mediaSrc;
+      const etiqueta = document.querySelector('.detalle-imagen .imagen-etiqueta');
+      if (etiqueta) {
+        etiqueta.textContent = textoEtiquetaImagen(imagenActualIndex);
+        etiqueta.classList.remove('saliendo');
+      }
+    }
+
+    // Las fotos de Arbolitos de Navidad son verticales: se muestran completas (sin recortar)
+    const esImagenVertical = productoActual && productoActual.nombre === "Arbolitos de Navidad";
+
     if (esImagenVertical) {
       detalleImg.classList.add('imagen-vertical');
     } else {
       detalleImg.classList.remove('imagen-vertical');
     }
   }
+
+  sincronizarOpcionConImagen();
+}
+
+// Fundido cruzado al pasar de una imagen a otra: una copia de la foto anterior queda encima
+// y se desvanece cuando la nueva está lista (así nunca se ve el recuadro vacío).
+// La etiqueta de la foto acompaña la animación.
+function transicionImagenModal(nuevoSrc) {
+  const token = ++transicionImagenToken;
+  const etiqueta = document.querySelector('.detalle-imagen .imagen-etiqueta');
+
+  quitarImagenesFantasma();
+  const fantasma = detalleImg.cloneNode();
+  fantasma.removeAttribute('id');
+  fantasma.classList.add('imagen-fantasma');
+  detalleImg.after(fantasma);
+
+  detalleImg.src = nuevoSrc;
+  const desvanecer = () => {
+    // Si mientras tanto se pidió otra imagen, esta transición queda descartada
+    if (token !== transicionImagenToken) return;
+    fantasma.classList.add('desvaneciendo');
+    setTimeout(() => fantasma.remove(), 450);
+  };
+  // Esperar a que la nueva foto esté lista para que entre sin parpadeos
+  detalleImg.decode().then(desvanecer, desvanecer);
+
+  if (etiqueta) {
+    etiqueta.classList.add('saliendo');
+    setTimeout(() => {
+      if (token !== transicionImagenToken) return;
+      etiqueta.textContent = textoEtiquetaImagen(imagenActualIndex);
+      etiqueta.classList.remove('saliendo');
+    }, 200);
+  }
+}
+
+function quitarImagenesFantasma() {
+  document.querySelectorAll('.detalle-imagen .imagen-fantasma').forEach(f => f.remove());
+}
+
+// Texto de la etiqueta de Arbolitos de Navidad: la portada es "Todas" y cada foto
+// muestra su opción sin la altura (ej: "Opción 1 (chico) - 30cm alto" → "Opción 1 (chico)")
+function textoEtiquetaImagen(index) {
+  if (index === 0) return "Todas";
+  const medida = (productoActual.medidas && productoActual.medidas[index - 1]) || "";
+  return medida.split(" - ")[0];
+}
+
+// Arbolitos de Navidad: al pasar las fotos del carrusel, se selecciona la opción que muestra la foto
+// (en la portada "Todas" queda la última opción elegida)
+function sincronizarOpcionConImagen() {
+  if (!productoActual || productoActual.nombre !== "Arbolitos de Navidad" || imagenActualIndex === 0) return;
+  const chip = opcionesMedidas.children[imagenActualIndex - 1];
+  // Click programático: actualiza la selección y el precio sin volver a cambiar la foto
+  if (chip && !chip.classList.contains("selected")) chip.click();
 }
 
 // Configurar navegación de imágenes en el modal
@@ -563,8 +635,18 @@ function configurarNavegacionImagenes() {
   const detalleImagenContainer = document.querySelector(".detalle-imagen");
   
   // Limpiar controles previos
-  const controlesAnteriores = detalleImagenContainer.querySelectorAll('.imagen-nav-arrow, .imagen-indicators');
+  const controlesAnteriores = detalleImagenContainer.querySelectorAll('.imagen-nav-arrow, .imagen-indicators, .imagen-etiqueta');
   controlesAnteriores.forEach(el => el.remove());
+
+  // Arbolitos de Navidad: etiqueta abajo a la izquierda con la foto que se está viendo
+  const conEtiqueta = productoActual.nombre === "Arbolitos de Navidad";
+  detalleImagenContainer.classList.toggle("con-etiqueta", conEtiqueta);
+  if (conEtiqueta) {
+    const etiqueta = document.createElement("span");
+    etiqueta.className = "imagen-etiqueta";
+    etiqueta.textContent = textoEtiquetaImagen(imagenActualIndex);
+    detalleImagenContainer.appendChild(etiqueta);
+  }
 
   // Configurar evento de click en el video para fullscreen
   detalleVideo.onclick = () => abrirMediaFullscreen();

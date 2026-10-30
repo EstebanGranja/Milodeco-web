@@ -161,6 +161,20 @@ object-fit: cover;
 transition: var(--transition);
 }
 
+/* Fundido cruzado al pasar de una imagen a otra: copia de la foto anterior que se desvanece encima de la nueva */
+.detalle-imagen img.imagen-fantasma {
+position: absolute;
+top: 0;
+left: 0;
+z-index: 1;
+pointer-events: none;
+transition: opacity 0.35s ease, transform 0.3s ease;
+}
+
+.detalle-imagen img.imagen-fantasma.desvaneciendo {
+opacity: 0;
+}
+
 /* Estilos para video en el modal */
 .detalle-imagen video {
 width: 100%;
@@ -173,9 +187,15 @@ transition: var(--transition);
 transform: scale(1.05);
 }
 
-/* Clase especial para imágenes verticales (ej: arbolitos) */
+/* Clase especial para imágenes verticales (ej: arbolitos):
+   el recuadro toma la proporción 3:4 de la foto, así ocupa todo el ancho sin bandas y se ve más grande */
+.detalle-imagen:has(img.imagen-vertical) {
+height: auto;
+aspect-ratio: 3 / 4;
+}
+
 .detalle-imagen img.imagen-vertical {
-object-fit: contain;
+object-fit: cover;
 }
 
 .detalle-imagen:hover img {
@@ -244,6 +264,53 @@ transition: var(--transition);
 background-color: var(--color-accent);
 width: 12px;
 height: 12px;
+}
+
+/* Etiqueta de la foto que se está viendo (Arbolitos de Navidad): "Todas", "Opción 1 (chico)"... */
+.imagen-etiqueta {
+position: absolute;
+left: 12px;
+bottom: 12px;
+z-index: 5;
+display: inline-flex;
+align-items: center;
+gap: 0.45rem;
+padding: 0.4rem 0.9rem;
+border-radius: 999px;
+background-color: rgba(45, 31, 23, 0.72);
+-webkit-backdrop-filter: blur(4px);
+backdrop-filter: blur(4px);
+color: var(--color-secondary);
+font-size: 0.82rem;
+font-weight: 500;
+letter-spacing: 0.4px;
+line-height: 1.2;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+pointer-events: none;
+transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* puntito dorado delante del texto */
+.imagen-etiqueta::before {
+content: '';
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background-color: #d4a574;
+}
+
+.imagen-etiqueta.saliendo {
+opacity: 0;
+transform: translateY(6px);
+}
+
+/* Con etiqueta, los puntitos del carrusel pasan a la derecha para no superponerse */
+.detalle-imagen.con-etiqueta .imagen-indicators {
+left: auto;
+right: 14px;
+bottom: 20px;
+transform: none;
+align-items: center;
 }
 
 /* Modal de imagen ampliada */

@@ -184,6 +184,27 @@
       "productos": [
         
         {
+          "id": 10,
+          "nombre": "Arbolitos de Navidad",
+          "descripcion": "¡Los más pedidos de cada Navidad! Arbolitos tejidos a mano en papel kraft sobre estructura de hierro, con ese toque cálido y natural que transforma cualquier rincón. Elegí tu favorito o combiná varios y armá tu propio bosquecito navideño.",
+          "imagen": "img/deco_21.webp",
+          "imagenes": [
+            "img/deco_21.webp",
+            "img/deco_22.webp",
+            "img/deco_23.webp",
+            "img/deco_24.webp",
+            "img/deco_25.webp",
+            "img/deco_26.webp"
+          ],
+          "medidas": ["Opción 1 (chico) - 30cm alto",
+                     "Opción 2 (chico) - 30cm alto",
+                     "Opción 3 (chico) - 30cm alto",
+                     "Opción 4 (grande) - 45cm alto",
+                     "Opción 5 (grande) - 68cm alto"],
+          "precios": [40000, 40000, 40000, 59000, 59000],
+          "demora": "10 - 15 días de demora"
+        },
+        {
           "id": 11,
           "nombre": "Mesa NORDICA",
           "descripcion": "Geometría y calidez en equilibrio perfecto. La Mesa Nórdica es una pieza de hierro forjado a mano que combina líneas limpias con textura artesanal. Funciona como mesa auxiliar, soporte para plantas o punto focal decorativo.",
@@ -270,22 +291,6 @@
           ],
           "medidas": ["20cm alto - 23cm ancho"],
           "precios": [62000],
-          "demora": "10 - 15 días de demora"
-        },
-        {
-          "id": 10,
-          "nombre": "Arbolitos de Navidad",
-          "descripcion": "Las mas pedidas!! Decoración navideña artesanal en hierro forjado y tejido a mano. Perfecta para ambientar tu hogar en las fiestas",
-          "imagen": "img/deco_01.webp",
-          "imagenes": [
-            "img/deco_21.webp",
-            "img/deco_22.webp",
-            "img/deco_23.webp",
-            "img/deco_24.webp",
-            "img/deco_25.webp"
-          ],
-          "medidas": ["30cm alto", "60cm alto", "100cm alto"],
-          "precios": [42100, 74500, 106900 ],
           "demora": "10 - 15 días de demora"
         },
         {
